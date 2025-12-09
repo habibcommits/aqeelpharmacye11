@@ -1,10 +1,25 @@
 import ImageKit from 'imagekit';
 
-const imagekit = new ImageKit({
-  publicKey: process.env.IMAGEKIT_PUBLIC_KEY || '',
-  privateKey: process.env.IMAGEKIT_PRIVATE_KEY || '',
-  urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT || '',
-});
+let imagekitInstance: ImageKit | null = null;
+
+function getImageKit(): ImageKit {
+  if (!imagekitInstance) {
+    const publicKey = process.env.IMAGEKIT_PUBLIC_KEY;
+    const privateKey = process.env.IMAGEKIT_PRIVATE_KEY;
+    const urlEndpoint = process.env.IMAGEKIT_URL_ENDPOINT;
+
+    if (!publicKey || !privateKey || !urlEndpoint) {
+      throw new Error('ImageKit credentials are not configured. Please set IMAGEKIT_PUBLIC_KEY, IMAGEKIT_PRIVATE_KEY, and IMAGEKIT_URL_ENDPOINT environment variables.');
+    }
+
+    imagekitInstance = new ImageKit({
+      publicKey,
+      privateKey,
+      urlEndpoint,
+    });
+  }
+  return imagekitInstance;
+}
 
 export interface ImageKitAuthParams {
   token: string;
@@ -13,7 +28,7 @@ export interface ImageKitAuthParams {
 }
 
 export function getImageKitAuthParams(): ImageKitAuthParams {
-  return imagekit.getAuthenticationParameters();
+  return getImageKit().getAuthenticationParameters();
 }
 
 export async function uploadImage(
@@ -22,7 +37,7 @@ export async function uploadImage(
   folder: string = 'products'
 ): Promise<{ url: string; fileId: string }> {
   try {
-    const response = await imagekit.upload({
+    const response = await getImageKit().upload({
       file,
       fileName,
       folder: `aqeel-pharmacy/${folder}`,
@@ -40,11 +55,15 @@ export async function uploadImage(
 
 export async function deleteImage(fileId: string): Promise<void> {
   try {
-    await imagekit.deleteFile(fileId);
+    await getImageKit().deleteFile(fileId);
   } catch (error) {
     console.error('ImageKit delete error:', error);
     throw error;
   }
 }
 
-export { imagekit };
+export const imagekit = {
+  get instance() {
+    return getImageKit();
+  }
+};
