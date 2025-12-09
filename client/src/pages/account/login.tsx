@@ -1,28 +1,14 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
 import { useMutation } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { Mail, ArrowRight, Loader2, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Form, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useClientAuth } from "@/lib/client-auth-context";
 import { apiRequest } from "@/lib/queryClient";
-
-const emailSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
-});
-
-const otpSchema = z.object({
-  otp: z.string().length(6, "Please enter the 6-digit code"),
-});
-
-type EmailFormData = z.infer<typeof emailSchema>;
-type OtpFormData = z.infer<typeof otpSchema>;
 
 export default function LoginPage() {
   const [, setLocation] = useLocation();
@@ -30,25 +16,17 @@ export default function LoginPage() {
   const { login } = useClientAuth();
   const [step, setStep] = useState<"email" | "otp">("email");
   const [email, setEmail] = useState("");
-
-  const emailForm = useForm<EmailFormData>({
-    resolver: zodResolver(emailSchema),
-    defaultValues: { email: "" },
-  });
-
-  const otpForm = useForm<OtpFormData>({
-    resolver: zodResolver(otpSchema),
-    defaultValues: { otp: "" },
-  });
+  const [otp, setOtp] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [otpError, setOtpError] = useState("");
 
   const sendOtpMutation = useMutation({
-    mutationFn: async (data: EmailFormData) => {
-      const response = await apiRequest("POST", "/api/auth/send-otp", data);
+    mutationFn: async (emailToSend: string) => {
+      const response = await apiRequest("POST", "/api/auth/send-otp", { email: emailToSend });
       return response.json();
     },
     onSuccess: (data) => {
       if (data.success) {
-        setEmail(emailForm.getValues("email"));
         setStep("otp");
         toast({
           title: "Code Sent",
@@ -66,8 +44,8 @@ export default function LoginPage() {
   });
 
   const verifyOtpMutation = useMutation({
-    mutationFn: async (data: OtpFormData) => {
-      const response = await apiRequest("POST", "/api/auth/verify-otp", { email, otp: data.otp });
+    mutationFn: async (otpCode: string) => {
+      const response = await apiRequest("POST", "/api/auth/verify-otp", { email, otp: otpCode });
       return response.json();
     },
     onSuccess: (data) => {
@@ -89,21 +67,38 @@ export default function LoginPage() {
     },
   });
 
-  const handleSendOtp = (data: EmailFormData) => {
-    sendOtpMutation.mutate(data);
+  const handleSendOtp = (e: React.FormEvent) => {
+    e.preventDefault();
+    setEmailError("");
+    
+    if (!email || !email.includes("@")) {
+      setEmailError("Please enter a valid email address");
+      return;
+    }
+    
+    sendOtpMutation.mutate(email);
   };
 
-  const handleVerifyOtp = (data: OtpFormData) => {
-    verifyOtpMutation.mutate(data);
+  const handleVerifyOtp = (e: React.FormEvent) => {
+    e.preventDefault();
+    setOtpError("");
+    
+    if (!otp || otp.length !== 6) {
+      setOtpError("Please enter the 6-digit code");
+      return;
+    }
+    
+    verifyOtpMutation.mutate(otp);
   };
 
   const handleBack = () => {
     setStep("email");
-    otpForm.reset();
+    setOtp("");
+    setOtpError("");
   };
 
   const handleResend = () => {
-    sendOtpMutation.mutate({ email });
+    sendOtpMutation.mutate(email);
   };
 
   return (
@@ -122,122 +117,105 @@ export default function LoginPage() {
 
         <CardContent>
           {step === "email" ? (
-            <Form {...emailForm}>
-              <form onSubmit={emailForm.handleSubmit(handleSendOtp)} className="space-y-4">
-                <FormField
-                  control={emailForm.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email Address</FormLabel>
-                      <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground z-10" />
-                        <Input
-                          id="email-input"
-                          type="email"
-                          placeholder="your@email.com"
-                          className="pl-10"
-                          data-testid="input-email"
-                          value={field.value}
-                          onChange={(e) => field.onChange(e.target.value)}
-                          onBlur={field.onBlur}
-                          name={field.name}
-                          ref={field.ref}
-                        />
-                      </div>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={sendOtpMutation.isPending}
-                  data-testid="button-send-otp"
-                >
-                  {sendOtpMutation.isPending ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      Continue
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </>
-                  )}
-                </Button>
-              </form>
-            </Form>
-          ) : (
-            <Form {...otpForm}>
-              <form onSubmit={otpForm.handleSubmit(handleVerifyOtp)} className="space-y-6">
-                <FormField
-                  control={otpForm.control}
-                  name="otp"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Verification Code</FormLabel>
-                      <Input
-                        id="otp-input"
-                        type="text"
-                        inputMode="numeric"
-                        maxLength={6}
-                        placeholder="Enter 6-digit code"
-                        className="text-center text-lg tracking-widest"
-                        data-testid="input-otp"
-                        value={field.value}
-                        onChange={(e) => field.onChange(e.target.value)}
-                        onBlur={field.onBlur}
-                        name={field.name}
-                        ref={field.ref}
-                      />
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={verifyOtpMutation.isPending}
-                  data-testid="button-verify-otp"
-                >
-                  {verifyOtpMutation.isPending ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Verifying...
-                    </>
-                  ) : (
-                    "Verify & Sign In"
-                  )}
-                </Button>
-
-                <div className="flex flex-col gap-2 text-center">
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleResend}
-                    disabled={sendOtpMutation.isPending}
-                    data-testid="button-resend-otp"
-                  >
-                    {sendOtpMutation.isPending ? "Sending..." : "Resend Code"}
-                  </Button>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleBack}
-                    data-testid="button-back"
-                  >
-                    <ArrowLeft className="mr-2 h-4 w-4" />
-                    Use different email
-                  </Button>
+            <form onSubmit={handleSendOtp} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="email">Email Address</Label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground z-10" />
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="your@email.com"
+                    className="pl-10"
+                    data-testid="input-email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
-              </form>
-            </Form>
+                {emailError && (
+                  <p className="text-sm font-medium text-destructive">{emailError}</p>
+                )}
+              </div>
+
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={sendOtpMutation.isPending}
+                data-testid="button-send-otp"
+              >
+                {sendOtpMutation.isPending ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    Continue
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </>
+                )}
+              </Button>
+            </form>
+          ) : (
+            <form onSubmit={handleVerifyOtp} className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="otp">Verification Code</Label>
+                <Input
+                  id="otp"
+                  type="text"
+                  inputMode="numeric"
+                  maxLength={6}
+                  placeholder="Enter 6-digit code"
+                  className="text-center text-lg tracking-widest"
+                  data-testid="input-otp"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
+                  autoFocus
+                />
+                {otpError && (
+                  <p className="text-sm font-medium text-destructive">{otpError}</p>
+                )}
+              </div>
+
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={verifyOtpMutation.isPending}
+                data-testid="button-verify-otp"
+              >
+                {verifyOtpMutation.isPending ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Verifying...
+                  </>
+                ) : (
+                  "Verify & Sign In"
+                )}
+              </Button>
+
+              <div className="flex flex-col gap-2 text-center">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleResend}
+                  disabled={sendOtpMutation.isPending}
+                  data-testid="button-resend-otp"
+                >
+                  {sendOtpMutation.isPending ? "Sending..." : "Resend Code"}
+                </Button>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleBack}
+                  data-testid="button-back"
+                >
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Use different email
+                </Button>
+              </div>
+            </form>
           )}
         </CardContent>
       </Card>
