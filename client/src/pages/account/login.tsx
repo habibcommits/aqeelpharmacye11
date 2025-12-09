@@ -8,7 +8,7 @@ import { Mail, ArrowRight, Loader2, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { useClientAuth } from "@/lib/client-auth-context";
 import { apiRequest } from "@/lib/queryClient";
@@ -132,15 +132,18 @@ export default function LoginPage() {
                       <FormLabel>Email Address</FormLabel>
                       <div className="relative">
                         <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground z-10" />
-                        <FormControl>
-                          <Input
-                            {...field}
-                            type="email"
-                            placeholder="your@email.com"
-                            className="pl-10"
-                            data-testid="input-email"
-                          />
-                        </FormControl>
+                        <Input
+                          id="email-input"
+                          type="email"
+                          placeholder="your@email.com"
+                          className="pl-10"
+                          data-testid="input-email"
+                          value={field.value}
+                          onChange={(e) => field.onChange(e.target.value)}
+                          onBlur={field.onBlur}
+                          name={field.name}
+                          ref={field.ref}
+                        />
                       </div>
                       <FormMessage />
                     </FormItem>
@@ -176,17 +179,20 @@ export default function LoginPage() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Verification Code</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          type="text"
-                          inputMode="numeric"
-                          maxLength={6}
-                          placeholder="Enter 6-digit code"
-                          className="text-center text-lg tracking-widest"
-                          data-testid="input-otp"
-                        />
-                      </FormControl>
+                      <Input
+                        id="otp-input"
+                        type="text"
+                        inputMode="numeric"
+                        maxLength={6}
+                        placeholder="Enter 6-digit code"
+                        className="text-center text-lg tracking-widest"
+                        data-testid="input-otp"
+                        value={field.value}
+                        onChange={(e) => field.onChange(e.target.value)}
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        ref={field.ref}
+                      />
                       <FormMessage />
                     </FormItem>
                   )}
