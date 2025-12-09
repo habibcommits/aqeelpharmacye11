@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { useToast } from "@/hooks/use-toast";
 import { useClientAuth } from "@/lib/client-auth-context";
 import { apiRequest } from "@/lib/queryClient";
@@ -175,24 +174,18 @@ export default function LoginPage() {
                   control={otpForm.control}
                   name="otp"
                   render={({ field }) => (
-                    <FormItem className="flex flex-col items-center">
-                      <FormLabel className="sr-only">Verification Code</FormLabel>
+                    <FormItem>
+                      <FormLabel>Verification Code</FormLabel>
                       <FormControl>
-                        <InputOTP
+                        <Input
+                          {...field}
+                          type="text"
+                          inputMode="numeric"
                           maxLength={6}
-                          value={field.value}
-                          onChange={field.onChange}
+                          placeholder="Enter 6-digit code"
+                          className="text-center text-lg tracking-widest"
                           data-testid="input-otp"
-                        >
-                          <InputOTPGroup>
-                            <InputOTPSlot index={0} />
-                            <InputOTPSlot index={1} />
-                            <InputOTPSlot index={2} />
-                            <InputOTPSlot index={3} />
-                            <InputOTPSlot index={4} />
-                            <InputOTPSlot index={5} />
-                          </InputOTPGroup>
-                        </InputOTP>
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
