@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Search, ShoppingCart, User, Menu, X, Moon, Sun, Phone, Truck, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useCart } from "@/lib/cart-context";
 import { useTheme } from "@/lib/theme-context";
+import { useQuery } from "@tanstack/react-query";
+import type { Product } from "@shared/schema";
 import logoImage from "@assets/aqeelph_logo_1765266347695.png";
 
 const categories = [
@@ -24,15 +26,58 @@ export function Header() {
   const [, navigate] = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const mobileSearchRef = useRef<HTMLDivElement>(null);
   const { getItemCount, setIsOpen } = useCart();
   const { theme, toggleTheme } = useTheme();
   const itemCount = getItemCount();
 
+  const { data: products = [] } = useQuery<Product[]>({
+    queryKey: ["/api/products"],
+  });
+
+  const suggestions = searchQuery.trim().length >= 2
+    ? products
+        .filter((p) =>
+          p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          p.description?.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        .slice(0, 6)
+    : [];
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node) &&
+        mobileSearchRef.current &&
+        !mobileSearchRef.current.contains(event.target as Node)
+      ) {
+        setShowSuggestions(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
+      setShowSuggestions(false);
       navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
     }
+  };
+
+  const handleProductClick = (slug: string) => {
+    setShowSuggestions(false);
+    setSearchQuery("");
+    setMobileMenuOpen(false);
+    navigate(`/product/${slug}`);
+  };
+
+  const formatPrice = (price: number) => {
+    return `Rs ${price.toLocaleString()}`;
   };
 
   return (
@@ -75,16 +120,55 @@ export function Header() {
             onSubmit={handleSearch} 
             className="hidden md:flex flex-1 max-w-xl mx-4"
           >
-            <div className="relative w-full">
+            <div className="relative w-full" ref={searchRef}>
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
                 type="search"
                 placeholder="Search for products, brands..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                  setShowSuggestions(true);
+                }}
+                onFocus={() => setShowSuggestions(true)}
                 className="pl-10 pr-4"
                 data-testid="input-search"
               />
+              {showSuggestions && suggestions.length > 0 && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-card border rounded-md shadow-lg z-50 max-h-80 overflow-y-auto">
+                  {suggestions.map((product) => (
+                    <button
+                      key={product.id}
+                      type="button"
+                      onClick={() => handleProductClick(product.slug)}
+                      className="w-full flex items-center gap-3 p-3 hover-elevate text-left border-b last:border-b-0"
+                      data-testid={`suggestion-${product.id}`}
+                    >
+                      {product.images?.[0] && (
+                        <img
+                          src={product.images[0]}
+                          alt={product.name}
+                          className="w-10 h-10 object-cover rounded"
+                        />
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium truncate">{product.name}</p>
+                        <p className="text-sm text-primary font-semibold">
+                          {formatPrice(product.price)}
+                        </p>
+                      </div>
+                    </button>
+                  ))}
+                  <Link
+                    href={`/products?search=${encodeURIComponent(searchQuery.trim())}`}
+                    onClick={() => setShowSuggestions(false)}
+                  >
+                    <div className="p-3 text-center text-sm text-muted-foreground hover-elevate">
+                      View all results for "{searchQuery}"
+                    </div>
+                  </Link>
+                </div>
+              )}
             </div>
           </form>
 
@@ -134,17 +218,50 @@ export function Header() {
               </SheetTrigger>
               <SheetContent side="left" className="w-80">
                 <div className="flex flex-col gap-4 mt-6">
-                  <form onSubmit={handleSearch} className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                    <Input
-                      type="search"
-                      placeholder="Search products..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10"
-                      data-testid="input-mobile-search"
-                    />
-                  </form>
+                  <div className="relative" ref={mobileSearchRef}>
+                    <form onSubmit={handleSearch}>
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                      <Input
+                        type="search"
+                        placeholder="Search products..."
+                        value={searchQuery}
+                        onChange={(e) => {
+                          setSearchQuery(e.target.value);
+                          setShowSuggestions(true);
+                        }}
+                        onFocus={() => setShowSuggestions(true)}
+                        className="pl-10"
+                        data-testid="input-mobile-search"
+                      />
+                    </form>
+                    {showSuggestions && suggestions.length > 0 && (
+                      <div className="absolute top-full left-0 right-0 mt-1 bg-card border rounded-md shadow-lg z-50 max-h-60 overflow-y-auto">
+                        {suggestions.map((product) => (
+                          <button
+                            key={product.id}
+                            type="button"
+                            onClick={() => handleProductClick(product.slug)}
+                            className="w-full flex items-center gap-3 p-3 hover-elevate text-left border-b last:border-b-0"
+                            data-testid={`mobile-suggestion-${product.id}`}
+                          >
+                            {product.images?.[0] && (
+                              <img
+                                src={product.images[0]}
+                                alt={product.name}
+                                className="w-8 h-8 object-cover rounded"
+                              />
+                            )}
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-medium truncate">{product.name}</p>
+                              <p className="text-xs text-primary font-semibold">
+                                {formatPrice(product.price)}
+                              </p>
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
 
                   <nav className="flex flex-col gap-1">
                     <p className="text-sm font-semibold text-muted-foreground px-2 py-2">Categories</p>
