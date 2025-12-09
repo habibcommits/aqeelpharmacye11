@@ -5,6 +5,7 @@ import * as cheerio from "cheerio";
 import { storage } from "./storage";
 import { insertProductSchema, insertBrandSchema, insertCategorySchema, checkoutFormSchema, clientLoginSchema, otpVerifySchema, clientProfileSchema } from "@shared/schema";
 import { generateOtp, getOtpExpiryTime, sendOtpEmail } from "./email";
+import { getImageKitAuthParams } from "./imagekit";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -269,6 +270,17 @@ export async function registerRoutes(
       res.json(banners);
     } catch (error) {
       res.status(500).json({ error: "Failed to fetch banners" });
+    }
+  });
+
+  // ImageKit Authentication
+  app.get("/api/imagekit/auth", async (req: Request, res: Response) => {
+    try {
+      const authParams = getImageKitAuthParams();
+      res.json(authParams);
+    } catch (error) {
+      console.error("ImageKit auth error:", error);
+      res.status(500).json({ error: "Failed to generate ImageKit auth parameters" });
     }
   });
 
@@ -718,7 +730,27 @@ export async function registerRoutes(
               break;
             }
           }
-          const price = parseFloat(priceText.replace(/[^\d.]/g, '')) || 0;
+          // Fix: Handle comma-separated prices like "3,250" or "Rs.3,250"
+          // First remove currency symbols and spaces, then handle comma as thousands separator
+          let cleanPrice = priceText
+            .replace(/Rs\.?/gi, '')  // Remove Rs or Rs.
+            .replace(/PKR/gi, '')     // Remove PKR
+            .replace(/₹/g, '')        // Remove rupee symbol
+            .replace(/\$/g, '')       // Remove dollar sign
+            .replace(/\s/g, '')       // Remove whitespace
+            .trim();
+          
+          // If price has comma followed by 3 digits, it's a thousands separator
+          // If comma followed by 2 digits at the end, treat as decimal (European format)
+          if (/,\d{3}/.test(cleanPrice)) {
+            // Comma is thousands separator (e.g., "3,250" -> "3250")
+            cleanPrice = cleanPrice.replace(/,/g, '');
+          } else if (/,\d{2}$/.test(cleanPrice)) {
+            // Comma is decimal separator (European format, e.g., "32,50" -> "32.50")
+            cleanPrice = cleanPrice.replace(',', '.');
+          }
+          
+          const price = parseFloat(cleanPrice) || 0;
 
           // Extract image
           const imgSelectors = ['img.wp-post-image', 'img.attachment-woocommerce_thumbnail', '.product-image img', 'img'];

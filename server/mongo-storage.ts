@@ -14,7 +14,7 @@ import {
   type Client as ClientType, type InsertClient,
   type OtpVerification as OtpType, type InsertOtp
 } from "@shared/schema";
-import { IStorage } from './storage';
+import { IStorage } from './storage-types';
 
 function toPlainObject<T>(doc: any): T {
   if (!doc) return doc;
@@ -293,6 +293,26 @@ export class MongoStorage implements IStorage {
         { isUsed: true }
       ]
     });
+  }
+
+  // Missing methods required by IStorage interface
+  async getOrdersByClientEmail(email: string): Promise<OrderWithItems[]> {
+    await this.ensureConnection();
+    const orders = await Order.find({ 
+      customerEmail: { $regex: new RegExp(`^${email}$`, 'i') }
+    }).sort({ createdAt: -1 });
+    return orders.map(o => toPlainObject<OrderWithItems>(o));
+  }
+
+  async getValidOtp(email: string, otp: string): Promise<OtpType | undefined> {
+    await this.ensureConnection();
+    const otpDoc = await OtpVerification.findOne({
+      email: { $regex: new RegExp(`^${email}$`, 'i') },
+      otp,
+      isUsed: false,
+      expiresAt: { $gt: new Date().toISOString() }
+    });
+    return otpDoc ? toPlainObject<OtpType>(otpDoc) : undefined;
   }
 }
 
