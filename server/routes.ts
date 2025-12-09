@@ -286,6 +286,38 @@ export async function registerRoutes(
       
       let failed = 0;
 
+      // Get existing categories to match products
+      const existingCategories = await storage.getCategories();
+      
+      // Category keyword mappings
+      const categoryKeywords: Record<string, string[]> = {
+        "skin-care": ["skin", "face", "cleanser", "moisturizer", "serum", "cream", "lotion", "facial", "acne", "anti-aging", "skincare"],
+        "hair-care": ["hair", "shampoo", "conditioner", "scalp", "dandruff", "hairfall", "keratin"],
+        "makeup": ["makeup", "lipstick", "foundation", "mascara", "eyeshadow", "concealer", "blush", "primer"],
+        "fragrance": ["perfume", "fragrance", "cologne", "body spray", "mist", "attar", "scent"],
+        "sunscreen": ["sunscreen", "spf", "sunblock", "sun protection", "uv"],
+        "baby": ["baby", "infant", "kids", "child", "diaper", "newborn"],
+        "vitamins": ["vitamin", "supplement", "multivitamin", "omega", "calcium", "iron", "zinc"],
+        "medicines": ["medicine", "tablet", "capsule", "syrup", "paracetamol", "pain", "fever", "cold", "cough"],
+      };
+
+      // Function to detect category from product name/url
+      const detectCategory = (productName: string, productUrl: string = ""): string | undefined => {
+        const searchText = (productName + " " + productUrl).toLowerCase();
+        
+        for (const [categorySlug, keywords] of Object.entries(categoryKeywords)) {
+          for (const keyword of keywords) {
+            if (searchText.includes(keyword.toLowerCase())) {
+              const matchedCategory = existingCategories.find(c => c.slug === categorySlug);
+              if (matchedCategory) {
+                return matchedCategory.id;
+              }
+            }
+          }
+        }
+        return undefined;
+      };
+
       // Fetch the main page
       const response = await axios.get(url, {
         headers: {
@@ -318,7 +350,6 @@ export async function registerRoutes(
       }
 
       if (!products || products.length === 0) {
-        // Try to find product links as fallback
         const productLinks = $('a[href*="/product/"], a.woocommerce-LoopProduct-link');
         if (productLinks.length > 0) {
           products = productLinks.closest('li, div').filter((_, el) => $(el).find('img').length > 0);
@@ -341,6 +372,9 @@ export async function registerRoutes(
         try {
           const productEl = $(products[i]);
           
+          // Extract product URL for category detection
+          const productUrl = productEl.find('a').first().attr('href') || '';
+          
           // Extract product name
           const nameSelectors = ['.woocommerce-loop-product__title', '.product-title', '.product-name', 'h2', 'h3', '.title', 'a.product-link'];
           let name = '';
@@ -353,6 +387,18 @@ export async function registerRoutes(
           }
           if (!name) {
             name = productEl.find('a').first().text().trim() || `Product ${i + 1}`;
+          }
+
+          // Extract category from page structure
+          let categoryFromPage = productEl.attr('data-category') || 
+                                 productEl.find('[data-category]').attr('data-category') ||
+                                 productEl.closest('[data-category]').attr('data-category') || '';
+          
+          // Try to get category from product classes
+          const productClasses = productEl.attr('class') || '';
+          const categoryMatch = productClasses.match(/product-cat-([a-z0-9-]+)/i);
+          if (categoryMatch) {
+            categoryFromPage = categoryMatch[1];
           }
 
           // Extract price
@@ -376,24 +422,39 @@ export async function registerRoutes(
             if (image) break;
           }
           
-          // Make sure image URL is absolute
           if (image && !image.startsWith('http')) {
             const baseUrl = new URL(url);
             image = new URL(image, baseUrl.origin).toString();
           }
 
           if (name && price > 0) {
-            // Check if product already exists
             const existingProducts = await storage.getProducts();
             const exists = existingProducts.some(p => p.name.toLowerCase() === name.toLowerCase());
             
             if (!exists) {
+              // Detect category
+              let categoryId = detectCategory(name, productUrl + " " + categoryFromPage);
+              
+              // If no category detected, try to match from URL path
+              if (!categoryId && productUrl) {
+                try {
+                  const urlPath = new URL(productUrl, url).pathname.toLowerCase();
+                  for (const cat of existingCategories) {
+                    if (urlPath.includes(cat.slug) || urlPath.includes(cat.name.toLowerCase().replace(/\s+/g, '-'))) {
+                      categoryId = cat.id;
+                      break;
+                    }
+                  }
+                } catch (e) {}
+              }
+
               await storage.createProduct({
                 name,
                 slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, ""),
                 description: `Imported from ${url}`,
                 price,
                 images: image ? [image] : [],
+                categoryId: categoryId || undefined,
                 isActive: true,
                 isFeatured: false,
                 stock: 20,
