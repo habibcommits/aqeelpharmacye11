@@ -1,4 +1,4 @@
-import { Truck, Shield, RefreshCw, Headphones } from "lucide-react";
+import { Truck, Shield, RefreshCw, Clock, Car, Store, Package } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const features = [
@@ -10,18 +10,25 @@ const features = [
   {
     icon: Shield,
     title: "100% Authentic",
-    description: "Genuine products only",
+    description: "Licensed pharmacy (ISB-1687)",
   },
   {
-    icon: RefreshCw,
-    title: "Easy Returns",
-    description: "7-day exchange policy",
+    icon: Clock,
+    title: "Open 7 AM - 3 AM",
+    description: "Open daily for you",
   },
   {
-    icon: Headphones,
-    title: "24/7 Support",
-    description: "Always here to help",
+    icon: Car,
+    title: "Drive-Through",
+    description: "Quick pickup available",
   },
+];
+
+const serviceOptions = [
+  { icon: Package, label: "Home Delivery" },
+  { icon: Car, label: "Drive-Through" },
+  { icon: Store, label: "In-Store Pickup" },
+  { icon: Store, label: "In-Store Shopping" },
 ];
 
 export function TrustIndicators() {
@@ -44,6 +51,23 @@ export function TrustIndicators() {
               </CardContent>
             </Card>
           ))}
+        </div>
+        
+        <div className="mt-8 pt-8 border-t border-border/30">
+          <div className="text-center mb-4">
+            <p className="text-sm text-muted-foreground">Available Service Options</p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+            {serviceOptions.map((service, index) => (
+              <div 
+                key={index}
+                className="flex items-center gap-2 text-sm text-muted-foreground"
+              >
+                <service.icon className="w-4 h-4" />
+                <span>{service.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

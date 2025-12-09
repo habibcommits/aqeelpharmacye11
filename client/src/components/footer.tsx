@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { MapPin, Phone, Mail, Clock, Lock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Lock, Award, Car, Package, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
   DialogContent,
@@ -44,29 +45,57 @@ export function Footer() {
           <div>
             <img 
               src={logoImage} 
-              alt="AQeel Pharmacy" 
+              alt="Aqeel Pharmacy" 
               className="h-14 w-auto mb-4"
             />
             <p className="text-sm text-muted-foreground mb-4">
-              Your trusted online pharmacy in Pakistan. We provide authentic skincare, haircare, 
+              Your trusted pharmacy in Islamabad. We provide authentic skincare, haircare, 
               baby products, vitamins, and medicines with fast delivery.
             </p>
             <div className="flex flex-col gap-2 text-sm">
-              <div className="flex items-start gap-2">
+              <a 
+                href="https://maps.google.com/?q=Malik+Heights+Main+Double+Rd+Services+Society+MPCHS+E+11/2+E-11+Islamabad"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-2 hover:text-primary transition-colors"
+              >
                 <MapPin className="w-4 h-4 mt-0.5 text-muted-foreground flex-shrink-0" />
-                <span className="text-muted-foreground">Commercial Market, Rawalpindi, Pakistan</span>
-              </div>
-              <div className="flex items-center gap-2">
+                <span className="text-muted-foreground hover:text-foreground">
+                  Malik Heights, Main Double Rd, Services Society MPCHS E 11/2 E-11, Islamabad, 44000
+                </span>
+              </a>
+              <a 
+                href="tel:+923009109815"
+                className="flex items-center gap-2 hover:text-primary transition-colors"
+              >
                 <Phone className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-                <span className="text-muted-foreground">+92 300 1234567</span>
-              </div>
+                <span className="text-muted-foreground hover:text-foreground">+92 300 9109815</span>
+              </a>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-muted-foreground flex-shrink-0" />
                 <span className="text-muted-foreground">info@aqeelpharmacy.com</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-                <span className="text-muted-foreground">Mon - Sat: 9:00 AM - 10:00 PM</span>
+                <span className="text-muted-foreground">Open Daily: 7:00 AM - 3:00 AM</span>
+              </div>
+            </div>
+            
+            <div className="mt-4 pt-4 border-t border-border/50">
+              <p className="text-xs font-medium text-muted-foreground mb-2">Service Options:</p>
+              <div className="flex flex-wrap gap-1">
+                <Badge variant="secondary" size="sm" className="text-xs">
+                  <Package className="w-3 h-3 mr-1" />
+                  Delivery
+                </Badge>
+                <Badge variant="secondary" size="sm" className="text-xs">
+                  <Car className="w-3 h-3 mr-1" />
+                  Drive-through
+                </Badge>
+                <Badge variant="secondary" size="sm" className="text-xs">
+                  <Store className="w-3 h-3 mr-1" />
+                  In-store
+                </Badge>
               </div>
             </div>
           </div>
@@ -129,15 +158,27 @@ export function Footer() {
                 Terms & Conditions
               </Link>
             </nav>
+            
+            <div className="mt-6 pt-4 border-t border-border/50">
+              <h3 className="font-semibold mb-3 flex items-center gap-2">
+                <Award className="w-4 h-4" />
+                License Info
+              </h3>
+              <div className="space-y-1 text-xs text-muted-foreground">
+                <p>License #: <span className="font-medium">ISB-1687</span></p>
+                <p>DHO ID: <span className="font-medium">DHO-IsB-1687</span></p>
+                <p>Council Reg: <span className="font-medium">21336-A/2019</span></p>
+              </div>
+            </div>
           </div>
         </div>
 
         <div className="mt-8 pt-8 border-t">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
-              © 2025 AQeel Pharmacy. All rights reserved.
+              © 2025 Aqeel Pharmacy. All rights reserved. | Services Society, E-11/2, Islamabad
             </p>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 flex-wrap">
               <span className="text-sm text-muted-foreground">Payment:</span>
               <span className="text-sm font-medium">Cash on Delivery (COD)</span>
               
