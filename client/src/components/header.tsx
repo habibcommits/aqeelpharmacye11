@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Search, ShoppingCart, User, Menu, X, Moon, Sun, Phone, Truck, RefreshCw } from "lucide-react";
+import { Search, ShoppingCart, User, Menu, X, Moon, Sun, Phone, Truck, RefreshCw, MapPin, Package } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -86,19 +86,27 @@ export function Header() {
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-4 text-xs md:text-sm">
             <div className="flex items-center gap-4 md:gap-6 flex-wrap">
+              <a 
+                href="tel:+923009109815" 
+                className="flex items-center gap-1.5 hover:underline"
+                data-testid="link-phone"
+              >
+                <Phone className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">+92 300 9109815</span>
+                <span className="sm:hidden">Call Us</span>
+              </a>
               <span className="flex items-center gap-1.5">
                 <Truck className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Free Delivery over Rs 10,000</span>
-                <span className="sm:hidden">Free Delivery 10k+</span>
+                <span className="hidden md:inline">Free Delivery over Rs 10,000</span>
+                <span className="md:hidden hidden sm:inline">Free 10k+</span>
               </span>
-              <Link href="/policies/refund" className="flex items-center gap-1.5 hover:underline">
+              <Link href="/policies/refund" className="hidden md:flex items-center gap-1.5 hover:underline">
                 <RefreshCw className="w-3.5 h-3.5" />
-                <span className="hidden md:inline">Exchange & Refund Policy</span>
-                <span className="md:hidden">Returns</span>
+                <span>Returns</span>
               </Link>
             </div>
             <Link href="/track-order" className="flex items-center gap-1.5 hover:underline">
-              <Phone className="w-3.5 h-3.5" />
+              <Package className="w-3.5 h-3.5" />
               Track Order
             </Link>
           </div>
