@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useCart } from "@/lib/cart-context";
 import { useTheme } from "@/lib/theme-context";
-import logoImage from "@assets/stock_images/pharmacy_logo_medica_fe9d3f91.jpg";
+import logoImage from "@assets/aqeelph_logo_1765266347695.png";
 
 const categories = [
   { name: "Skin Care", slug: "skin-care" },

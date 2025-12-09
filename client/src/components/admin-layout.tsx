@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { useTheme } from "@/lib/theme-context";
-import logoImage from "@assets/stock_images/pharmacy_logo_medica_fe9d3f91.jpg";
+import logoImage from "@assets/aqeelph_logo_1765266347695.png";
 import type { ReactNode } from "react";
 
 interface AdminLayoutProps {

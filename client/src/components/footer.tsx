@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
-import logoImage from "@assets/stock_images/pharmacy_logo_medica_fe9d3f91.jpg";
+import logoImage from "@assets/aqeelph_logo_1765266347695.png";
 
 export function Footer() {
   return (
