@@ -1,4 +1,4 @@
-# AQeel Pharmacy E-Commerce Design Guidelines
+# Aqeel Pharmacy E-Commerce Design Guidelines
 
 ## Design Approach
 **Reference-Based Approach** drawing from leading pharmacy and e-commerce platforms:

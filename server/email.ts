@@ -28,13 +28,13 @@ export async function sendOtpEmail(
 ): Promise<boolean> {
   try {
     const mailOptions = {
-      from: `"AQeel Pharmacy" <${process.env.ZOHO_EMAIL}>`,
+      from: `"Aqeel Pharmacy" <${process.env.ZOHO_EMAIL}>`,
       to: email,
-      subject: "Your Verification Code - AQeel Pharmacy",
+      subject: "Your Verification Code - Aqeel Pharmacy",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <div style="text-align: center; margin-bottom: 30px;">
-            <h1 style="color: #2563eb; margin: 0;">AQeel Pharmacy</h1>
+            <h1 style="color: #2563eb; margin: 0;">Aqeel Pharmacy</h1>
             <p style="color: #64748b; margin-top: 5px;">Your Trusted Healthcare Partner</p>
           </div>
           
@@ -60,7 +60,7 @@ export async function sendOtpEmail(
               If you didn't request this code, please ignore this email.
             </p>
             <p style="color: #94a3b8; font-size: 12px; margin-top: 10px;">
-              &copy; ${new Date().getFullYear()} AQeel Pharmacy. All rights reserved.
+              &copy; ${new Date().getFullYear()} Aqeel Pharmacy. All rights reserved.
             </p>
           </div>
         </div>

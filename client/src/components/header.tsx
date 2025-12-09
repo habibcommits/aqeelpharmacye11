@@ -127,7 +127,7 @@ export function Header() {
           <Link href="/" className="flex-shrink-0">
             <img 
               src={logoImage} 
-              alt="AQeel Pharmacy" 
+              alt="Aqeel Pharmacy" 
               className="h-12 md:h-14 w-auto"
               data-testid="img-logo"
             />

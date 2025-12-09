@@ -43,7 +43,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
           <Link href="/">
             <img 
               src={logoImage} 
-              alt="AQeel Pharmacy" 
+              alt="Aqeel Pharmacy" 
               className="h-10 w-auto"
             />
           </Link>
@@ -104,7 +104,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
             <Link href="/">
               <img 
                 src={logoImage} 
-                alt="AQeel Pharmacy" 
+                alt="Aqeel Pharmacy" 
                 className="h-8 w-auto"
               />
             </Link>

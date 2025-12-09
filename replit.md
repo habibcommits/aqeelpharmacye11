@@ -1,8 +1,8 @@
-# AQeel Pharmacy E-Commerce Platform
+# Aqeel Pharmacy E-Commerce Platform
 
 ## Overview
 
-AQeel Pharmacy is a modern, serverless e-commerce platform built for an online pharmacy in Pakistan. The application provides a comprehensive shopping experience for health and beauty products including skincare, haircare, makeup, vitamins, medicines, and baby care items. The platform features a customer-facing storefront with product browsing, cart management, and checkout capabilities, alongside an administrative dashboard for managing inventory, orders, and brands.
+Aqeel Pharmacy is a modern, serverless e-commerce platform built for an online pharmacy in Pakistan. The application provides a comprehensive shopping experience for health and beauty products including skincare, haircare, makeup, vitamins, medicines, and baby care items. The platform features a customer-facing storefront with product browsing, cart management, and checkout capabilities, alongside an administrative dashboard for managing inventory, orders, and brands.
 
 ## User Preferences
 

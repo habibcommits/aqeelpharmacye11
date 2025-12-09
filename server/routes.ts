@@ -284,6 +284,9 @@ export async function registerRoutes(
       
       await storage.cleanupExpiredOtps();
       
+      const existingClient = await storage.getClientByEmail(email);
+      const isExistingUser = !!existingClient;
+      
       const otp = generateOtp();
       const expiresAt = getOtpExpiryTime();
       
@@ -295,7 +298,11 @@ export async function registerRoutes(
         return res.status(500).json({ error: "Failed to send verification email. Please try again." });
       }
 
-      res.json({ success: true, message: "Verification code sent to your email" });
+      res.json({ 
+        success: true, 
+        message: "Verification code sent to your email",
+        isExistingUser
+      });
     } catch (error) {
       console.error("Send OTP error:", error);
       res.status(500).json({ error: "Failed to send verification code" });
@@ -320,6 +327,7 @@ export async function registerRoutes(
       await storage.markOtpAsUsed(validOtp.id);
       
       let client = await storage.getClientByEmail(email);
+      const isNewUser = !client;
       
       if (!client) {
         client = await storage.createClient({ email });
@@ -327,6 +335,7 @@ export async function registerRoutes(
 
       res.json({ 
         success: true, 
+        isNewUser,
         client: {
           id: client.id,
           email: client.email,

@@ -7,7 +7,7 @@ const policies: Record<string, { title: string; content: string[] }> = {
   refund: {
     title: "Refund Policy",
     content: [
-      "At AQeel Pharmacy, we are committed to ensuring your satisfaction with every purchase. If you are not completely satisfied with your order, we're here to help.",
+      "At Aqeel Pharmacy, we are committed to ensuring your satisfaction with every purchase. If you are not completely satisfied with your order, we're here to help.",
       "Eligibility for Refunds:",
       "• Products must be returned within 7 days of delivery",
       "• Items must be unused, unopened, and in their original packaging",
@@ -30,7 +30,7 @@ const policies: Record<string, { title: string; content: string[] }> = {
   exchange: {
     title: "Exchange Policy",
     content: [
-      "We understand that sometimes you may need to exchange a product. AQeel Pharmacy offers a hassle-free exchange policy for eligible items.",
+      "We understand that sometimes you may need to exchange a product. Aqeel Pharmacy offers a hassle-free exchange policy for eligible items.",
       "Exchange Eligibility:",
       "• Items must be exchanged within 7 days of delivery",
       "• Products must be in their original, unopened condition with all packaging intact",
@@ -52,7 +52,7 @@ const policies: Record<string, { title: string; content: string[] }> = {
   privacy: {
     title: "Privacy Policy",
     content: [
-      "AQeel Pharmacy respects your privacy and is committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data.",
+      "Aqeel Pharmacy respects your privacy and is committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data.",
       "Information We Collect:",
       "• Personal information (name, email, phone number, address) when you place an order",
       "• Payment information for processing transactions",
@@ -79,7 +79,7 @@ const policies: Record<string, { title: string; content: string[] }> = {
   terms: {
     title: "Terms & Conditions",
     content: [
-      "Welcome to AQeel Pharmacy. By accessing and using our website, you agree to comply with and be bound by the following terms and conditions.",
+      "Welcome to Aqeel Pharmacy. By accessing and using our website, you agree to comply with and be bound by the following terms and conditions.",
       "General Terms:",
       "• You must be at least 18 years old to make purchases on our website",
       "• All product information, prices, and availability are subject to change without notice",
@@ -97,11 +97,11 @@ const policies: Record<string, { title: string; content: string[] }> = {
       "• Shipping charges apply for orders below Rs 10,000",
       "• We are not responsible for delays caused by factors beyond our control",
       "Limitation of Liability:",
-      "• AQeel Pharmacy is not liable for any indirect, incidental, or consequential damages",
+      "• Aqeel Pharmacy is not liable for any indirect, incidental, or consequential damages",
       "• Our liability is limited to the purchase price of the products ordered",
       "• We do not provide medical advice; consult a healthcare professional before using any products",
       "Intellectual Property:",
-      "• All content on this website is owned by AQeel Pharmacy",
+      "• All content on this website is owned by Aqeel Pharmacy",
       "• You may not reproduce, distribute, or use our content without permission",
       "By using our website, you acknowledge that you have read, understood, and agree to these terms.",
     ],
