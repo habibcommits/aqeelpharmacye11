@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { CartProvider } from "@/lib/cart-context";
 import { ThemeProvider } from "@/lib/theme-context";
 import { AdminAuthProvider } from "@/lib/admin-auth-context";
+import { ClientAuthProvider } from "@/lib/client-auth-context";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { CartDrawer } from "@/components/cart-drawer";
@@ -21,6 +22,9 @@ import OrderConfirmationPage from "@/pages/order-confirmation";
 import TrackOrderPage from "@/pages/track-order";
 import PoliciesPage from "@/pages/policies";
 import NotFound from "@/pages/not-found";
+
+import AccountLogin from "@/pages/account/login";
+import AccountDashboard from "@/pages/account/dashboard";
 
 import AdminDashboard from "@/pages/admin/index";
 import AdminProducts from "@/pages/admin/products";
@@ -88,6 +92,17 @@ function Router() {
           <PoliciesPage />
         </StorefrontLayout>
       </Route>
+
+      <Route path="/account/login">
+        <StorefrontLayout>
+          <AccountLogin />
+        </StorefrontLayout>
+      </Route>
+      <Route path="/account">
+        <StorefrontLayout>
+          <AccountDashboard />
+        </StorefrontLayout>
+      </Route>
       
       <Route path="/admin">
         <AdminLayout>
@@ -139,12 +154,14 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <AdminAuthProvider>
-          <CartProvider>
-            <TooltipProvider>
-              <Toaster />
-              <Router />
-            </TooltipProvider>
-          </CartProvider>
+          <ClientAuthProvider>
+            <CartProvider>
+              <TooltipProvider>
+                <Toaster />
+                <Router />
+              </TooltipProvider>
+            </CartProvider>
+          </ClientAuthProvider>
         </AdminAuthProvider>
       </ThemeProvider>
     </QueryClientProvider>

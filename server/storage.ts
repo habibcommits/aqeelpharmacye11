@@ -5,7 +5,9 @@ import {
   type Brand, type InsertBrand,
   type Order, type InsertOrder, type OrderWithItems,
   type OrderItem, type InsertOrderItem,
-  type Banner, type InsertBanner
+  type Banner, type InsertBanner,
+  type Client, type InsertClient,
+  type OtpVerification, type InsertOtp
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 
@@ -51,6 +53,19 @@ export interface IStorage {
   // Banners
   getBanners(): Promise<Banner[]>;
   createBanner(banner: InsertBanner): Promise<Banner>;
+
+  // Clients
+  getClient(id: string): Promise<Client | undefined>;
+  getClientByEmail(email: string): Promise<Client | undefined>;
+  createClient(client: InsertClient): Promise<Client>;
+  updateClient(id: string, client: Partial<InsertClient>): Promise<Client | undefined>;
+  getOrdersByClientEmail(email: string): Promise<OrderWithItems[]>;
+
+  // OTP
+  createOtp(otp: InsertOtp): Promise<OtpVerification>;
+  getValidOtp(email: string, otp: string): Promise<OtpVerification | undefined>;
+  markOtpAsUsed(id: string): Promise<void>;
+  cleanupExpiredOtps(): Promise<void>;
 }
 
 export class MemStorage implements IStorage {
@@ -61,6 +76,8 @@ export class MemStorage implements IStorage {
   private orders: Map<string, Order>;
   private orderItems: Map<string, OrderItem>;
   private banners: Map<string, Banner>;
+  private clients: Map<string, Client>;
+  private otpVerifications: Map<string, OtpVerification>;
 
   constructor() {
     this.users = new Map();
@@ -70,6 +87,8 @@ export class MemStorage implements IStorage {
     this.orders = new Map();
     this.orderItems = new Map();
     this.banners = new Map();
+    this.clients = new Map();
+    this.otpVerifications = new Map();
 
     this.initializeSampleData();
   }
@@ -516,6 +535,88 @@ export class MemStorage implements IStorage {
     const newBanner: Banner = { ...banner, id };
     this.banners.set(id, newBanner);
     return newBanner;
+  }
+
+  // Clients
+  async getClient(id: string): Promise<Client | undefined> {
+    return this.clients.get(id);
+  }
+
+  async getClientByEmail(email: string): Promise<Client | undefined> {
+    return Array.from(this.clients.values()).find(
+      (c) => c.email.toLowerCase() === email.toLowerCase()
+    );
+  }
+
+  async createClient(clientData: InsertClient): Promise<Client> {
+    const id = randomUUID();
+    const client: Client = {
+      ...clientData,
+      id,
+      isVerified: true,
+      createdAt: new Date().toISOString(),
+    };
+    this.clients.set(id, client);
+    return client;
+  }
+
+  async updateClient(id: string, clientData: Partial<InsertClient>): Promise<Client | undefined> {
+    const existing = this.clients.get(id);
+    if (!existing) return undefined;
+    const updated = { ...existing, ...clientData };
+    this.clients.set(id, updated);
+    return updated;
+  }
+
+  async getOrdersByClientEmail(email: string): Promise<OrderWithItems[]> {
+    const clientOrders = Array.from(this.orders.values())
+      .filter((o) => o.customerEmail.toLowerCase() === email.toLowerCase())
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    
+    return clientOrders.map((order) => {
+      const items = Array.from(this.orderItems.values()).filter((i) => i.orderId === order.id);
+      return { ...order, items };
+    });
+  }
+
+  // OTP
+  async createOtp(otpData: InsertOtp): Promise<OtpVerification> {
+    const id = randomUUID();
+    const otp: OtpVerification = {
+      ...otpData,
+      id,
+      isUsed: false,
+      createdAt: new Date().toISOString(),
+    };
+    this.otpVerifications.set(id, otp);
+    return otp;
+  }
+
+  async getValidOtp(email: string, otp: string): Promise<OtpVerification | undefined> {
+    const now = new Date();
+    return Array.from(this.otpVerifications.values()).find(
+      (o) =>
+        o.email.toLowerCase() === email.toLowerCase() &&
+        o.otp === otp &&
+        !o.isUsed &&
+        new Date(o.expiresAt) > now
+    );
+  }
+
+  async markOtpAsUsed(id: string): Promise<void> {
+    const otp = this.otpVerifications.get(id);
+    if (otp) {
+      this.otpVerifications.set(id, { ...otp, isUsed: true });
+    }
+  }
+
+  async cleanupExpiredOtps(): Promise<void> {
+    const now = new Date();
+    for (const [id, otp] of this.otpVerifications.entries()) {
+      if (new Date(otp.expiresAt) < now || otp.isUsed) {
+        this.otpVerifications.delete(id);
+      }
+    }
   }
 }
 

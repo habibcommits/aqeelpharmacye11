@@ -177,3 +177,60 @@ export const orderStatuses = [
 ] as const;
 
 export type OrderStatus = typeof orderStatuses[number];
+
+// Client accounts table
+export const clients = pgTable("clients", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  email: text("email").notNull().unique(),
+  name: text("name"),
+  phone: text("phone"),
+  address: text("address"),
+  city: text("city"),
+  postalCode: text("postal_code"),
+  isVerified: boolean("is_verified").default(false),
+  createdAt: text("created_at").notNull(),
+});
+
+export const insertClientSchema = createInsertSchema(clients).omit({ id: true, createdAt: true, isVerified: true });
+export type InsertClient = z.infer<typeof insertClientSchema>;
+export type Client = typeof clients.$inferSelect;
+
+// OTP verification table
+export const otpVerifications = pgTable("otp_verifications", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  email: text("email").notNull(),
+  otp: text("otp").notNull(),
+  expiresAt: text("expires_at").notNull(),
+  isUsed: boolean("is_used").default(false),
+  createdAt: text("created_at").notNull(),
+});
+
+export const insertOtpSchema = createInsertSchema(otpVerifications).omit({ id: true, createdAt: true, isUsed: true });
+export type InsertOtp = z.infer<typeof insertOtpSchema>;
+export type OtpVerification = typeof otpVerifications.$inferSelect;
+
+// Client login schema
+export const clientLoginSchema = z.object({
+  email: z.string().email("Please enter a valid email address"),
+});
+
+export type ClientLoginData = z.infer<typeof clientLoginSchema>;
+
+// OTP verification schema
+export const otpVerifySchema = z.object({
+  email: z.string().email("Please enter a valid email address"),
+  otp: z.string().length(6, "OTP must be 6 digits"),
+});
+
+export type OtpVerifyData = z.infer<typeof otpVerifySchema>;
+
+// Client profile update schema
+export const clientProfileSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters").optional(),
+  phone: z.string().min(10, "Please enter a valid phone number").optional(),
+  address: z.string().min(5, "Please enter a complete address").optional(),
+  city: z.string().min(2, "Please enter your city").optional(),
+  postalCode: z.string().optional(),
+});
+
+export type ClientProfileData = z.infer<typeof clientProfileSchema>;

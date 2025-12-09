@@ -1,12 +1,20 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Search, ShoppingCart, User, Menu, X, Moon, Sun, Phone, Truck, RefreshCw, MapPin, Package } from "lucide-react";
+import { Search, ShoppingCart, User, Menu, X, Moon, Sun, Phone, Truck, RefreshCw, MapPin, Package, LogOut, UserCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useCart } from "@/lib/cart-context";
 import { useTheme } from "@/lib/theme-context";
+import { useClientAuth } from "@/lib/client-auth-context";
 import { useQuery } from "@tanstack/react-query";
 import type { Product } from "@shared/schema";
 import logoImage from "@assets/aqeelph_logo_1765266347695.png";
@@ -31,6 +39,7 @@ export function Header() {
   const mobileSearchRef = useRef<HTMLDivElement>(null);
   const { getItemCount, setIsOpen } = useCart();
   const { theme, toggleTheme } = useTheme();
+  const { isAuthenticated, client, logout } = useClientAuth();
   const itemCount = getItemCount();
 
   const { data: products = [] } = useQuery<Product[]>({
@@ -194,11 +203,45 @@ export function Header() {
               )}
             </Button>
 
-            <Link href="/account">
-              <Button variant="ghost" size="icon" data-testid="button-account">
-                <User className="w-5 h-5" />
-              </Button>
-            </Link>
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" data-testid="button-account-menu">
+                    <UserCircle className="w-5 h-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <div className="px-2 py-1.5">
+                    <p className="text-sm font-medium truncate">{client?.name || "Account"}</p>
+                    <p className="text-xs text-muted-foreground truncate">{client?.email}</p>
+                  </div>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href="/account" className="w-full cursor-pointer" data-testid="link-dashboard">
+                      <Package className="mr-2 h-4 w-4" />
+                      My Orders
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/account" className="w-full cursor-pointer" data-testid="link-profile">
+                      <User className="mr-2 h-4 w-4" />
+                      Profile
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={logout} className="cursor-pointer" data-testid="button-logout-menu">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link href="/account/login">
+                <Button variant="ghost" size="icon" data-testid="button-account">
+                  <User className="w-5 h-5" />
+                </Button>
+              </Link>
+            )}
 
             <Button
               variant="ghost"

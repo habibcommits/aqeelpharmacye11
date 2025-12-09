@@ -3,7 +3,8 @@ import { createServer, type Server } from "http";
 import axios from "axios";
 import * as cheerio from "cheerio";
 import { storage } from "./storage";
-import { insertProductSchema, insertBrandSchema, insertCategorySchema, checkoutFormSchema } from "@shared/schema";
+import { insertProductSchema, insertBrandSchema, insertCategorySchema, checkoutFormSchema, clientLoginSchema, otpVerifySchema, clientProfileSchema } from "@shared/schema";
+import { generateOtp, getOtpExpiryTime, sendOtpEmail } from "./email";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -268,6 +269,142 @@ export async function registerRoutes(
       res.json(banners);
     } catch (error) {
       res.status(500).json({ error: "Failed to fetch banners" });
+    }
+  });
+
+  // Client Authentication
+  app.post("/api/auth/send-otp", async (req: Request, res: Response) => {
+    try {
+      const result = clientLoginSchema.safeParse(req.body);
+      if (!result.success) {
+        return res.status(400).json({ error: result.error.flatten() });
+      }
+
+      const { email } = result.data;
+      
+      await storage.cleanupExpiredOtps();
+      
+      const otp = generateOtp();
+      const expiresAt = getOtpExpiryTime();
+      
+      await storage.createOtp({ email, otp, expiresAt });
+      
+      const sent = await sendOtpEmail(email, otp);
+      
+      if (!sent) {
+        return res.status(500).json({ error: "Failed to send verification email. Please try again." });
+      }
+
+      res.json({ success: true, message: "Verification code sent to your email" });
+    } catch (error) {
+      console.error("Send OTP error:", error);
+      res.status(500).json({ error: "Failed to send verification code" });
+    }
+  });
+
+  app.post("/api/auth/verify-otp", async (req: Request, res: Response) => {
+    try {
+      const result = otpVerifySchema.safeParse(req.body);
+      if (!result.success) {
+        return res.status(400).json({ error: result.error.flatten() });
+      }
+
+      const { email, otp } = result.data;
+      
+      const validOtp = await storage.getValidOtp(email, otp);
+      
+      if (!validOtp) {
+        return res.status(400).json({ error: "Invalid or expired verification code" });
+      }
+
+      await storage.markOtpAsUsed(validOtp.id);
+      
+      let client = await storage.getClientByEmail(email);
+      
+      if (!client) {
+        client = await storage.createClient({ email });
+      }
+
+      res.json({ 
+        success: true, 
+        client: {
+          id: client.id,
+          email: client.email,
+          name: client.name,
+          phone: client.phone,
+          address: client.address,
+          city: client.city,
+          postalCode: client.postalCode,
+        }
+      });
+    } catch (error) {
+      console.error("Verify OTP error:", error);
+      res.status(500).json({ error: "Failed to verify code" });
+    }
+  });
+
+  app.get("/api/client/:id", async (req: Request, res: Response) => {
+    try {
+      const client = await storage.getClient(req.params.id);
+      if (!client) {
+        return res.status(404).json({ error: "Client not found" });
+      }
+      res.json({
+        id: client.id,
+        email: client.email,
+        name: client.name,
+        phone: client.phone,
+        address: client.address,
+        city: client.city,
+        postalCode: client.postalCode,
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch client" });
+    }
+  });
+
+  app.patch("/api/client/:id", async (req: Request, res: Response) => {
+    try {
+      const result = clientProfileSchema.safeParse(req.body);
+      if (!result.success) {
+        return res.status(400).json({ error: result.error.flatten() });
+      }
+
+      const filteredData: Record<string, string> = {};
+      for (const [key, value] of Object.entries(result.data)) {
+        if (value !== undefined && value !== null && value !== "") {
+          filteredData[key] = value;
+        }
+      }
+
+      const client = await storage.updateClient(req.params.id, filteredData);
+      if (!client) {
+        return res.status(404).json({ error: "Client not found" });
+      }
+      res.json({
+        id: client.id,
+        email: client.email,
+        name: client.name,
+        phone: client.phone,
+        address: client.address,
+        city: client.city,
+        postalCode: client.postalCode,
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to update profile" });
+    }
+  });
+
+  app.get("/api/client/:id/orders", async (req: Request, res: Response) => {
+    try {
+      const client = await storage.getClient(req.params.id);
+      if (!client) {
+        return res.status(404).json({ error: "Client not found" });
+      }
+      const orders = await storage.getOrdersByClientEmail(client.email);
+      res.json(orders);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch orders" });
     }
   });
 
