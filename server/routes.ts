@@ -1,5 +1,7 @@
 import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
+import axios from "axios";
+import * as cheerio from "cheerio";
 import { storage } from "./storage";
 import { insertProductSchema, insertBrandSchema, insertCategorySchema, checkoutFormSchema } from "@shared/schema";
 
@@ -269,55 +271,168 @@ export async function registerRoutes(
     }
   });
 
-  // Product Import (mock implementation)
+  // Product Import - Scrapes products from partner website
   app.post("/api/admin/import-products", async (req: Request, res: Response) => {
     try {
-      const { url, maxProducts } = req.body;
+      const { url, maxProducts = 20 } = req.body;
       
-      // Simulated import - in production this would scrape the actual website
-      const mockImportedProducts = [
-        {
-          name: "Imported Vitamin C Serum",
-          price: 2500,
-          image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600",
-          status: "success" as const,
+      const importedProducts: Array<{
+        name: string;
+        price: number;
+        image: string;
+        status: "success" | "error";
+        error?: string;
+      }> = [];
+      
+      let failed = 0;
+
+      // Fetch the main page
+      const response = await axios.get(url, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
         },
-        {
-          name: "Imported Hydrating Toner",
-          price: 1800,
-          image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600",
-          status: "success" as const,
-        },
-        {
-          name: "Imported Face Wash",
-          price: 1200,
-          image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600",
-          status: "success" as const,
-        },
+        timeout: 30000
+      });
+
+      const $ = cheerio.load(response.data);
+
+      // Look for product elements - common WooCommerce/WordPress patterns
+      const productSelectors = [
+        '.product',
+        '.products .product',
+        '.woocommerce-loop-product',
+        '.product-item',
+        '.product-card',
+        'li.product',
+        '.shop-product',
+        '[data-product-id]'
       ];
 
-      // Create actual products in storage
-      for (const product of mockImportedProducts) {
-        await storage.createProduct({
-          name: product.name,
-          slug: product.name.toLowerCase().replace(/\s+/g, "-"),
-          description: `Imported from ${url}`,
-          price: product.price,
-          images: [product.image],
-          isActive: true,
-          isFeatured: false,
-          stock: 20,
+      let products: cheerio.Cheerio<cheerio.Element> | null = null;
+      for (const selector of productSelectors) {
+        const found = $(selector);
+        if (found.length > 0) {
+          products = found;
+          break;
+        }
+      }
+
+      if (!products || products.length === 0) {
+        // Try to find product links as fallback
+        const productLinks = $('a[href*="/product/"], a.woocommerce-LoopProduct-link');
+        if (productLinks.length > 0) {
+          products = productLinks.closest('li, div').filter((_, el) => $(el).find('img').length > 0);
+        }
+      }
+
+      if (!products || products.length === 0) {
+        return res.json({
+          success: false,
+          imported: 0,
+          failed: 0,
+          products: [],
+          message: "No products found on the page. The website structure may not be supported."
         });
       }
 
+      const productCount = Math.min(products.length, maxProducts);
+
+      for (let i = 0; i < productCount; i++) {
+        try {
+          const productEl = $(products[i]);
+          
+          // Extract product name
+          const nameSelectors = ['.woocommerce-loop-product__title', '.product-title', '.product-name', 'h2', 'h3', '.title', 'a.product-link'];
+          let name = '';
+          for (const sel of nameSelectors) {
+            const found = productEl.find(sel).first().text().trim();
+            if (found) {
+              name = found;
+              break;
+            }
+          }
+          if (!name) {
+            name = productEl.find('a').first().text().trim() || `Product ${i + 1}`;
+          }
+
+          // Extract price
+          const priceSelectors = ['.price ins .amount', '.price .amount', '.woocommerce-Price-amount', '.product-price', '.price'];
+          let priceText = '';
+          for (const sel of priceSelectors) {
+            const found = productEl.find(sel).first().text().trim();
+            if (found) {
+              priceText = found;
+              break;
+            }
+          }
+          const price = parseFloat(priceText.replace(/[^\d.]/g, '')) || 0;
+
+          // Extract image
+          const imgSelectors = ['img.wp-post-image', 'img.attachment-woocommerce_thumbnail', '.product-image img', 'img'];
+          let image = '';
+          for (const sel of imgSelectors) {
+            const imgEl = productEl.find(sel).first();
+            image = imgEl.attr('src') || imgEl.attr('data-src') || imgEl.attr('data-lazy-src') || '';
+            if (image) break;
+          }
+          
+          // Make sure image URL is absolute
+          if (image && !image.startsWith('http')) {
+            const baseUrl = new URL(url);
+            image = new URL(image, baseUrl.origin).toString();
+          }
+
+          if (name && price > 0) {
+            // Check if product already exists
+            const existingProducts = await storage.getProducts();
+            const exists = existingProducts.some(p => p.name.toLowerCase() === name.toLowerCase());
+            
+            if (!exists) {
+              await storage.createProduct({
+                name,
+                slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, ""),
+                description: `Imported from ${url}`,
+                price,
+                images: image ? [image] : [],
+                isActive: true,
+                isFeatured: false,
+                stock: 20,
+              });
+
+              importedProducts.push({
+                name,
+                price,
+                image: image || "https://via.placeholder.com/100",
+                status: "success",
+              });
+            } else {
+              failed++;
+              importedProducts.push({
+                name,
+                price,
+                image: image || "https://via.placeholder.com/100",
+                status: "error",
+                error: "Product already exists",
+              });
+            }
+          }
+        } catch (productError) {
+          failed++;
+        }
+      }
+
       res.json({
-        success: true,
-        imported: mockImportedProducts.length,
-        failed: 0,
-        products: mockImportedProducts,
+        success: importedProducts.length > 0,
+        imported: importedProducts.filter(p => p.status === "success").length,
+        failed,
+        products: importedProducts,
       });
     } catch (error) {
-      res.status(500).json({ error: "Failed to import products" });
+      console.error("Import error:", error);
+      res.status(500).json({ 
+        error: "Failed to import products", 
+        message: error instanceof Error ? error.message : "Unknown error"
+      });
     }
   });
 
