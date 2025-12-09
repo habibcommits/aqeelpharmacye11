@@ -1,14 +1,16 @@
 import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.zoho.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: process.env.ZOHO_EMAIL,
-    pass: process.env.ZOHO_APP_PASSWORD,
-  },
-});
+function getTransporter() {
+  return nodemailer.createTransport({
+    host: "smtp.zoho.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.ZOHO_EMAIL,
+      pass: process.env.ZOHO_APP_PASSWORD,
+    },
+  });
+}
 
 export function generateOtp(): string {
   return Math.floor(100000 + Math.random() * 900000).toString();
@@ -65,7 +67,7 @@ export async function sendOtpEmail(
       `,
     };
 
-    await transporter.sendMail(mailOptions);
+    await getTransporter().sendMail(mailOptions);
     return true;
   } catch (error) {
     console.error("Failed to send OTP email:", error);
