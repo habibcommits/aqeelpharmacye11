@@ -5,7 +5,7 @@ import * as cheerio from "cheerio";
 import { storage } from "./storage";
 import { insertProductSchema, insertBrandSchema, insertCategorySchema, checkoutFormSchema, clientLoginSchema, otpVerifySchema, clientProfileSchema } from "@shared/schema";
 import { generateOtp, getOtpExpiryTime, sendOtpEmail } from "./email";
-import { getImageKitAuthParams } from "./imagekit";
+import { getImageKitAuthParams, uploadImage } from "./imagekit";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -281,6 +281,23 @@ export async function registerRoutes(
     } catch (error) {
       console.error("ImageKit auth error:", error);
       res.status(500).json({ error: "Failed to generate ImageKit auth parameters" });
+    }
+  });
+
+  // ImageKit Upload - accepts base64 image data
+  app.post("/api/imagekit/upload", async (req: Request, res: Response) => {
+    try {
+      const { file, fileName, folder = "products" } = req.body;
+      
+      if (!file || !fileName) {
+        return res.status(400).json({ error: "File and fileName are required" });
+      }
+
+      const result = await uploadImage(file, fileName, folder);
+      res.json(result);
+    } catch (error) {
+      console.error("ImageKit upload error:", error);
+      res.status(500).json({ error: "Failed to upload image" });
     }
   });
 

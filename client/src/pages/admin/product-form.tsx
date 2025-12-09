@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useParams, useLocation, Link } from "wouter";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowLeft, Save, Loader2, Plus, X, ImagePlus } from "lucide-react";
+import { ArrowLeft, Save, Loader2, Plus, X, ImagePlus, Upload, Link as LinkIcon } from "lucide-react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,6 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import type { Product, Category, Brand } from "@shared/schema";
@@ -38,6 +39,8 @@ export default function AdminProductForm() {
   const [, navigate] = useLocation();
   const [images, setImages] = useState<string[]>([]);
   const [newImageUrl, setNewImageUrl] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
   const isEditing = !!id && id !== "new";
 
@@ -115,6 +118,85 @@ export default function AdminProductForm() {
 
   const removeImage = (index: number) => {
     setImages((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleFileUpload = async (files: FileList | null) => {
+    if (!files || files.length === 0) return;
+
+    const maxSize = 10 * 1024 * 1024; // 10MB
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+    
+    const validFiles = Array.from(files).filter(file => {
+      if (file.size > maxSize) {
+        toast({
+          title: "File Too Large",
+          description: `${file.name} exceeds 10MB limit`,
+          variant: "destructive",
+        });
+        return false;
+      }
+      if (!allowedTypes.includes(file.type)) {
+        toast({
+          title: "Invalid File Type",
+          description: `${file.name} is not a supported image format`,
+          variant: "destructive",
+        });
+        return false;
+      }
+      return true;
+    });
+
+    if (validFiles.length === 0) return;
+
+    setIsUploading(true);
+    const uploadPromises = validFiles.map(async (file) => {
+      return new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+          try {
+            const base64 = reader.result as string;
+            const response = await fetch("/api/imagekit/upload", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                file: base64,
+                fileName: file.name,
+                folder: "products",
+              }),
+            });
+            if (!response.ok) {
+              throw new Error("Upload failed");
+            }
+            const data = await response.json();
+            resolve(data.url);
+          } catch (error) {
+            reject(error);
+          }
+        };
+        reader.onerror = () => reject(new Error("Failed to read file"));
+        reader.readAsDataURL(file);
+      });
+    });
+
+    try {
+      const uploadedUrls = await Promise.all(uploadPromises);
+      setImages((prev) => [...prev, ...uploadedUrls]);
+      toast({
+        title: "Upload Complete",
+        description: `Successfully uploaded ${uploadedUrls.length} image(s)`,
+      });
+    } catch (error) {
+      toast({
+        title: "Upload Failed",
+        description: error instanceof Error ? error.message : "Failed to upload image(s)",
+        variant: "destructive",
+      });
+    } finally {
+      setIsUploading(false);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    }
   };
 
   const saveMutation = useMutation({
@@ -239,21 +321,72 @@ export default function AdminProductForm() {
                   <CardTitle>Images</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="flex gap-2">
-                    <Input
-                      placeholder="Enter image URL"
-                      value={newImageUrl}
-                      onChange={(e) => setNewImageUrl(e.target.value)}
-                      data-testid="input-image-url"
-                    />
-                    <Button type="button" variant="outline" onClick={addImage}>
-                      <Plus className="w-4 h-4 mr-2" />
-                      Add
-                    </Button>
-                  </div>
+                  <Tabs defaultValue="upload" className="w-full">
+                    <TabsList className="grid w-full grid-cols-2">
+                      <TabsTrigger value="upload" data-testid="tab-upload">
+                        <Upload className="w-4 h-4 mr-2" />
+                        Upload Image
+                      </TabsTrigger>
+                      <TabsTrigger value="url" data-testid="tab-url">
+                        <LinkIcon className="w-4 h-4 mr-2" />
+                        Image URL
+                      </TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="upload" className="mt-4">
+                      <div className="space-y-4">
+                        <div
+                          className="flex flex-col items-center justify-center py-8 border-2 border-dashed rounded-md cursor-pointer hover-elevate"
+                          onClick={() => fileInputRef.current?.click()}
+                          data-testid="upload-dropzone"
+                        >
+                          {isUploading ? (
+                            <>
+                              <Loader2 className="w-8 h-8 animate-spin text-muted-foreground mb-2" />
+                              <p className="text-sm text-muted-foreground">Uploading...</p>
+                            </>
+                          ) : (
+                            <>
+                              <Upload className="w-8 h-8 text-muted-foreground mb-2" />
+                              <p className="text-sm text-muted-foreground">Click to upload images</p>
+                              <p className="text-xs text-muted-foreground mt-1">PNG, JPG, WEBP up to 10MB</p>
+                            </>
+                          )}
+                        </div>
+                        <input
+                          ref={fileInputRef}
+                          type="file"
+                          accept="image/*"
+                          multiple
+                          className="hidden"
+                          onChange={(e) => handleFileUpload(e.target.files)}
+                          data-testid="input-file-upload"
+                        />
+                      </div>
+                    </TabsContent>
+                    <TabsContent value="url" className="mt-4">
+                      <div className="flex gap-2">
+                        <Input
+                          placeholder="Enter image URL"
+                          value={newImageUrl}
+                          onChange={(e) => setNewImageUrl(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              addImage();
+                            }
+                          }}
+                          data-testid="input-image-url"
+                        />
+                        <Button type="button" variant="outline" onClick={addImage} data-testid="button-add-url">
+                          <Plus className="w-4 h-4 mr-2" />
+                          Add
+                        </Button>
+                      </div>
+                    </TabsContent>
+                  </Tabs>
 
                   {images.length > 0 ? (
-                    <div className="grid grid-cols-4 gap-4">
+                    <div className="grid grid-cols-4 gap-4 mt-4">
                       {images.map((image, index) => (
                         <div key={index} className="relative group">
                           <div className="aspect-square rounded-md overflow-hidden bg-muted">
@@ -261,6 +394,7 @@ export default function AdminProductForm() {
                               src={image}
                               alt={`Product ${index + 1}`}
                               className="w-full h-full object-cover"
+                              data-testid={`img-product-${index}`}
                             />
                           </div>
                           <Button
@@ -269,6 +403,7 @@ export default function AdminProductForm() {
                             size="icon"
                             className="absolute -top-2 -right-2 h-6 w-6"
                             onClick={() => removeImage(index)}
+                            data-testid={`button-remove-image-${index}`}
                           >
                             <X className="w-3 h-3" />
                           </Button>
@@ -276,7 +411,7 @@ export default function AdminProductForm() {
                       ))}
                     </div>
                   ) : (
-                    <div className="flex flex-col items-center justify-center py-8 border-2 border-dashed rounded-md">
+                    <div className="flex flex-col items-center justify-center py-8 border-2 border-dashed rounded-md mt-4">
                       <ImagePlus className="w-8 h-8 text-muted-foreground mb-2" />
                       <p className="text-sm text-muted-foreground">No images added</p>
                     </div>
