@@ -1,12 +1,12 @@
-import { Link, useLocation } from "wouter";
+import { Link, useLocation, Redirect } from "wouter";
 import { 
   LayoutDashboard, Package, ShoppingCart, Tags, Download, 
-  Settings, Home, Moon, Sun, ChevronLeft 
+  Home, Moon, Sun, LogOut 
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
 import { useTheme } from "@/lib/theme-context";
+import { useAdminAuth } from "@/lib/admin-auth-context";
 import logoImage from "@assets/aqeelph_logo_1765266347695.png";
 import type { ReactNode } from "react";
 
@@ -23,8 +23,18 @@ const navItems = [
 ];
 
 export function AdminLayout({ children }: AdminLayoutProps) {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const { theme, toggleTheme } = useTheme();
+  const { isAuthenticated, logout } = useAdminAuth();
+
+  if (!isAuthenticated) {
+    return <Redirect to="/" />;
+  }
+
+  const handleLogout = () => {
+    logout();
+    setLocation("/");
+  };
 
   return (
     <div className="flex h-screen bg-background">
@@ -76,6 +86,15 @@ export function AdminLayout({ children }: AdminLayoutProps) {
             )}
             {theme === "light" ? "Dark Mode" : "Light Mode"}
           </Button>
+          <Button 
+            variant="ghost" 
+            className="w-full justify-start text-destructive" 
+            onClick={handleLogout}
+            data-testid="admin-nav-logout"
+          >
+            <LogOut className="w-4 h-4 mr-3" />
+            Logout
+          </Button>
         </div>
       </aside>
 
@@ -115,6 +134,15 @@ export function AdminLayout({ children }: AdminLayoutProps) {
               ) : (
                 <Sun className="w-4 h-4" />
               )}
+            </Button>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={handleLogout} 
+              className="md:hidden"
+              data-testid="admin-mobile-logout"
+            >
+              <LogOut className="w-4 h-4" />
             </Button>
             <Link href="/">
               <Button variant="ghost" size="sm" className="hidden md:flex">

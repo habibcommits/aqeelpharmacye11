@@ -1,8 +1,42 @@
-import { Link } from "wouter";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { useState } from "react";
+import { Link, useLocation } from "wouter";
+import { MapPin, Phone, Mail, Clock, Lock } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { useAdminAuth } from "@/lib/admin-auth-context";
 import logoImage from "@assets/aqeelph_logo_1765266347695.png";
 
 export function Footer() {
+  const [, setLocation] = useLocation();
+  const { isAuthenticated, login } = useAdminAuth();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    
+    if (login(username, password)) {
+      setOpen(false);
+      setUsername("");
+      setPassword("");
+      setLocation("/admin");
+    } else {
+      setError("Invalid username or password");
+    }
+  };
+
   return (
     <footer className="bg-card border-t">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-12">
@@ -106,6 +140,61 @@ export function Footer() {
             <div className="flex items-center gap-4">
               <span className="text-sm text-muted-foreground">Payment:</span>
               <span className="text-sm font-medium">Cash on Delivery (COD)</span>
+              
+              {isAuthenticated ? (
+                <Link href="/admin">
+                  <Button variant="ghost" size="sm" data-testid="button-admin-panel">
+                    <Lock className="w-3 h-3 mr-1" />
+                    Admin Panel
+                  </Button>
+                </Link>
+              ) : (
+                <Dialog open={open} onOpenChange={setOpen}>
+                  <DialogTrigger asChild>
+                    <Button variant="ghost" size="sm" data-testid="button-admin-login">
+                      <Lock className="w-3 h-3 mr-1" />
+                      Admin
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Admin Login</DialogTitle>
+                      <DialogDescription>
+                        Enter your credentials to access the admin panel.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <form onSubmit={handleLogin} className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="username">Username</Label>
+                        <Input
+                          id="username"
+                          value={username}
+                          onChange={(e) => setUsername(e.target.value)}
+                          placeholder="Enter username"
+                          data-testid="input-admin-username"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="password">Password</Label>
+                        <Input
+                          id="password"
+                          type="password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          placeholder="Enter password"
+                          data-testid="input-admin-password"
+                        />
+                      </div>
+                      {error && (
+                        <p className="text-sm text-destructive" data-testid="text-login-error">{error}</p>
+                      )}
+                      <Button type="submit" className="w-full" data-testid="button-login-submit">
+                        Login
+                      </Button>
+                    </form>
+                  </DialogContent>
+                </Dialog>
+              )}
             </div>
           </div>
         </div>
