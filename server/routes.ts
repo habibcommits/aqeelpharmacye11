@@ -274,7 +274,7 @@ export async function registerRoutes(
   // Brand Import - Scrapes brands from partner website
   app.post("/api/admin/import-brands", async (req: Request, res: Response) => {
     try {
-      const { url } = req.body;
+      const { url, deleteExisting = false } = req.body;
       
       if (!url) {
         return res.status(400).json({ error: "URL is required" });
@@ -286,6 +286,14 @@ export async function registerRoutes(
         status: "success" | "error" | "skipped";
         error?: string;
       }> = [];
+
+      // Delete existing brands if requested
+      if (deleteExisting) {
+        const existingBrands = await storage.getBrands();
+        for (const brand of existingBrands) {
+          await storage.deleteBrand(brand.id);
+        }
+      }
 
       // Get existing brands to avoid duplicates
       const existingBrands = await storage.getBrands();

@@ -32,6 +32,7 @@ export default function AdminBrands() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [importDialogOpen, setImportDialogOpen] = useState(false);
   const [importUrl, setImportUrl] = useState("");
+  const [deleteExisting, setDeleteExisting] = useState(false);
   const [editingBrand, setEditingBrand] = useState<Brand | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
@@ -104,8 +105,8 @@ export default function AdminBrands() {
   });
 
   const importMutation = useMutation({
-    mutationFn: async (url: string) => {
-      const response = await apiRequest("POST", "/api/admin/import-brands", { url });
+    mutationFn: async ({ url, deleteExisting }: { url: string; deleteExisting: boolean }) => {
+      const response = await apiRequest("POST", "/api/admin/import-brands", { url, deleteExisting });
       return response.json();
     },
     onSuccess: (data) => {
@@ -116,6 +117,7 @@ export default function AdminBrands() {
       });
       setImportDialogOpen(false);
       setImportUrl("");
+      setDeleteExisting(false);
     },
     onError: (error) => {
       toast({
@@ -467,6 +469,17 @@ export default function AdminBrands() {
                 Example: https://shaheenchemistrwp.com/pages/brands
               </p>
             </div>
+            <div className="flex items-center gap-2">
+              <Checkbox
+                id="delete-existing"
+                checked={deleteExisting}
+                onCheckedChange={(checked) => setDeleteExisting(checked === true)}
+                data-testid="checkbox-delete-existing"
+              />
+              <label htmlFor="delete-existing" className="text-sm cursor-pointer">
+                Delete existing brands before import
+              </label>
+            </div>
             <div className="flex justify-end gap-2">
               <Button
                 type="button"
@@ -474,12 +487,13 @@ export default function AdminBrands() {
                 onClick={() => {
                   setImportDialogOpen(false);
                   setImportUrl("");
+                  setDeleteExisting(false);
                 }}
               >
                 Cancel
               </Button>
               <Button
-                onClick={() => importUrl && importMutation.mutate(importUrl)}
+                onClick={() => importUrl && importMutation.mutate({ url: importUrl, deleteExisting })}
                 disabled={!importUrl || importMutation.isPending}
                 data-testid="button-start-import"
               >
