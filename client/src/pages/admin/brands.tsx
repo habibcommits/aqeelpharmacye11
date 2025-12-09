@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Plus, Edit, Trash2, Search, Tags } from "lucide-react";
+import { Plus, Edit, Trash2, Search, Tags, Download, Loader2 } from "lucide-react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,6 +29,8 @@ type BrandFormData = z.infer<typeof brandFormSchema>;
 export default function AdminBrands() {
   const [searchQuery, setSearchQuery] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [importDialogOpen, setImportDialogOpen] = useState(false);
+  const [importUrl, setImportUrl] = useState("");
   const [editingBrand, setEditingBrand] = useState<Brand | null>(null);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const { toast } = useToast();
@@ -98,6 +100,29 @@ export default function AdminBrands() {
     },
   });
 
+  const importMutation = useMutation({
+    mutationFn: async (url: string) => {
+      const response = await apiRequest("POST", "/api/admin/import-brands", { url });
+      return response.json();
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["/api/brands"] });
+      toast({
+        title: "Import Complete",
+        description: data.message || `Imported ${data.imported} brands`,
+      });
+      setImportDialogOpen(false);
+      setImportUrl("");
+    },
+    onError: (error) => {
+      toast({
+        title: "Import Failed",
+        description: error instanceof Error ? error.message : "Failed to import brands",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleEdit = (brand: Brand) => {
     setEditingBrand(brand);
     form.reset({
@@ -135,10 +160,16 @@ export default function AdminBrands() {
           <h1 className="text-2xl font-bold mb-1">Brands</h1>
           <p className="text-muted-foreground">Manage product brands</p>
         </div>
-        <Button onClick={handleNew} data-testid="button-add-brand">
-          <Plus className="w-4 h-4 mr-2" />
-          Add Brand
-        </Button>
+        <div className="flex items-center gap-2 flex-wrap">
+          <Button variant="outline" onClick={() => setImportDialogOpen(true)} data-testid="button-import-brands">
+            <Download className="w-4 h-4 mr-2" />
+            Import Brands
+          </Button>
+          <Button onClick={handleNew} data-testid="button-add-brand">
+            <Plus className="w-4 h-4 mr-2" />
+            Add Brand
+          </Button>
+        </div>
       </div>
 
       <Card>
@@ -342,6 +373,60 @@ export default function AdminBrands() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      <Dialog open={importDialogOpen} onOpenChange={setImportDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Import Brands</DialogTitle>
+            <DialogDescription>
+              Enter the URL of a brands page to import brands with their logos.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Brands Page URL</label>
+              <Input
+                placeholder="https://example.com/pages/brands"
+                value={importUrl}
+                onChange={(e) => setImportUrl(e.target.value)}
+                data-testid="input-import-url"
+              />
+              <p className="text-xs text-muted-foreground">
+                Example: https://shaheenchemistrwp.com/pages/brands
+              </p>
+            </div>
+            <div className="flex justify-end gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  setImportDialogOpen(false);
+                  setImportUrl("");
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={() => importUrl && importMutation.mutate(importUrl)}
+                disabled={!importUrl || importMutation.isPending}
+                data-testid="button-start-import"
+              >
+                {importMutation.isPending ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Importing...
+                  </>
+                ) : (
+                  <>
+                    <Download className="w-4 h-4 mr-2" />
+                    Import
+                  </>
+                )}
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

@@ -271,6 +271,159 @@ export async function registerRoutes(
     }
   });
 
+  // Brand Import - Scrapes brands from partner website
+  app.post("/api/admin/import-brands", async (req: Request, res: Response) => {
+    try {
+      const { url } = req.body;
+      
+      if (!url) {
+        return res.status(400).json({ error: "URL is required" });
+      }
+
+      const importedBrands: Array<{
+        name: string;
+        logo: string;
+        status: "success" | "error" | "skipped";
+        error?: string;
+      }> = [];
+
+      // Get existing brands to avoid duplicates
+      const existingBrands = await storage.getBrands();
+      const existingSlugs = new Set(existingBrands.map(b => b.slug.toLowerCase()));
+
+      // Fetch the brands page
+      const response = await axios.get(url, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        },
+        timeout: 30000
+      });
+
+      const $ = cheerio.load(response.data);
+
+      // Look for brand links with images - common patterns for brand pages
+      const brandElements: Array<{ name: string; logo: string }> = [];
+
+      // Pattern 1: Links with brand images (like the example site)
+      $('a[href*="/collections/"]').each((_, el) => {
+        const $el = $(el);
+        const img = $el.find('img');
+        if (img.length > 0) {
+          const name = img.attr('alt') || $el.text().trim();
+          const logo = img.attr('src') || '';
+          if (name && logo) {
+            brandElements.push({ name, logo });
+          }
+        }
+      });
+
+      // Pattern 2: Standalone images with brand names
+      if (brandElements.length === 0) {
+        $('img[alt]').each((_, el) => {
+          const $el = $(el);
+          const name = $el.attr('alt') || '';
+          const logo = $el.attr('src') || '';
+          const parent = $el.closest('a');
+          if (name && logo && parent.attr('href')?.includes('/collections/')) {
+            brandElements.push({ name, logo });
+          }
+        });
+      }
+
+      // Pattern 3: Generic brand cards
+      if (brandElements.length === 0) {
+        $('.brand, .brand-item, .brand-card, [data-brand]').each((_, el) => {
+          const $el = $(el);
+          const name = $el.find('h2, h3, .brand-name, .title').text().trim() || $el.text().trim();
+          const logo = $el.find('img').attr('src') || '';
+          if (name) {
+            brandElements.push({ name, logo });
+          }
+        });
+      }
+
+      if (brandElements.length === 0) {
+        return res.json({
+          success: false,
+          imported: 0,
+          skipped: 0,
+          failed: 0,
+          brands: [],
+          message: "No brands found on the page. The website structure may not be supported."
+        });
+      }
+
+      // Deduplicate by name
+      const uniqueBrands = new Map<string, { name: string; logo: string }>();
+      for (const brand of brandElements) {
+        const normalizedName = brand.name.trim();
+        if (normalizedName && !uniqueBrands.has(normalizedName.toLowerCase())) {
+          uniqueBrands.set(normalizedName.toLowerCase(), brand);
+        }
+      }
+
+      let imported = 0;
+      let skipped = 0;
+      let failed = 0;
+
+      for (const [, brand] of uniqueBrands) {
+        const slug = brand.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+        
+        // Check if brand already exists
+        if (existingSlugs.has(slug)) {
+          importedBrands.push({
+            name: brand.name,
+            logo: brand.logo,
+            status: "skipped",
+            error: "Brand already exists"
+          });
+          skipped++;
+          continue;
+        }
+
+        try {
+          await storage.createBrand({
+            name: brand.name,
+            slug,
+            logo: brand.logo,
+            description: null,
+          });
+
+          existingSlugs.add(slug);
+          importedBrands.push({
+            name: brand.name,
+            logo: brand.logo,
+            status: "success"
+          });
+          imported++;
+        } catch (error) {
+          importedBrands.push({
+            name: brand.name,
+            logo: brand.logo,
+            status: "error",
+            error: error instanceof Error ? error.message : "Failed to create brand"
+          });
+          failed++;
+        }
+      }
+
+      res.json({
+        success: true,
+        imported,
+        skipped,
+        failed,
+        brands: importedBrands,
+        message: `Imported ${imported} brands, skipped ${skipped} duplicates, ${failed} failed`
+      });
+
+    } catch (error) {
+      console.error("Brand import error:", error);
+      res.status(500).json({ 
+        error: error instanceof Error ? error.message : "Failed to import brands"
+      });
+    }
+  });
+
   // Product Import - Scrapes products from partner website
   app.post("/api/admin/import-products", async (req: Request, res: Response) => {
     try {
