@@ -77,13 +77,25 @@ export default function CheckoutPage() {
     },
   });
 
-  const onSubmit = (data: CheckoutFormData) => {
+  const handleContinue = async () => {
     if (step === "info") {
-      setStep("shipping");
+      // Validate only info fields
+      const isValid = await form.trigger(["customerName", "customerEmail", "customerPhone"]);
+      if (isValid) {
+        setStep("shipping");
+      }
     } else if (step === "shipping") {
-      setStep("review");
+      // Validate only shipping fields
+      const isValid = await form.trigger(["shippingAddress", "city"]);
+      if (isValid) {
+        setStep("review");
+      }
     } else {
-      createOrderMutation.mutate(data);
+      // Final submit - validate all and submit
+      const isValid = await form.trigger();
+      if (isValid) {
+        createOrderMutation.mutate(form.getValues());
+      }
     }
   };
 
@@ -153,7 +165,7 @@ export default function CheckoutPage() {
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)}>
+              <form onSubmit={(e) => e.preventDefault()}>
                 {step === "info" && (
                   <Card>
                     <CardHeader>
@@ -364,9 +376,10 @@ export default function CheckoutPage() {
                     </Button>
                   )}
                   <Button
-                    type="submit"
+                    type="button"
                     className="flex-1"
                     disabled={createOrderMutation.isPending}
+                    onClick={handleContinue}
                     data-testid="button-continue"
                   >
                     {createOrderMutation.isPending ? (
