@@ -80,7 +80,7 @@ export default function BrandsPage() {
               <div key={category}>
                 <div className="flex items-center gap-3 mb-6">
                   <h2 className="text-xl md:text-2xl font-semibold">{category}</h2>
-                  <Badge variant="secondary" size="sm">{categoryBrands.length} brands</Badge>
+                  <Badge variant="secondary">{categoryBrands.length} brands</Badge>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {categoryBrands.map((brand) => (

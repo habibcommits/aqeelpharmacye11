@@ -137,7 +137,6 @@ export function CategoryGrid() {
                         {category.brands.length > 3 && (
                           <Badge 
                             variant="secondary" 
-                            size="sm"
                             className="bg-white/20 text-white border-0 text-xs px-1.5"
                           >
                             +{category.brands.length - 3}

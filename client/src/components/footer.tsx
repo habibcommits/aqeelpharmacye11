@@ -87,15 +87,15 @@ export function Footer() {
             <div className="mt-4 pt-4 border-t border-border/50">
               <p className="text-xs font-medium text-muted-foreground mb-2">Service Options:</p>
               <div className="flex flex-wrap gap-1">
-                <Badge variant="secondary" size="sm" className="text-xs">
+                <Badge variant="secondary" className="text-xs">
                   <Package className="w-3 h-3 mr-1" />
                   Delivery
                 </Badge>
-                <Badge variant="secondary" size="sm" className="text-xs">
+                <Badge variant="secondary" className="text-xs">
                   <Car className="w-3 h-3 mr-1" />
                   Drive-through
                 </Badge>
-                <Badge variant="secondary" size="sm" className="text-xs">
+                <Badge variant="secondary" className="text-xs">
                   <Store className="w-3 h-3 mr-1" />
                   In-store
                 </Badge>

@@ -2,7 +2,6 @@ import mongoose, { Schema, Document } from 'mongoose';
 
 // User Model
 export interface IUser extends Document {
-  _id: string;
   username: string;
   password: string;
   email?: string;
@@ -20,7 +19,6 @@ const UserSchema = new Schema<IUser>({
 
 // Category Model
 export interface ICategory extends Document {
-  _id: string;
   name: string;
   slug: string;
   description?: string;
@@ -38,7 +36,6 @@ const CategorySchema = new Schema<ICategory>({
 
 // Brand Model
 export interface IBrand extends Document {
-  _id: string;
   name: string;
   slug: string;
   logo?: string;
@@ -54,7 +51,6 @@ const BrandSchema = new Schema<IBrand>({
 
 // Product Model
 export interface IProduct extends Document {
-  _id: string;
   name: string;
   slug: string;
   description?: string;
@@ -90,7 +86,6 @@ const ProductSchema = new Schema<IProduct>({
 
 // Order Model
 export interface IOrder extends Document {
-  _id: string;
   orderNumber: string;
   customerName: string;
   customerEmail: string;
@@ -144,7 +139,6 @@ const OrderSchema = new Schema<IOrder>({
 
 // Banner Model
 export interface IBanner extends Document {
-  _id: string;
   title?: string;
   subtitle?: string;
   image: string;
@@ -164,7 +158,6 @@ const BannerSchema = new Schema<IBanner>({
 
 // Client Model
 export interface IClient extends Document {
-  _id: string;
   email: string;
   name?: string;
   phone?: string;
@@ -188,7 +181,6 @@ const ClientSchema = new Schema<IClient>({
 
 // OTP Verification Model
 export interface IOtpVerification extends Document {
-  _id: string;
   email: string;
   otp: string;
   expiresAt: string;

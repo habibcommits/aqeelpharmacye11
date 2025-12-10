@@ -613,7 +613,7 @@ export async function registerRoutes(
       let skipped = 0;
       let failed = 0;
 
-      for (const [, brand] of uniqueBrands) {
+      for (const [, brand] of Array.from(uniqueBrands)) {
         const slug = brand.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
         
         // Check if brand already exists
