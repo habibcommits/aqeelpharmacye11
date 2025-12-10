@@ -195,3 +195,33 @@ Preferred communication style: Simple, everyday language.
 - **Express** - Web server framework
 - **Wouter** - Lightweight routing library for React
 - **nanoid** - Unique ID generation for sessions and cache busting
+
+## Recent Changes
+
+### December 2024 - SEO & Partner Import Features
+
+**Vercel Deployment Ready:**
+- Updated `vercel.json` with proper API rewrites and security headers
+- Added sitemap.xml and robots.txt routes for SEO
+- Domain configured: aqeelpharmacy.com
+- Contact email: contact@aqeelpharmacy.com
+
+**SEO Enhancements:**
+- Comprehensive meta tags in index.html (Open Graph, Twitter Cards)
+- Schema.org structured data (Pharmacy, Organization, WebSite)
+- Dynamic sitemap.xml generation at /sitemap.xml
+- robots.txt with crawling rules at /robots.txt
+- Canonical URLs and proper indexing directives
+
+**Najeeb Pharmacy Import Feature:**
+- New admin tab: "Najeeb Pharmacy" for importing products from partner website
+- Backend API `/api/admin/import-najeeb` scrapes products from najeebpharmacy.com
+- Automatic category detection based on product names
+- Duplicate detection to prevent re-importing existing products
+- Pagination support (232 pages available, 12 products per page)
+
+**Partner Import Features:**
+- Import products with name, price, images from partner websites
+- Automatic slug generation for SEO-friendly URLs
+- Category matching based on keyword detection
+- Default stock levels and active status for imported products

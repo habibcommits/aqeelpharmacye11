@@ -1,7 +1,7 @@
 import { Link, useLocation, Redirect } from "wouter";
 import { 
   LayoutDashboard, Package, ShoppingCart, Tags, Download, 
-  Home, Moon, Sun, LogOut 
+  Home, Moon, Sun, LogOut, Store 
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -20,6 +20,7 @@ const navItems = [
   { href: "/admin/orders", label: "Orders", icon: ShoppingCart },
   { href: "/admin/brands", label: "Brands", icon: Tags },
   { href: "/admin/import", label: "Import", icon: Download },
+  { href: "/admin/najeeb-import", label: "Najeeb Pharmacy", icon: Store },
 ];
 
 export function AdminLayout({ children }: AdminLayoutProps) {

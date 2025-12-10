@@ -32,6 +32,7 @@ import AdminProductForm from "@/pages/admin/product-form";
 import AdminOrders from "@/pages/admin/orders";
 import AdminBrands from "@/pages/admin/brands";
 import AdminImport from "@/pages/admin/import";
+import AdminNajeebImport from "@/pages/admin/najeeb-import";
 
 function StorefrontLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -137,6 +138,11 @@ function Router() {
       <Route path="/admin/import">
         <AdminLayout>
           <AdminImport />
+        </AdminLayout>
+      </Route>
+      <Route path="/admin/najeeb-import">
+        <AdminLayout>
+          <AdminNajeebImport />
         </AdminLayout>
       </Route>
 

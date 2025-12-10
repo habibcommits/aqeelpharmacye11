@@ -853,5 +853,303 @@ export async function registerRoutes(
     }
   });
 
+  // Najeeb Pharmacy Product Import - Scrapes products from najeebpharmacy.com
+  app.post("/api/admin/import-najeeb", async (req: Request, res: Response) => {
+    try {
+      const { maxProducts = 50, page = 1 } = req.body;
+      
+      const importedProducts: Array<{
+        name: string;
+        price: number;
+        image: string;
+        status: "success" | "error" | "skipped";
+        error?: string;
+      }> = [];
+      
+      let imported = 0;
+      let failed = 0;
+      let skipped = 0;
+
+      // Get existing categories to match products
+      const existingCategories = await storage.getCategories();
+      const existingProducts = await storage.getProducts();
+      const existingNames = new Set(existingProducts.map(p => p.name.toLowerCase().trim()));
+      
+      // Category keyword mappings for pharmaceuticals
+      const categoryKeywords: Record<string, string[]> = {
+        "skin-care": ["skin", "face", "cleanser", "moisturizer", "serum", "cream", "lotion", "facial", "acne", "derma"],
+        "hair-care": ["hair", "shampoo", "conditioner", "scalp", "dandruff", "hairfall"],
+        "vitamins": ["vitamin", "supplement", "multivitamin", "omega", "calcium", "iron", "zinc", "tablets"],
+        "medicines": ["medicine", "tablet", "capsule", "syrup", "paracetamol", "pain", "fever", "cold", "cough", "mg", "drop", "injection", "gel", "ointment", "sachet"],
+        "baby": ["baby", "infant", "kids", "child", "newborn"],
+      };
+
+      const detectCategory = (productName: string): string | undefined => {
+        const searchText = productName.toLowerCase();
+        
+        for (const [categorySlug, keywords] of Object.entries(categoryKeywords)) {
+          for (const keyword of keywords) {
+            if (searchText.includes(keyword.toLowerCase())) {
+              const matchedCategory = existingCategories.find(c => c.slug === categorySlug);
+              if (matchedCategory) {
+                return matchedCategory.id;
+              }
+            }
+          }
+        }
+        return existingCategories.find(c => c.slug === "medicines")?.id;
+      };
+
+      // Fetch products page from Najeeb Pharmacy
+      const url = `https://www.najeebpharmacy.com/products?page=${page}`;
+      
+      const response = await axios.get(url, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+          'Accept-Language': 'en-US,en;q=0.9',
+          'Cache-Control': 'no-cache',
+        },
+        timeout: 60000
+      });
+
+      const $ = cheerio.load(response.data);
+
+      // Najeeb Pharmacy HTML structure: products are in h6 elements with links
+      // Parse product data from the page - look for product name patterns
+      const productData: Array<{name: string; price: number; image: string}> = [];
+      
+      // Method 1: Find h6 elements containing product names with links to /products/ID
+      $('h6 a[href*="/products/"]').each((_, el) => {
+        const $link = $(el);
+        const href = $link.attr('href') || '';
+        
+        // Only process if it's a product link like /products/123
+        if (!/\/products\/\d+$/.test(href)) return;
+        
+        const name = $link.text().trim();
+        if (!name) return;
+        
+        // Find the parent card container
+        let $card = $link.closest('.card, .product-card, .col, [class*="col-"]');
+        if ($card.length === 0) {
+          $card = $link.parent().parent().parent().parent();
+        }
+        
+        // Extract price - look for Rs pattern in the card
+        const cardText = $card.text();
+        const priceMatch = cardText.match(/Rs\s*([\d,]+(?:\.\d{1,2})?)/i);
+        const price = priceMatch ? parseFloat(priceMatch[1].replace(/,/g, '')) : 0;
+        
+        // Extract image - look for img with src containing api.najeebmart.com
+        let image = '';
+        $card.find('img').each((_, imgEl) => {
+          const src = $(imgEl).attr('src') || '';
+          if (src.includes('najeebmart.com') || src.includes('uploads')) {
+            image = src.startsWith('http') ? src : `https://api.najeebmart.com${src.startsWith('/') ? '' : '/'}${src}`;
+          }
+        });
+        
+        if (!image) {
+          const imgEl = $card.find('img').first();
+          image = imgEl.attr('src') || '';
+          if (image && !image.startsWith('http')) {
+            image = `https://api.najeebmart.com${image.startsWith('/') ? '' : '/'}${image}`;
+          }
+        }
+        
+        productData.push({ name, price, image });
+      });
+      
+      // Method 2: If method 1 found nothing, try looking for img elements with najeebmart.com src
+      if (productData.length === 0) {
+        $('img[src*="najeebmart.com"], img[src*="uploads"]').each((_, el) => {
+          const $img = $(el);
+          const alt = $img.attr('alt') || '';
+          const src = $img.attr('src') || '';
+          
+          if (!alt || alt.length < 3) return;
+          
+          // Find parent to get price
+          let $card = $img.closest('.card, .product-card, .col, [class*="col-"]');
+          if ($card.length === 0) {
+            $card = $img.parent().parent().parent();
+          }
+          
+          const cardText = $card.text();
+          const priceMatch = cardText.match(/Rs\s*([\d,]+(?:\.\d{1,2})?)/i);
+          const price = priceMatch ? parseFloat(priceMatch[1].replace(/,/g, '')) : 0;
+          
+          const image = src.startsWith('http') ? src : `https://api.najeebmart.com${src.startsWith('/') ? '' : '/'}${src}`;
+          
+          productData.push({ name: alt, price, image });
+        });
+      }
+
+      // Deduplicate by name
+      const seen = new Set<string>();
+      const uniqueProducts = productData.filter(p => {
+        const key = p.name.toLowerCase().trim();
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+
+      const productsToProcess = uniqueProducts.slice(0, maxProducts);
+
+      for (const product of productsToProcess) {
+        try {
+          const { name, price, image } = product;
+          
+          // Check for duplicates in database
+          if (existingNames.has(name.toLowerCase().trim())) {
+            importedProducts.push({
+              name,
+              price,
+              image,
+              status: "skipped",
+              error: "Product already exists"
+            });
+            skipped++;
+            continue;
+          }
+
+          if (name && price > 0) {
+            const categoryId = detectCategory(name);
+            
+            await storage.createProduct({
+              name,
+              slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, ""),
+              description: `Imported from Najeeb Pharmacy`,
+              price,
+              images: image ? [image] : [],
+              categoryId: categoryId || undefined,
+              isActive: true,
+              isFeatured: false,
+              stock: 20,
+            });
+
+            existingNames.add(name.toLowerCase().trim());
+            importedProducts.push({
+              name,
+              price,
+              image: image || "https://via.placeholder.com/100",
+              status: "success",
+            });
+            imported++;
+          } else if (name) {
+            importedProducts.push({
+              name,
+              price,
+              image: image || "",
+              status: "error",
+              error: price <= 0 ? "Invalid price" : "Missing data"
+            });
+            failed++;
+          }
+        } catch (productError) {
+          failed++;
+        }
+      }
+
+      res.json({
+        success: imported > 0 || skipped > 0,
+        imported,
+        failed,
+        skipped,
+        products: importedProducts,
+        message: productData.length === 0 ? "Najeeb Pharmacy may have changed their page structure. Try the general Import page instead." : undefined
+      });
+    } catch (error) {
+      console.error("Najeeb import error:", error);
+      res.status(500).json({ 
+        error: "Failed to import products from Najeeb Pharmacy", 
+        message: error instanceof Error ? error.message : "Unknown error"
+      });
+    }
+  });
+
+  // Sitemap.xml - Dynamic sitemap for Google indexing
+  app.get("/sitemap.xml", async (req: Request, res: Response) => {
+    try {
+      const baseUrl = "https://aqeelpharmacy.com";
+      
+      const products = await storage.getProducts();
+      const categories = await storage.getCategories();
+      const brands = await storage.getBrands();
+
+      const staticPages = [
+        { url: "/", priority: "1.0", changefreq: "daily" },
+        { url: "/products", priority: "0.9", changefreq: "daily" },
+        { url: "/brands", priority: "0.8", changefreq: "weekly" },
+        { url: "/checkout", priority: "0.7", changefreq: "monthly" },
+        { url: "/track-order", priority: "0.6", changefreq: "monthly" },
+        { url: "/policies/privacy", priority: "0.4", changefreq: "yearly" },
+        { url: "/policies/shipping", priority: "0.4", changefreq: "yearly" },
+        { url: "/policies/returns", priority: "0.4", changefreq: "yearly" },
+        { url: "/policies/terms", priority: "0.4", changefreq: "yearly" },
+      ];
+
+      let xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+
+      // Static pages
+      for (const page of staticPages) {
+        xml += `
+  <url>
+    <loc>${baseUrl}${page.url}</loc>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
+  </url>`;
+      }
+
+      // Product pages
+      for (const product of products) {
+        if (product.isActive) {
+          xml += `
+  <url>
+    <loc>${baseUrl}/product/${product.slug}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`;
+        }
+      }
+
+      // Category pages
+      for (const category of categories) {
+        xml += `
+  <url>
+    <loc>${baseUrl}/category/${category.slug}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>`;
+      }
+
+      xml += `
+</urlset>`;
+
+      res.header("Content-Type", "application/xml");
+      res.send(xml);
+    } catch (error) {
+      console.error("Sitemap error:", error);
+      res.status(500).json({ error: "Failed to generate sitemap" });
+    }
+  });
+
+  // Robots.txt
+  app.get("/robots.txt", (req: Request, res: Response) => {
+    const robotsTxt = `User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /account
+Disallow: /checkout
+Disallow: /api/
+
+Sitemap: https://aqeelpharmacy.com/sitemap.xml`;
+
+    res.header("Content-Type", "text/plain");
+    res.send(robotsTxt);
+  });
+
   return httpServer;
 }

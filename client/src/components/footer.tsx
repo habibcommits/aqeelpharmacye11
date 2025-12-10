@@ -71,10 +71,13 @@ export function Footer() {
                 <Phone className="w-4 h-4 text-muted-foreground flex-shrink-0" />
                 <span className="text-muted-foreground hover:text-foreground">+92 300 9109815</span>
               </a>
-              <div className="flex items-center gap-2">
+              <a 
+                href="mailto:contact@aqeelpharmacy.com"
+                className="flex items-center gap-2 hover:text-primary transition-colors"
+              >
                 <Mail className="w-4 h-4 text-muted-foreground flex-shrink-0" />
-                <span className="text-muted-foreground">info@aqeelpharmacy.com</span>
-              </div>
+                <span className="text-muted-foreground hover:text-foreground">contact@aqeelpharmacy.com</span>
+              </a>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-muted-foreground flex-shrink-0" />
                 <span className="text-muted-foreground">Open Daily: 7:00 AM - 3:00 AM</span>
