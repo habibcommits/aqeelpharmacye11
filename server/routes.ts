@@ -486,54 +486,105 @@ export async function registerRoutes(
 
       const $ = cheerio.load(response.data);
 
-      // Look for brand links with images - common patterns for brand pages
       const brandElements: Array<{ name: string; logo: string }> = [];
 
-      // Pattern 0: Najeeb Pharmacy brands page - links with brand param
-      $('a[href*="?brand="]').each((_, el) => {
-        const $el = $(el);
-        const name = $el.text().trim();
-        if (name && name.length > 1) {
-          brandElements.push({ name, logo: '' });
-        }
-      });
+      // Detect source from URL
+      const hostname = new URL(url).hostname.toLowerCase();
+      const isNajeeb = hostname.includes("najeeb");
+      const isDWatson = hostname.includes("dwatson");
 
-      // Pattern 1: Links with brand images (like the example site)
+      // Pattern for Najeeb Pharmacy brands page
+      if (isNajeeb) {
+        $('a[href*="?brand="]').each((_, el) => {
+          const $el = $(el);
+          const href = $el.attr('href') || '';
+          const brandParam = new URLSearchParams(href.split('?')[1]).get('brand');
+          const name = brandParam || $el.text().trim();
+          if (name && name.length > 1 && !name.includes('All')) {
+            brandElements.push({ name, logo: '' });
+          }
+        });
+        
+        // Also check for brand links in different format
+        if (brandElements.length === 0) {
+          $('a').each((_, el) => {
+            const $el = $(el);
+            const href = $el.attr('href') || '';
+            if (href.includes('brand=')) {
+              const name = $el.text().trim();
+              if (name && name.length > 1 && !name.toLowerCase().includes('all')) {
+                brandElements.push({ name, logo: '' });
+              }
+            }
+          });
+        }
+      }
+
+      // Pattern for D.Watson brands
+      if (isDWatson && brandElements.length === 0) {
+        $('.brand-name, .brand-item, .brands a').each((_, el) => {
+          const $el = $(el);
+          const name = $el.text().trim();
+          const logo = $el.find('img').attr('src') || '';
+          if (name && name.length > 1) {
+            brandElements.push({ name, logo });
+          }
+        });
+      }
+
+      // Generic Pattern 1: Links with brand images 
       if (brandElements.length === 0) {
-        $('a[href*="/collections/"]').each((_, el) => {
+        $('a[href*="/collections/"], a[href*="/brand/"], a[href*="brand="]').each((_, el) => {
           const $el = $(el);
           const img = $el.find('img');
           if (img.length > 0) {
             const name = img.attr('alt') || $el.text().trim();
             const logo = img.attr('src') || '';
-            if (name && logo) {
+            if (name && name.length > 1) {
               brandElements.push({ name, logo });
+            }
+          } else {
+            const name = $el.text().trim();
+            if (name && name.length > 1 && !name.toLowerCase().includes('all')) {
+              brandElements.push({ name, logo: '' });
             }
           }
         });
       }
 
-      // Pattern 2: Standalone images with brand names
+      // Generic Pattern 2: Standalone images with brand names
       if (brandElements.length === 0) {
         $('img[alt]').each((_, el) => {
           const $el = $(el);
           const name = $el.attr('alt') || '';
           const logo = $el.attr('src') || '';
           const parent = $el.closest('a');
-          if (name && logo && parent.attr('href')?.includes('/collections/')) {
+          const parentHref = parent.attr('href') || '';
+          if (name && logo && (parentHref.includes('/collections/') || parentHref.includes('/brand/') || parentHref.includes('brand='))) {
             brandElements.push({ name, logo });
           }
         });
       }
 
-      // Pattern 3: Generic brand cards
+      // Generic Pattern 3: Brand cards
       if (brandElements.length === 0) {
-        $('.brand, .brand-item, .brand-card, [data-brand]').each((_, el) => {
+        $('.brand, .brand-item, .brand-card, [data-brand], .manufacturer, .vendor').each((_, el) => {
           const $el = $(el);
-          const name = $el.find('h2, h3, .brand-name, .title').text().trim() || $el.text().trim();
+          const name = $el.find('h2, h3, h4, .brand-name, .title, .name').text().trim() || $el.text().trim();
           const logo = $el.find('img').attr('src') || '';
-          if (name) {
+          if (name && name.length > 1) {
             brandElements.push({ name, logo });
+          }
+        });
+      }
+
+      // Generic Pattern 4: List items that look like brands
+      if (brandElements.length === 0) {
+        $('ul.brands li, .brand-list li, .manufacturer-list li').each((_, el) => {
+          const $el = $(el);
+          const name = $el.find('a').text().trim() || $el.text().trim();
+          if (name && name.length > 1) {
+            brandElements.push({ name, logo: '' });
           }
         });
       }
@@ -1687,21 +1738,31 @@ export async function registerRoutes(
     }
   });
 
-  // Sitemap.xml - Dynamic sitemap for Google indexing
+  // Sitemap.xml - Dynamic sitemap for Google indexing (aqeelpharmacy.com)
   app.get("/sitemap.xml", async (req: Request, res: Response) => {
     try {
       const baseUrl = "https://aqeelpharmacy.com";
+      const today = new Date().toISOString().split('T')[0];
       
-      const products = await storage.getProducts();
-      const categories = await storage.getCategories();
-      const brands = await storage.getBrands();
+      let products: any[] = [];
+      let categories: any[] = [];
+      let brands: any[] = [];
+      
+      try {
+        products = await storage.getProducts();
+        categories = await storage.getCategories();
+        brands = await storage.getBrands();
+      } catch (dbError) {
+        console.error("Database error in sitemap:", dbError);
+      }
 
       const staticPages = [
         { url: "/", priority: "1.0", changefreq: "daily" },
         { url: "/products", priority: "0.9", changefreq: "daily" },
         { url: "/brands", priority: "0.8", changefreq: "weekly" },
-        { url: "/checkout", priority: "0.7", changefreq: "monthly" },
-        { url: "/track-order", priority: "0.6", changefreq: "monthly" },
+        { url: "/checkout", priority: "0.6", changefreq: "monthly" },
+        { url: "/track-order", priority: "0.5", changefreq: "monthly" },
+        { url: "/account/login", priority: "0.5", changefreq: "monthly" },
         { url: "/policies/privacy", priority: "0.4", changefreq: "yearly" },
         { url: "/policies/shipping", priority: "0.4", changefreq: "yearly" },
         { url: "/policies/returns", priority: "0.4", changefreq: "yearly" },
@@ -1709,15 +1770,41 @@ export async function registerRoutes(
       ];
 
       let xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">`;
 
       // Static pages
       for (const page of staticPages) {
         xml += `
   <url>
     <loc>${baseUrl}${page.url}</loc>
+    <lastmod>${today}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
+  </url>`;
+      }
+
+      // Category pages (high priority for SEO)
+      for (const category of categories) {
+        xml += `
+  <url>
+    <loc>${baseUrl}/category/${category.slug}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`;
+      }
+
+      // Brand pages
+      for (const brand of brands) {
+        xml += `
+  <url>
+    <loc>${baseUrl}/products?brand=${brand.slug}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>`;
       }
 
@@ -1727,30 +1814,28 @@ export async function registerRoutes(
           xml += `
   <url>
     <loc>${baseUrl}/product/${product.slug}</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>`;
-        }
-      }
-
-      // Category pages
-      for (const category of categories) {
-        xml += `
-  <url>
-    <loc>${baseUrl}/category/${category.slug}</loc>
+    <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>`;
+        }
       }
 
       xml += `
 </urlset>`;
 
       res.header("Content-Type", "application/xml");
+      res.header("Cache-Control", "public, max-age=3600");
       res.send(xml);
     } catch (error) {
       console.error("Sitemap error:", error);
-      res.status(500).json({ error: "Failed to generate sitemap" });
+      res.status(500).send(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://aqeelpharmacy.com/</loc>
+    <priority>1.0</priority>
+  </url>
+</urlset>`);
     }
   });
 

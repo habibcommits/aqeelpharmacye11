@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroBanner } from "@/components/hero-banner";
-import { CategoryGrid } from "@/components/category-grid";
+import { CategorySlider } from "@/components/category-slider";
 import { TrustIndicators } from "@/components/trust-indicators";
 import { BrandShowcase } from "@/components/brand-showcase";
 import { ProductGrid } from "@/components/product-grid";
@@ -28,7 +28,7 @@ export default function HomePage() {
       
       <TrustIndicators />
       
-      <CategoryGrid />
+      <CategorySlider />
 
       <section className="py-12 md:py-16 bg-card">
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">

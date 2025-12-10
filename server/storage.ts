@@ -567,6 +567,97 @@ export class MemStorage implements IStorage {
 }
 
 import { mongoStorage } from "./mongo-storage";
+import { connectDB } from "./db";
 
-// Use MongoDB storage for production
-export const storage = mongoStorage;
+// Environment check for production vs development
+const isProduction = process.env.NODE_ENV === 'production';
+const allowMemStorageFallback = process.env.USE_MEM_STORAGE === 'true' || !isProduction;
+
+// Storage wrapper that falls back to MemStorage if MongoDB fails (dev only)
+class StorageProxy implements IStorage {
+  private fallbackStorage: MemStorage | null = null;
+  private useMemStorage = false;
+  private initPromise: Promise<void> | null = null;
+
+  private async ensureInit(): Promise<void> {
+    if (this.initPromise) {
+      return this.initPromise;
+    }
+    
+    this.initPromise = (async () => {
+      try {
+        await connectDB();
+        this.useMemStorage = false;
+        console.log('Using MongoDB storage');
+      } catch (error) {
+        if (!allowMemStorageFallback) {
+          console.error('MongoDB connection failed in production mode. Set USE_MEM_STORAGE=true to allow fallback:', error);
+          throw error;
+        }
+        console.warn('MongoDB connection failed, falling back to in-memory storage (development mode):', error);
+        this.useMemStorage = true;
+        this.fallbackStorage = new MemStorage();
+      }
+    })();
+    
+    return this.initPromise;
+  }
+
+  private get activeStorage(): IStorage {
+    if (this.useMemStorage && this.fallbackStorage) {
+      return this.fallbackStorage;
+    }
+    return mongoStorage;
+  }
+
+  // Proxy all IStorage methods
+  async getUser(id: string) { await this.ensureInit(); return this.activeStorage.getUser(id); }
+  async getUserByUsername(username: string) { await this.ensureInit(); return this.activeStorage.getUserByUsername(username); }
+  async createUser(user: InsertUser) { await this.ensureInit(); return this.activeStorage.createUser(user); }
+  async getProducts() { await this.ensureInit(); return this.activeStorage.getProducts(); }
+  async getProduct(id: string) { await this.ensureInit(); return this.activeStorage.getProduct(id); }
+  async getProductBySlug(slug: string) { await this.ensureInit(); return this.activeStorage.getProductBySlug(slug); }
+  async getFeaturedProducts() { await this.ensureInit(); return this.activeStorage.getFeaturedProducts(); }
+  async getProductsByCategory(slug: string) { await this.ensureInit(); return this.activeStorage.getProductsByCategory(slug); }
+  async getProductsByBrand(slug: string) { await this.ensureInit(); return this.activeStorage.getProductsByBrand(slug); }
+  async createProduct(product: InsertProduct) { await this.ensureInit(); return this.activeStorage.createProduct(product); }
+  async updateProduct(id: string, product: Partial<InsertProduct>) { await this.ensureInit(); return this.activeStorage.updateProduct(id, product); }
+  async deleteProduct(id: string) { await this.ensureInit(); return this.activeStorage.deleteProduct(id); }
+  async getCategories() { await this.ensureInit(); return this.activeStorage.getCategories(); }
+  async getCategory(id: string) { await this.ensureInit(); return this.activeStorage.getCategory(id); }
+  async getCategoryBySlug(slug: string) { await this.ensureInit(); return this.activeStorage.getCategoryBySlug(slug); }
+  async createCategory(category: InsertCategory) { await this.ensureInit(); return this.activeStorage.createCategory(category); }
+  async updateCategory(id: string, category: Partial<InsertCategory>) { await this.ensureInit(); return this.activeStorage.updateCategory(id, category); }
+  async deleteCategory(id: string) { await this.ensureInit(); return this.activeStorage.deleteCategory(id); }
+  async getBrands() { await this.ensureInit(); return this.activeStorage.getBrands(); }
+  async getBrand(id: string) { await this.ensureInit(); return this.activeStorage.getBrand(id); }
+  async getBrandBySlug(slug: string) { await this.ensureInit(); return this.activeStorage.getBrandBySlug(slug); }
+  async createBrand(brand: InsertBrand) { await this.ensureInit(); return this.activeStorage.createBrand(brand); }
+  async updateBrand(id: string, brand: Partial<InsertBrand>) { await this.ensureInit(); return this.activeStorage.updateBrand(id, brand); }
+  async deleteBrand(id: string) { await this.ensureInit(); return this.activeStorage.deleteBrand(id); }
+  async getOrders() { await this.ensureInit(); return this.activeStorage.getOrders(); }
+  async getOrder(id: string) { await this.ensureInit(); return this.activeStorage.getOrder(id); }
+  async getOrderWithItems(id: string) { await this.ensureInit(); return this.activeStorage.getOrderWithItems(id); }
+  async getOrderByTrackingNumber(trackingNumber: string) { await this.ensureInit(); return this.activeStorage.getOrderByTrackingNumber(trackingNumber); }
+  async createOrder(order: InsertOrder) { await this.ensureInit(); return this.activeStorage.createOrder(order); }
+  async createOrderWithItems(order: InsertOrder, items: InsertOrderItem[]) { await this.ensureInit(); return this.activeStorage.createOrderWithItems(order, items); }
+  async updateOrderStatus(id: string, status: string) { await this.ensureInit(); return this.activeStorage.updateOrderStatus(id, status); }
+  async getBanners() { await this.ensureInit(); return this.activeStorage.getBanners(); }
+  async createBanner(banner: InsertBanner) { await this.ensureInit(); return this.activeStorage.createBanner(banner); }
+  async updateBanner(id: string, banner: Partial<InsertBanner>) { await this.ensureInit(); return this.activeStorage.updateBanner(id, banner); }
+  async deleteBanner(id: string) { await this.ensureInit(); return this.activeStorage.deleteBanner(id); }
+  async getClients() { await this.ensureInit(); return this.activeStorage.getClients(); }
+  async getClient(id: string) { await this.ensureInit(); return this.activeStorage.getClient(id); }
+  async getClientByEmail(email: string) { await this.ensureInit(); return this.activeStorage.getClientByEmail(email); }
+  async createClient(client: InsertClient) { await this.ensureInit(); return this.activeStorage.createClient(client); }
+  async updateClient(id: string, client: Partial<InsertClient>) { await this.ensureInit(); return this.activeStorage.updateClient(id, client); }
+  async deleteClient(id: string) { await this.ensureInit(); return this.activeStorage.deleteClient(id); }
+  async getClientOrders(clientId: string) { await this.ensureInit(); return this.activeStorage.getClientOrders(clientId); }
+  async createOtp(otpData: InsertOtp) { await this.ensureInit(); return this.activeStorage.createOtp(otpData); }
+  async getValidOtp(email: string, otp: string) { await this.ensureInit(); return this.activeStorage.getValidOtp(email, otp); }
+  async markOtpAsUsed(id: string) { await this.ensureInit(); return this.activeStorage.markOtpAsUsed(id); }
+  async cleanupExpiredOtps() { await this.ensureInit(); return this.activeStorage.cleanupExpiredOtps(); }
+}
+
+// Use storage proxy with automatic fallback
+export const storage: IStorage = new StorageProxy();
