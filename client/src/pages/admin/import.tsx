@@ -236,6 +236,51 @@ export default function AdminImport() {
 
       <Card>
         <CardHeader>
+          <CardTitle>Partner Import Options</CardTitle>
+          <CardDescription>
+            Import products from our dedicated partner pharmacies
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid md:grid-cols-2 gap-4">
+            <Link href="/admin/najeeb-import" data-testid="link-najeeb-import">
+              <div className="p-4 border rounded-lg hover-elevate cursor-pointer">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Package className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-semibold">Najeeb Pharmacy</p>
+                    <p className="text-xs text-muted-foreground">2774+ products available</p>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Import pharmaceutical products from najeebpharmacy.com
+                </p>
+              </div>
+            </Link>
+            <Link href="/admin/dwatson-import" data-testid="link-dwatson-import">
+              <div className="p-4 border rounded-lg hover-elevate cursor-pointer">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Package className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-semibold">D.Watson Pharmacy</p>
+                    <p className="text-xs text-muted-foreground">6985+ medicines available</p>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Import medicines from dwatson.pk pharmacy
+                </p>
+              </div>
+            </Link>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
           <CardTitle>Import Information</CardTitle>
         </CardHeader>
         <CardContent className="prose prose-sm max-w-none text-muted-foreground">
