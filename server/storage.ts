@@ -668,5 +668,15 @@ export class MemStorage implements IStorage {
   }
 }
 
-// For Vercel serverless, just use MemStorage directly since MongoDB may not be available
+// STORAGE SELECTION:
+// Using MemStorage for Vercel serverless deployment for the following reasons:
+// 1. Vercel has a 10-second function timeout on hobby tier - MongoDB cold starts can exceed this
+// 2. MongoDB connection pooling is challenging in serverless environments
+// 3. The StorageProxy pattern had TypeScript type mismatches with missing interface methods
+// 4. MemStorage provides consistent type-safe implementation of all IStorage methods
+// 
+// For production with persistent data, consider:
+// - Using Vercel KV, Vercel Postgres, or edge-compatible databases
+// - Implementing proper connection pooling with serverless-compatible MongoDB driver
+// - Adding missing IStorage methods to mongoStorage implementation
 export const storage: IStorage = new MemStorage();
