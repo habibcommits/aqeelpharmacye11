@@ -4,23 +4,22 @@
   "outputDirectory": "dist",
   "framework": null,
   "functions": {
-    "dist/api/index.js": {
-      "runtime": "@vercel/node@3",
-      "maxDuration": 30
+    "api/index.ts": {
+      "maxDuration": 10
     }
   },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/dist/api/index.js"
+      "destination": "/api/index"
     },
     {
       "source": "/sitemap.xml",
-      "destination": "/dist/api/index.js"
+      "destination": "/api/index"
     },
     {
       "source": "/robots.txt",
-      "destination": "/dist/api/index.js"
+      "destination": "/api/index"
     },
     {
       "source": "/((?!api|dist|_next|static|public|.*\\..*).*)",
