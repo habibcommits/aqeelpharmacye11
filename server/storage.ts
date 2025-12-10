@@ -4,15 +4,19 @@ import {
   type Category, type InsertCategory,
   type Brand, type InsertBrand,
   type Order, type InsertOrder, type OrderWithItems,
-  type OrderItem, type InsertOrderItem,
+  type OrderItem,
   type Banner, type InsertBanner,
   type Client, type InsertClient,
   type OtpVerification, type InsertOtp
 } from "@shared/schema";
 import { randomUUID } from "crypto";
-import type { IStorage } from './storage-types';
+import type { IStorage, CreateOrderItem } from './storage-types';
 
-export type { IStorage } from './storage-types';
+export type { IStorage, CreateOrderItem } from './storage-types';
+
+function toNull<T>(value: T | undefined): T | null {
+  return value === undefined ? null : value;
+}
 
 export class MemStorage implements IStorage {
   private users: Map<string, User>;
@@ -53,7 +57,14 @@ export class MemStorage implements IStorage {
 
     categories.forEach((cat) => {
       const id = randomUUID();
-      this.categories.set(id, { ...cat, id });
+      this.categories.set(id, { 
+        id, 
+        name: cat.name, 
+        slug: cat.slug, 
+        description: toNull(cat.description), 
+        image: toNull(cat.image), 
+        parentId: toNull(cat.parentId) 
+      });
     });
 
     const brands: InsertBrand[] = [
@@ -168,7 +179,13 @@ export class MemStorage implements IStorage {
 
     brands.forEach((brand) => {
       const id = randomUUID();
-      this.brands.set(id, { ...brand, id });
+      this.brands.set(id, { 
+        id, 
+        name: brand.name, 
+        slug: brand.slug, 
+        description: toNull(brand.description), 
+        logo: toNull(brand.logo) 
+      });
     });
 
     const categoryArray = Array.from(this.categories.values());
@@ -298,7 +315,23 @@ export class MemStorage implements IStorage {
 
     sampleProducts.forEach((product) => {
       const id = randomUUID();
-      this.products.set(id, { ...product, id });
+      this.products.set(id, { 
+        id, 
+        name: product.name, 
+        slug: product.slug, 
+        description: toNull(product.description), 
+        price: product.price, 
+        comparePrice: toNull(product.comparePrice), 
+        images: toNull(product.images), 
+        categoryId: toNull(product.categoryId), 
+        brandId: toNull(product.brandId), 
+        stock: product.stock ?? 0, 
+        isFeatured: product.isFeatured ?? false, 
+        isActive: product.isActive ?? true, 
+        sku: toNull(product.sku), 
+        weight: toNull(product.weight), 
+        tags: toNull(product.tags) 
+      });
     });
   }
 
@@ -313,7 +346,14 @@ export class MemStorage implements IStorage {
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = randomUUID();
-    const user: User = { ...insertUser, id, isAdmin: false };
+    const user: User = { 
+      id,
+      username: insertUser.username,
+      password: insertUser.password,
+      email: toNull(insertUser.email),
+      phone: toNull(insertUser.phone),
+      isAdmin: false 
+    };
     this.users.set(id, user);
     return user;
   }
@@ -343,7 +383,23 @@ export class MemStorage implements IStorage {
 
   async createProduct(product: InsertProduct): Promise<Product> {
     const id = randomUUID();
-    const newProduct: Product = { ...product, id };
+    const newProduct: Product = { 
+      id,
+      name: product.name,
+      slug: product.slug,
+      description: toNull(product.description),
+      price: product.price,
+      comparePrice: toNull(product.comparePrice),
+      images: toNull(product.images),
+      categoryId: toNull(product.categoryId),
+      brandId: toNull(product.brandId),
+      stock: product.stock ?? 0,
+      isFeatured: product.isFeatured ?? false,
+      isActive: product.isActive ?? true,
+      sku: toNull(product.sku),
+      weight: toNull(product.weight),
+      tags: toNull(product.tags)
+    };
     this.products.set(id, newProduct);
     return newProduct;
   }
@@ -375,7 +431,14 @@ export class MemStorage implements IStorage {
 
   async createCategory(category: InsertCategory): Promise<Category> {
     const id = randomUUID();
-    const newCategory: Category = { ...category, id };
+    const newCategory: Category = { 
+      id,
+      name: category.name,
+      slug: category.slug,
+      description: toNull(category.description),
+      image: toNull(category.image),
+      parentId: toNull(category.parentId)
+    };
     this.categories.set(id, newCategory);
     return newCategory;
   }
@@ -407,7 +470,13 @@ export class MemStorage implements IStorage {
 
   async createBrand(brand: InsertBrand): Promise<Brand> {
     const id = randomUUID();
-    const newBrand: Brand = { ...brand, id };
+    const newBrand: Brand = { 
+      id,
+      name: brand.name,
+      slug: brand.slug,
+      description: toNull(brand.description),
+      logo: toNull(brand.logo)
+    };
     this.brands.set(id, newBrand);
     return newBrand;
   }
@@ -442,20 +511,39 @@ export class MemStorage implements IStorage {
     return { ...order, items };
   }
 
-  async createOrder(orderData: InsertOrder, items: InsertOrderItem[]): Promise<OrderWithItems> {
+  async createOrder(orderData: InsertOrder, items: CreateOrderItem[]): Promise<OrderWithItems> {
     const id = randomUUID();
     const orderNumber = `ORD-${Date.now().toString(36).toUpperCase()}`;
     const order: Order = { 
-      ...orderData, 
       id, 
       orderNumber,
+      customerName: orderData.customerName,
+      customerEmail: orderData.customerEmail,
+      customerPhone: orderData.customerPhone,
+      shippingAddress: orderData.shippingAddress,
+      city: orderData.city,
+      postalCode: toNull(orderData.postalCode),
+      notes: toNull(orderData.notes),
+      subtotal: orderData.subtotal,
+      shippingCost: orderData.shippingCost ?? 0,
+      total: orderData.total,
+      status: orderData.status ?? "pending",
+      paymentMethod: toNull(orderData.paymentMethod),
       createdAt: new Date().toISOString()
     };
     this.orders.set(id, order);
 
     const orderItems: OrderItem[] = items.map((item) => {
       const itemId = randomUUID();
-      const orderItem: OrderItem = { ...item, id: itemId, orderId: id };
+      const orderItem: OrderItem = { 
+        id: itemId, 
+        orderId: id,
+        productId: item.productId,
+        productName: item.productName,
+        productImage: toNull(item.productImage),
+        price: item.price,
+        quantity: item.quantity
+      };
       this.orderItems.set(itemId, orderItem);
       return orderItem;
     });
@@ -478,7 +566,15 @@ export class MemStorage implements IStorage {
 
   async createBanner(banner: InsertBanner): Promise<Banner> {
     const id = randomUUID();
-    const newBanner: Banner = { ...banner, id };
+    const newBanner: Banner = { 
+      id,
+      title: toNull(banner.title),
+      subtitle: toNull(banner.subtitle),
+      image: banner.image,
+      link: toNull(banner.link),
+      isActive: banner.isActive ?? true,
+      order: banner.order ?? 0
+    };
     this.banners.set(id, newBanner);
     return newBanner;
   }
@@ -497,8 +593,13 @@ export class MemStorage implements IStorage {
   async createClient(clientData: InsertClient): Promise<Client> {
     const id = randomUUID();
     const client: Client = {
-      ...clientData,
       id,
+      email: clientData.email,
+      name: toNull(clientData.name),
+      phone: toNull(clientData.phone),
+      address: toNull(clientData.address),
+      city: toNull(clientData.city),
+      postalCode: toNull(clientData.postalCode),
       isVerified: true,
       createdAt: new Date().toISOString(),
     };

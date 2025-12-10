@@ -740,7 +740,7 @@ export async function registerRoutes(
         '[data-product-id]'
       ];
 
-      let products: cheerio.Cheerio<cheerio.Element> | null = null;
+      let products: ReturnType<typeof $> | null = null;
       for (const selector of productSelectors) {
         const found = $(selector);
         if (found.length > 0) {
@@ -1623,7 +1623,7 @@ export async function registerRoutes(
           const $ = cheerio.load(response.data);
 
           const productSelectors = ['.product', '.products .product', '.product-item', '.product-card', 'li.product', '[data-product-id]'];
-          let $products: cheerio.Cheerio<cheerio.Element> | null = null;
+          let $products: ReturnType<typeof $> | null = null;
           
           for (const selector of productSelectors) {
             const found = $(selector);

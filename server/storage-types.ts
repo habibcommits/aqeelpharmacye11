@@ -4,11 +4,18 @@ import {
   type Category, type InsertCategory,
   type Brand, type InsertBrand,
   type Order, type InsertOrder, type OrderWithItems,
-  type InsertOrderItem,
   type Banner, type InsertBanner,
   type Client, type InsertClient,
   type OtpVerification, type InsertOtp
 } from "@shared/schema";
+
+export interface CreateOrderItem {
+  productId: string;
+  productName: string;
+  productImage?: string | null;
+  price: number;
+  quantity: number;
+}
 
 export interface IStorage {
   // Users
@@ -46,7 +53,7 @@ export interface IStorage {
   getOrders(): Promise<Order[]>;
   getOrder(id: string): Promise<Order | undefined>;
   getOrderByNumber(orderNumber: string): Promise<OrderWithItems | undefined>;
-  createOrder(order: InsertOrder, items: InsertOrderItem[]): Promise<OrderWithItems>;
+  createOrder(order: InsertOrder, items: CreateOrderItem[]): Promise<OrderWithItems>;
   updateOrderStatus(id: string, status: string): Promise<Order | undefined>;
 
   // Banners

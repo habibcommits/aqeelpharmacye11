@@ -1,0 +1,149 @@
+04:38:52.178 Running build in Washington, D.C., USA (East) – iad1
+04:38:52.179 Build machine configuration: 2 cores, 8 GB
+04:38:52.297 Cloning github.com/habibcommits/aqeelpharmacye11 (Branch: main, Commit: a9433b4)
+04:38:52.298 Previous build caches not available.
+04:38:52.615 Cloning completed: 317.000ms
+04:38:52.985 Running "vercel build"
+04:38:53.463 Vercel CLI 49.1.2
+04:38:54.297 Installing dependencies...
+04:39:01.004 npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+04:39:01.006 npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+04:39:07.485 
+04:39:07.486 added 711 packages in 13s
+04:39:07.487 
+04:39:07.487 92 packages are looking for funding
+04:39:07.487   run `npm fund` for details
+04:39:07.631 
+04:39:07.631 > rest-express@1.0.0 build
+04:39:07.631 > tsx script/build.ts
+04:39:07.632 
+04:39:08.800 building client...
+04:39:08.868 [36mvite v5.4.20 [32mbuilding for production...[36m[39m
+04:39:09.473 transforming...
+04:39:10.753 
+04:39:10.753 A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+04:39:15.916 [32m✓[39m 2197 modules transformed.
+04:39:16.436 rendering chunks...
+04:39:16.457 computing gzip size...
+04:39:16.499 [2m../dist/public/[22m[32mindex.html                                         [39m[1m[2m  5.43 kB[22m[1m[22m[2m │ gzip:   1.50 kB[22m
+04:39:16.500 [2m../dist/public/[22m[2massets/[22m[32maqeelph_logo_1765266347695-DAyxmfIo.png     [39m[1m[2m118.64 kB[22m[1m[22m
+04:39:16.500 [2m../dist/public/[22m[2massets/[22m[32mskincare_serum_bottl_8b7062d6-CwRTnwOW.jpg  [39m[1m[2m140.86 kB[22m[1m[22m
+04:39:16.500 [2m../dist/public/[22m[2massets/[22m[32mgarnier_natural_beau_22ccbb07-CPzyEJs1.jpg  [39m[1m[2m151.27 kB[22m[1m[22m
+04:39:16.500 [2m../dist/public/[22m[2massets/[22m[32mneutrogena_skincare__3ce100c2-CuPmQYjr.jpg  [39m[1m[2m160.30 kB[22m[1m[22m
+04:39:16.501 [2m../dist/public/[22m[2massets/[22m[32mprofessional_hair_ca_10174b47-DK8gXfNj.jpg  [39m[1m[2m160.99 kB[22m[1m[22m
+04:39:16.501 [2m../dist/public/[22m[2massets/[22m[32msunscreen_lotion_bot_1c2f4325-DaAebprR.jpg  [39m[1m[2m168.31 kB[22m[1m[22m
+04:39:16.501 [2m../dist/public/[22m[2massets/[22m[32mpantene_shampoo_hair_bd5703bf-CY_mtPiC.jpg  [39m[1m[2m281.25 kB[22m[1m[22m
+04:39:16.502 [2m../dist/public/[22m[2massets/[22m[32mdove_beauty_brand_lo_3deafb74-ClglwpJx.jpg  [39m[1m[2m284.52 kB[22m[1m[22m
+04:39:16.502 [2m../dist/public/[22m[2massets/[22m[32mcerave_skincare_bran_91b21ecf-zSBwvcpS.jpg  [39m[1m[2m372.57 kB[22m[1m[22m
+04:39:16.502 [2m../dist/public/[22m[2massets/[22m[32ml'oreal_beauty_cosme_0a109609-DaRgZpxA.jpg  [39m[1m[2m435.77 kB[22m[1m[22m
+04:39:16.502 [2m../dist/public/[22m[2massets/[22m[35mindex-uJnntFva.css                          [39m[1m[2m 99.95 kB[22m[1m[22m[2m │ gzip:  15.41 kB[22m
+04:39:16.503 [2m../dist/public/[22m[2massets/[22m[36mindex-kyMcNfyN.js                           [39m[1m[33m733.19 kB[39m[22m[2m │ gzip: 205.95 kB[22m
+04:39:16.503 [33m
+04:39:16.503 (!) Some chunks are larger than 500 kB after minification. Consider:
+04:39:16.504 - Using dynamic import() to code-split the application
+04:39:16.504 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+04:39:16.505 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+04:39:16.505 [32m✓ built in 7.08s[39m
+04:39:16.505 building server...
+04:39:17.572 
+04:39:17.573   dist/index.cjs  4.5mb ⚠️
+04:39:17.574 
+04:39:17.574 ⚡ Done in 1020ms
+04:39:17.579 building Vercel serverless function...
+04:39:18.334 
+04:39:18.334   dist/api/index.js  4.5mb ⚠️
+04:39:18.334 
+04:39:18.334 ⚡ Done in 752ms
+04:39:18.887 Using TypeScript 5.6.3 (local user-provided)
+04:39:26.402 server/routes.ts(234,9): error TS2345: Argument of type '{ productId: any; productName: any; productImage: any; price: any; quantity: any; }[]' is not assignable to parameter of type '{ price: number; orderId: string; productId: string; productName: string; quantity: number; productImage?: string | null | undefined; }[]'.
+04:39:26.403   Property 'orderId' is missing in type '{ productId: any; productName: any; productImage: any; price: any; quantity: any; }' but required in type '{ price: number; orderId: string; productId: string; productName: string; quantity: number; productImage?: string | null | undefined; }'.
+04:39:26.403 server/routes.ts(743,45): error TS2694: Namespace '"/vercel/path0/node_modules/cheerio/dist/esm/index"' has no exported member 'Element'.
+04:39:26.404 server/routes.ts(1626,50): error TS2694: Namespace '"/vercel/path0/node_modules/cheerio/dist/esm/index"' has no exported member 'Element'.
+04:39:26.404 
+04:39:26.799 server/storage.ts(56,31): error TS2345: Argument of type '{ id: `${string}-${string}-${string}-${string}-${string}`; name: string; slug: string; description?: string | null | undefined; image?: string | null | undefined; parentId?: string | null | undefined; }' is not assignable to parameter of type '{ id: string; name: string; slug: string; description: string | null; image: string | null; parentId: string | null; }'.
+04:39:26.800   Types of property 'description' are incompatible.
+04:39:26.800     Type 'string | null | undefined' is not assignable to type 'string | null'.
+04:39:26.800       Type 'undefined' is not assignable to type 'string | null'.
+04:39:26.800 server/storage.ts(171,27): error TS2345: Argument of type '{ id: `${string}-${string}-${string}-${string}-${string}`; name: string; slug: string; description?: string | null | undefined; logo?: string | null | undefined; }' is not assignable to parameter of type '{ id: string; name: string; slug: string; description: string | null; logo: string | null; }'.
+04:39:26.800   Types of property 'description' are incompatible.
+04:39:26.803     Type 'string | null | undefined' is not assignable to type 'string | null'.
+04:39:26.803       Type 'undefined' is not assignable to type 'string | null'.
+04:39:26.803 server/storage.ts(301,29): error TS2345: Argument of type '{ id: `${string}-${string}-${string}-${string}-${string}`; name: string; slug: string; price: number; description?: string | null | undefined; comparePrice?: number | null | undefined; images?: string[] | null | undefined; ... 7 more ...; tags?: string[] | ... 1 more ... | undefined; }' is not assignable to parameter of type '{ id: string; name: string; slug: string; description: string | null; price: number; comparePrice: number | null; images: string[] | null; categoryId: string | null; brandId: string | null; ... 5 more ...; tags: string[] | null; }'.
+04:39:26.803   Types of property 'description' are incompatible.
+04:39:26.803     Type 'string | null | undefined' is not assignable to type 'string | null'.
+04:39:26.803       Type 'undefined' is not assignable to type 'string | null'.
+04:39:26.803 server/storage.ts(316,11): error TS2322: Type '{ id: `${string}-${string}-${string}-${string}-${string}`; isAdmin: false; username: string; password: string; email?: string | null | undefined; phone?: string | null | undefined; }' is not assignable to type '{ id: string; email: string | null; phone: string | null; username: string; password: string; isAdmin: boolean | null; }'.
+04:39:26.803   Types of property 'email' are incompatible.
+04:39:26.803     Type 'string | null | undefined' is not assignable to type 'string | null'.
+04:39:26.803       Type 'undefined' is not assignable to type 'string | null'.
+04:39:26.804 server/storage.ts(346,11): error TS2322: Type '{ id: `${string}-${string}-${string}-${string}-${string}`; name: string; slug: string; price: number; description?: string | null | undefined; comparePrice?: number | null | undefined; images?: string[] | null | undefined; ... 7 more ...; tags?: string[] | ... 1 more ... | undefined; }' is not assignable to type '{ id: string; name: string; slug: string; description: string | null; price: number; comparePrice: number | null; images: string[] | null; categoryId: string | null; brandId: string | null; ... 5 more ...; tags: string[] | null; }'.
+04:39:26.804   Types of property 'description' are incompatible.
+04:39:26.804     Type 'string | null | undefined' is not assignable to type 'string | null'.
+04:39:26.804       Type 'undefined' is not assignable to type 'string | null'.
+04:39:26.804 server/storage.ts(378,11): error TS2322: Type '{ id: `${string}-${string}-${string}-${string}-${string}`; name: string; slug: string; description?: string | null | undefined; image?: string | null | undefined; parentId?: string | null | undefined; }' is not assignable to type '{ id: string; name: string; slug: string; description: string | null; image: string | null; parentId: string | null; }'.
+04:39:26.804   Types of property 'description' are incompatible.
+04:39:26.804     Type 'string | null | undefined' is not assignable to type 'string | null'.
+04:39:26.804       Type 'undefined' is not assignable to type 'string | null'.
+04:39:26.804 server/storage.ts(410,11): error TS2322: Type '{ id: `${string}-${string}-${string}-${string}-${string}`; name: string; slug: string; description?: string | null | undefined; logo?: string | null | undefined; }' is not assignable to type '{ id: string; name: string; slug: string; description: string | null; logo: string | null; }'.
+04:39:26.804   Types of property 'description' are incompatible.
+04:39:26.804     Type 'string | null | undefined' is not assignable to type 'string | null'.
+04:39:26.804       Type 'undefined' is not assignable to type 'string | null'.
+04:39:26.804 server/storage.ts(448,11): error TS2322: Type '{ id: `${string}-${string}-${string}-${string}-${string}`; orderNumber: string; createdAt: string; customerName: string; customerEmail: string; customerPhone: string; shippingAddress: string; city: string; ... 6 more ...; paymentMethod?: string | ... 1 more ... | undefined; }' is not assignable to type '{ id: string; status: string; customerName: string; customerEmail: string; customerPhone: string; shippingAddress: string; city: string; postalCode: string | null; notes: string | null; orderNumber: string; ... 4 more ...; createdAt: string; }'.
+04:39:26.804   Types of property 'status' are incompatible.
+04:39:26.804     Type 'string | undefined' is not assignable to type 'string'.
+04:39:26.804       Type 'undefined' is not assignable to type 'string'.
+04:39:26.804 server/storage.ts(458,13): error TS2322: Type '{ id: `${string}-${string}-${string}-${string}-${string}`; orderId: `${string}-${string}-${string}-${string}-${string}`; price: number; productId: string; productName: string; quantity: number; productImage?: string | null | undefined; }' is not assignable to type '{ id: string; price: number; orderId: string; productId: string; productName: string; productImage: string | null; quantity: number; }'.
+04:39:26.804   Types of property 'productImage' are incompatible.
+04:39:26.804     Type 'string | null | undefined' is not assignable to type 'string | null'.
+04:39:26.804       Type 'undefined' is not assignable to type 'string | null'.
+04:39:26.804 server/storage.ts(481,11): error TS2322: Type '{ id: `${string}-${string}-${string}-${string}-${string}`; image: string; link?: string | null | undefined; isActive?: boolean | null | undefined; title?: string | null | undefined; subtitle?: string | null | undefined; order?: number | ... 1 more ... | undefined; }' is not assignable to type '{ id: string; link: string | null; isActive: boolean | null; image: string; title: string | null; subtitle: string | null; order: number | null; }'.
+04:39:26.804   Types of property 'link' are incompatible.
+04:39:26.804     Type 'string | null | undefined' is not assignable to type 'string | null'.
+04:39:26.804       Type 'undefined' is not assignable to type 'string | null'.
+04:39:26.804 server/storage.ts(499,11): error TS2322: Type '{ id: `${string}-${string}-${string}-${string}-${string}`; isVerified: true; createdAt: string; email: string; name?: string | null | undefined; city?: string | null | undefined; postalCode?: string | null | undefined; phone?: string | ... 1 more ... | undefined; address?: string | ... 1 more ... | undefined; }' is not assignable to type '{ id: string; name: string | null; city: string | null; postalCode: string | null; email: string; phone: string | null; address: string | null; createdAt: string; isVerified: boolean | null; }'.
+04:39:26.804   Types of property 'name' are incompatible.
+04:39:26.804     Type 'string | null | undefined' is not assignable to type 'string | null'.
+04:39:26.804       Type 'undefined' is not assignable to type 'string | null'.
+04:39:26.804 server/storage.ts(577,7): error TS2420: Class 'StorageProxy' incorrectly implements interface 'IStorage'.
+04:39:26.804   Type 'StorageProxy' is missing the following properties from type 'IStorage': getOrderByNumber, getOrdersByClientEmail
+04:39:26.804 server/storage.ts(622,95): error TS2339: Property 'getProductsByBrand' does not exist on type 'IStorage'.
+04:39:26.804 server/storage.ts(640,92): error TS2339: Property 'getOrderWithItems' does not exist on type 'IStorage'.
+04:39:26.804 server/storage.ts(641,111): error TS2551: Property 'getOrderByTrackingNumber' does not exist on type 'IStorage'. Did you mean 'getOrderByNumber'?
+04:39:26.804 server/storage.ts(642,94): error TS2554: Expected 2 arguments, but got 1.
+04:39:26.804 server/storage.ts(643,129): error TS2339: Property 'createOrderWithItems' does not exist on type 'IStorage'.
+04:39:26.804 server/storage.ts(647,118): error TS2339: Property 'updateBanner' does not exist on type 'IStorage'.
+04:39:26.804 server/storage.ts(648,87): error TS2339: Property 'deleteBanner' does not exist on type 'IStorage'.
+04:39:26.804 server/storage.ts(649,75): error TS2551: Property 'getClients' does not exist on type 'IStorage'. Did you mean 'getClient'?
+04:39:26.804 server/storage.ts(654,87): error TS2339: Property 'deleteClient' does not exist on type 'IStorage'.
+04:39:26.804 server/storage.ts(655,96): error TS2339: Property 'getClientOrders' does not exist on type 'IStorage'.
+04:39:26.804 server/storage.ts(663,14): error TS2739: Type 'StorageProxy' is missing the following properties from type 'IStorage': getOrderByNumber, getOrdersByClientEmail
+04:39:26.805 
+04:39:29.642 server/models/index.ts(4,18): error TS2430: Interface 'IUser' incorrectly extends interface 'Document<ObjectId, any, any, Record<string, any>, {}>'.
+04:39:29.642   Types of property '_id' are incompatible.
+04:39:29.642     Type 'string' is not assignable to type 'ObjectId'.
+04:39:29.643 server/models/index.ts(22,18): error TS2430: Interface 'ICategory' incorrectly extends interface 'Document<ObjectId, any, any, Record<string, any>, {}>'.
+04:39:29.643   Types of property '_id' are incompatible.
+04:39:29.643     Type 'string' is not assignable to type 'ObjectId'.
+04:39:29.646 server/models/index.ts(40,18): error TS2430: Interface 'IBrand' incorrectly extends interface 'Document<ObjectId, any, any, Record<string, any>, {}>'.
+04:39:29.646   Types of property '_id' are incompatible.
+04:39:29.646     Type 'string' is not assignable to type 'ObjectId'.
+04:39:29.646 server/models/index.ts(56,18): error TS2430: Interface 'IProduct' incorrectly extends interface 'Document<ObjectId, any, any, Record<string, any>, {}>'.
+04:39:29.646   Types of property '_id' are incompatible.
+04:39:29.647     Type 'string' is not assignable to type 'ObjectId'.
+04:39:29.647 server/models/index.ts(92,18): error TS2430: Interface 'IOrder' incorrectly extends interface 'Document<ObjectId, any, any, Record<string, any>, {}>'.
+04:39:29.647   Types of property '_id' are incompatible.
+04:39:29.647     Type 'string' is not assignable to type 'ObjectId'.
+04:39:29.647 server/models/index.ts(146,18): error TS2430: Interface 'IBanner' incorrectly extends interface 'Document<ObjectId, any, any, Record<string, any>, {}>'.
+04:39:29.647   Types of property '_id' are incompatible.
+04:39:29.647     Type 'string' is not assignable to type 'ObjectId'.
+04:39:29.647 server/models/index.ts(166,18): error TS2430: Interface 'IClient' incorrectly extends interface 'Document<ObjectId, any, any, Record<string, any>, {}>'.
+04:39:29.647   Types of property '_id' are incompatible.
+04:39:29.647     Type 'string' is not assignable to type 'ObjectId'.
+04:39:29.648 server/models/index.ts(190,18): error TS2430: Interface 'IOtpVerification' incorrectly extends interface 'Document<ObjectId, any, any, Record<string, any>, {}>'.
+04:39:29.648   Types of property '_id' are incompatible.
+04:39:29.648     Type 'string' is not assignable to type 'ObjectId'.
+04:39:29.648 
+04:39:33.850 Build Completed in /vercel/output [40s]
+04:39:34.197 Deploying outputs...
+04:39:40.177 Deployment completed
+04:39:40.792 Creating build cache...
