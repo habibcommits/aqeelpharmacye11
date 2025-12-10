@@ -21,6 +21,7 @@ const navItems = [
   { href: "/admin/brands", label: "Brands", icon: Tags },
   { href: "/admin/import", label: "Import", icon: Download },
   { href: "/admin/najeeb-import", label: "Najeeb Pharmacy", icon: Store },
+  { href: "/admin/dwatson-import", label: "D.Watson", icon: Store },
 ];
 
 export function AdminLayout({ children }: AdminLayoutProps) {

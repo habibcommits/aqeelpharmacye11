@@ -21,12 +21,13 @@ interface ImportResult {
     name: string;
     price: number;
     image: string;
+    brand?: string;
     status: "success" | "error" | "skipped";
     error?: string;
   }>;
 }
 
-export default function AdminNajeebImport() {
+export default function AdminDWatsonImport() {
   const [maxProducts, setMaxProducts] = useState(50);
   const [startPage, setStartPage] = useState(1);
   const [endPage, setEndPage] = useState(1);
@@ -34,7 +35,7 @@ export default function AdminNajeebImport() {
 
   const importMutation = useMutation({
     mutationFn: async () => {
-      const response = await apiRequest("POST", "/api/admin/import-najeeb", {
+      const response = await apiRequest("POST", "/api/admin/import-dwatson", {
         maxProducts,
         startPage,
         endPage,
@@ -45,7 +46,7 @@ export default function AdminNajeebImport() {
       queryClient.invalidateQueries({ queryKey: ["/api/products"] });
       toast({
         title: "Import Complete",
-        description: `Successfully imported ${data.imported} products from Najeeb Pharmacy.`,
+        description: `Successfully imported ${data.imported} products from D.Watson.`,
       });
     },
     onError: (error) => {
@@ -66,8 +67,8 @@ export default function AdminNajeebImport() {
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-bold mb-1">Import from Najeeb Pharmacy</h1>
-          <p className="text-muted-foreground">Import products from your partner Najeeb Pharmacy</p>
+          <h1 className="text-2xl font-bold mb-1">Import from D.Watson</h1>
+          <p className="text-muted-foreground">Import products from D.Watson Pharmacy</p>
         </div>
       </div>
 
@@ -76,17 +77,17 @@ export default function AdminNajeebImport() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Store className="w-5 h-5" />
-              Najeeb Pharmacy Import
+              D.Watson Import
             </CardTitle>
             <CardDescription>
               Import pharmaceutical products directly from{" "}
               <a 
-                href="https://www.najeebpharmacy.com/products" 
+                href="https://dwatson.pk/medicines.html" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-primary underline"
               >
-                najeebpharmacy.com
+                dwatson.pk
               </a>
             </CardDescription>
           </CardHeader>
@@ -96,11 +97,11 @@ export default function AdminNajeebImport() {
                 <Store className="w-8 h-8 text-primary" />
                 <div>
                   <p className="font-semibold">Partner Website</p>
-                  <p className="text-sm text-muted-foreground">najeebpharmacy.com - 2774+ products</p>
+                  <p className="text-sm text-muted-foreground">dwatson.pk - 6985+ medicines</p>
                 </div>
               </div>
-              <Button variant="outline" size="sm" asChild className="w-full" data-testid="link-najeeb-website">
-                <a href="https://www.najeebpharmacy.com/products" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" size="sm" asChild className="w-full" data-testid="link-dwatson-website">
+                <a href="https://dwatson.pk/medicines.html" target="_blank" rel="noopener noreferrer">
                   <ExternalLink className="w-4 h-4 mr-2" />
                   View Partner Products
                 </a>
@@ -126,7 +127,7 @@ export default function AdminNajeebImport() {
                   id="startPage"
                   type="number"
                   min={1}
-                  max={232}
+                  max={600}
                   value={startPage}
                   onChange={(e) => setStartPage(parseInt(e.target.value) || 1)}
                   data-testid="input-start-page"
@@ -138,7 +139,7 @@ export default function AdminNajeebImport() {
                   id="endPage"
                   type="number"
                   min={1}
-                  max={232}
+                  max={600}
                   value={endPage}
                   onChange={(e) => setEndPage(parseInt(e.target.value) || 1)}
                   data-testid="input-end-page"
@@ -146,19 +147,19 @@ export default function AdminNajeebImport() {
               </div>
             </div>
             <p className="text-xs text-muted-foreground">
-              Import products from Najeeb Pharmacy. Each page contains 12 products. Total 232 pages available (pages 1-232).
+              Import medicines from D.Watson. Each page contains 12 products. Total ~580+ pages available.
             </p>
 
             <Button
               className="w-full"
               onClick={() => importMutation.mutate()}
               disabled={importMutation.isPending}
-              data-testid="button-start-najeeb-import"
+              data-testid="button-start-dwatson-import"
             >
               {importMutation.isPending ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Importing from Najeeb Pharmacy...
+                  Importing from D.Watson...
                 </>
               ) : (
                 <>
@@ -172,7 +173,7 @@ export default function AdminNajeebImport() {
               <div className="space-y-2">
                 <Progress value={undefined} className="h-2" />
                 <p className="text-sm text-muted-foreground text-center">
-                  Fetching products from Najeeb Pharmacy (pages {startPage} to {endPage})...
+                  Fetching products from D.Watson (pages {startPage} to {endPage})...
                 </p>
               </div>
             )}
@@ -183,7 +184,7 @@ export default function AdminNajeebImport() {
           <CardHeader>
             <CardTitle>Import Results</CardTitle>
             <CardDescription>
-              View the results of your Najeeb Pharmacy import
+              View the results of your D.Watson import
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -248,6 +249,7 @@ export default function AdminNajeebImport() {
                           <p className="font-medium text-sm line-clamp-1">{product.name}</p>
                           <p className="text-xs text-muted-foreground">
                             Rs.{product.price.toLocaleString()}
+                            {product.brand && ` - ${product.brand}`}
                           </p>
                         </div>
                         {product.status === "success" ? (
@@ -279,12 +281,12 @@ export default function AdminNajeebImport() {
         </CardHeader>
         <CardContent className="prose prose-sm max-w-none text-muted-foreground">
           <ul className="space-y-2 list-disc list-inside">
-            <li>Products are imported from Najeeb Pharmacy with name, price, and images</li>
+            <li>Products are imported from D.Watson with name, price, and images</li>
             <li>Use Start Page and End Page to import products from multiple pages at once</li>
             <li>Duplicate products (same name) will be automatically skipped</li>
             <li>Imported products are set as active by default with 20 units in stock</li>
             <li>You can edit imported products to add categories and brands</li>
-            <li>Images are linked directly from the Najeeb Pharmacy website</li>
+            <li>Images are linked directly from the D.Watson website</li>
             <li>Large imports may take a few minutes to complete</li>
             <li>Category will be auto-detected based on product name when possible</li>
           </ul>

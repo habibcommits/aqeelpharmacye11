@@ -477,9 +477,11 @@ export async function registerRoutes(
       // Fetch the brands page
       const response = await axios.get(url, {
         headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+          'Accept-Language': 'en-US,en;q=0.9',
         },
-        timeout: 30000
+        timeout: 60000
       });
 
       const $ = cheerio.load(response.data);
@@ -487,18 +489,29 @@ export async function registerRoutes(
       // Look for brand links with images - common patterns for brand pages
       const brandElements: Array<{ name: string; logo: string }> = [];
 
-      // Pattern 1: Links with brand images (like the example site)
-      $('a[href*="/collections/"]').each((_, el) => {
+      // Pattern 0: Najeeb Pharmacy brands page - links with brand param
+      $('a[href*="?brand="]').each((_, el) => {
         const $el = $(el);
-        const img = $el.find('img');
-        if (img.length > 0) {
-          const name = img.attr('alt') || $el.text().trim();
-          const logo = img.attr('src') || '';
-          if (name && logo) {
-            brandElements.push({ name, logo });
-          }
+        const name = $el.text().trim();
+        if (name && name.length > 1) {
+          brandElements.push({ name, logo: '' });
         }
       });
+
+      // Pattern 1: Links with brand images (like the example site)
+      if (brandElements.length === 0) {
+        $('a[href*="/collections/"]').each((_, el) => {
+          const $el = $(el);
+          const img = $el.find('img');
+          if (img.length > 0) {
+            const name = img.attr('alt') || $el.text().trim();
+            const logo = img.attr('src') || '';
+            if (name && logo) {
+              brandElements.push({ name, logo });
+            }
+          }
+        });
+      }
 
       // Pattern 2: Standalone images with brand names
       if (brandElements.length === 0) {
@@ -856,7 +869,7 @@ export async function registerRoutes(
   // Najeeb Pharmacy Product Import - Scrapes products from najeebpharmacy.com
   app.post("/api/admin/import-najeeb", async (req: Request, res: Response) => {
     try {
-      const { maxProducts = 50, page = 1 } = req.body;
+      const { maxProducts = 50, startPage = 1, endPage = 1 } = req.body;
       
       const importedProducts: Array<{
         name: string;
@@ -900,95 +913,131 @@ export async function registerRoutes(
         return existingCategories.find(c => c.slug === "medicines")?.id;
       };
 
-      // Fetch products page from Najeeb Pharmacy
-      const url = `https://www.najeebpharmacy.com/products?page=${page}`;
+      // Collect products from all pages
+      const allProductData: Array<{name: string; price: number; image: string}> = [];
       
-      const response = await axios.get(url, {
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-          'Accept-Language': 'en-US,en;q=0.9',
-          'Cache-Control': 'no-cache',
-        },
-        timeout: 60000
-      });
+      for (let page = startPage; page <= endPage; page++) {
+        const url = `https://www.najeebpharmacy.com/products?page=${page}`;
+        
+        try {
+          const response = await axios.get(url, {
+            headers: {
+              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+              'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+              'Accept-Language': 'en-US,en;q=0.9',
+              'Cache-Control': 'no-cache',
+            },
+            timeout: 60000
+          });
 
-      const $ = cheerio.load(response.data);
+          const $ = cheerio.load(response.data);
 
-      // Najeeb Pharmacy HTML structure: products are in h6 elements with links
-      // Parse product data from the page - look for product name patterns
-      const productData: Array<{name: string; price: number; image: string}> = [];
-      
-      // Method 1: Find h6 elements containing product names with links to /products/ID
-      $('h6 a[href*="/products/"]').each((_, el) => {
-        const $link = $(el);
-        const href = $link.attr('href') || '';
-        
-        // Only process if it's a product link like /products/123
-        if (!/\/products\/\d+$/.test(href)) return;
-        
-        const name = $link.text().trim();
-        if (!name) return;
-        
-        // Find the parent card container
-        let $card = $link.closest('.card, .product-card, .col, [class*="col-"]');
-        if ($card.length === 0) {
-          $card = $link.parent().parent().parent().parent();
+          // Method 1: Look for product cards with images and links
+          $('a[href*="/products/"]').each((_, el) => {
+            const $link = $(el);
+            const href = $link.attr('href') || '';
+            
+            // Only process if it's a product detail link like /products/123
+            if (!/\/products\/\d+$/.test(href)) return;
+            
+            // Find the text content - could be in h6 or direct text
+            let name = $link.find('h6').text().trim() || $link.text().trim();
+            if (!name || name.length < 2) return;
+            
+            // Find the parent card container
+            let $card = $link.closest('.card, .product-card, .col, [class*="col-"]');
+            if ($card.length === 0) {
+              $card = $link.parent().parent().parent().parent();
+            }
+            
+            // Extract price - look for Rs pattern in the card
+            const cardText = $card.text();
+            const priceMatch = cardText.match(/Rs\s*([\d,]+(?:\.\d{1,2})?)/i);
+            const price = priceMatch ? parseFloat(priceMatch[1].replace(/,/g, '')) : 0;
+            
+            // Extract image - look for img with src containing api.najeebmart.com
+            let image = '';
+            $card.find('img').each((_, imgEl) => {
+              const src = $(imgEl).attr('src') || '';
+              if (src.includes('najeebmart.com') || src.includes('uploads')) {
+                image = src.startsWith('http') ? src : `https://api.najeebmart.com${src.startsWith('/') ? '' : '/'}${src}`;
+              }
+            });
+            
+            if (!image) {
+              const imgEl = $card.find('img').first();
+              image = imgEl.attr('src') || '';
+              if (image && !image.startsWith('http')) {
+                image = `https://api.najeebmart.com${image.startsWith('/') ? '' : '/'}${image}`;
+              }
+            }
+            
+            allProductData.push({ name, price, image });
+          });
+          
+          // Method 2: If method 1 found nothing for this page, try looking at h6 elements
+          if (allProductData.length === 0) {
+            $('h6').each((_, el) => {
+              const $h6 = $(el);
+              const $link = $h6.find('a[href*="/products/"]');
+              if ($link.length === 0) return;
+              
+              const href = $link.attr('href') || '';
+              if (!/\/products\/\d+$/.test(href)) return;
+              
+              const name = $link.text().trim();
+              if (!name || name.length < 2) return;
+              
+              let $card = $h6.closest('.card, .product-card, .col, [class*="col-"]');
+              if ($card.length === 0) {
+                $card = $h6.parent().parent().parent();
+              }
+              
+              const cardText = $card.text();
+              const priceMatch = cardText.match(/Rs\s*([\d,]+(?:\.\d{1,2})?)/i);
+              const price = priceMatch ? parseFloat(priceMatch[1].replace(/,/g, '')) : 0;
+              
+              let image = '';
+              $card.find('img[src*="najeebmart.com"], img[src*="uploads"]').each((_, imgEl) => {
+                const src = $(imgEl).attr('src') || '';
+                image = src.startsWith('http') ? src : `https://api.najeebmart.com${src.startsWith('/') ? '' : '/'}${src}`;
+              });
+              
+              allProductData.push({ name, price, image });
+            });
+          }
+          
+          // Method 3: Find images with najeebmart.com src and use alt text
+          if (allProductData.length === 0) {
+            $('img[src*="najeebmart.com"], img[src*="uploads"]').each((_, el) => {
+              const $img = $(el);
+              const alt = $img.attr('alt') || '';
+              const src = $img.attr('src') || '';
+              
+              if (!alt || alt.length < 3) return;
+              
+              let $card = $img.closest('.card, .product-card, .col, [class*="col-"]');
+              if ($card.length === 0) {
+                $card = $img.parent().parent().parent();
+              }
+              
+              const cardText = $card.text();
+              const priceMatch = cardText.match(/Rs\s*([\d,]+(?:\.\d{1,2})?)/i);
+              const price = priceMatch ? parseFloat(priceMatch[1].replace(/,/g, '')) : 0;
+              
+              const image = src.startsWith('http') ? src : `https://api.najeebmart.com${src.startsWith('/') ? '' : '/'}${src}`;
+              
+              allProductData.push({ name: alt, price, image });
+            });
+          }
+        } catch (pageError) {
+          console.error(`Failed to fetch page ${page}:`, pageError);
         }
-        
-        // Extract price - look for Rs pattern in the card
-        const cardText = $card.text();
-        const priceMatch = cardText.match(/Rs\s*([\d,]+(?:\.\d{1,2})?)/i);
-        const price = priceMatch ? parseFloat(priceMatch[1].replace(/,/g, '')) : 0;
-        
-        // Extract image - look for img with src containing api.najeebmart.com
-        let image = '';
-        $card.find('img').each((_, imgEl) => {
-          const src = $(imgEl).attr('src') || '';
-          if (src.includes('najeebmart.com') || src.includes('uploads')) {
-            image = src.startsWith('http') ? src : `https://api.najeebmart.com${src.startsWith('/') ? '' : '/'}${src}`;
-          }
-        });
-        
-        if (!image) {
-          const imgEl = $card.find('img').first();
-          image = imgEl.attr('src') || '';
-          if (image && !image.startsWith('http')) {
-            image = `https://api.najeebmart.com${image.startsWith('/') ? '' : '/'}${image}`;
-          }
-        }
-        
-        productData.push({ name, price, image });
-      });
-      
-      // Method 2: If method 1 found nothing, try looking for img elements with najeebmart.com src
-      if (productData.length === 0) {
-        $('img[src*="najeebmart.com"], img[src*="uploads"]').each((_, el) => {
-          const $img = $(el);
-          const alt = $img.attr('alt') || '';
-          const src = $img.attr('src') || '';
-          
-          if (!alt || alt.length < 3) return;
-          
-          // Find parent to get price
-          let $card = $img.closest('.card, .product-card, .col, [class*="col-"]');
-          if ($card.length === 0) {
-            $card = $img.parent().parent().parent();
-          }
-          
-          const cardText = $card.text();
-          const priceMatch = cardText.match(/Rs\s*([\d,]+(?:\.\d{1,2})?)/i);
-          const price = priceMatch ? parseFloat(priceMatch[1].replace(/,/g, '')) : 0;
-          
-          const image = src.startsWith('http') ? src : `https://api.najeebmart.com${src.startsWith('/') ? '' : '/'}${src}`;
-          
-          productData.push({ name: alt, price, image });
-        });
       }
 
       // Deduplicate by name
       const seen = new Set<string>();
-      const uniqueProducts = productData.filter(p => {
+      const uniqueProducts = allProductData.filter(p => {
         const key = p.name.toLowerCase().trim();
         if (seen.has(key)) return false;
         seen.add(key);
@@ -1058,12 +1107,235 @@ export async function registerRoutes(
         failed,
         skipped,
         products: importedProducts,
-        message: productData.length === 0 ? "Najeeb Pharmacy may have changed their page structure. Try the general Import page instead." : undefined
+        message: allProductData.length === 0 ? "Najeeb Pharmacy may have changed their page structure. Try the general Import page instead." : undefined
       });
     } catch (error) {
       console.error("Najeeb import error:", error);
       res.status(500).json({ 
         error: "Failed to import products from Najeeb Pharmacy", 
+        message: error instanceof Error ? error.message : "Unknown error"
+      });
+    }
+  });
+  
+  // D.Watson Pharmacy Product Import - Scrapes products from dwatson.pk
+  app.post("/api/admin/import-dwatson", async (req: Request, res: Response) => {
+    try {
+      const { maxProducts = 50, startPage = 1, endPage = 1 } = req.body;
+      
+      const importedProducts: Array<{
+        name: string;
+        price: number;
+        image: string;
+        brand?: string;
+        status: "success" | "error" | "skipped";
+        error?: string;
+      }> = [];
+      
+      let imported = 0;
+      let failed = 0;
+      let skipped = 0;
+
+      // Get existing categories to match products
+      const existingCategories = await storage.getCategories();
+      const existingProducts = await storage.getProducts();
+      const existingBrands = await storage.getBrands();
+      const existingNames = new Set(existingProducts.map(p => p.name.toLowerCase().trim()));
+      
+      // Category keyword mappings for pharmaceuticals
+      const categoryKeywords: Record<string, string[]> = {
+        "skin-care": ["skin", "face", "cleanser", "moisturizer", "serum", "cream", "lotion", "facial", "acne", "derma"],
+        "hair-care": ["hair", "shampoo", "conditioner", "scalp", "dandruff", "hairfall"],
+        "vitamins": ["vitamin", "supplement", "multivitamin", "omega", "calcium", "iron", "zinc", "tablets"],
+        "medicines": ["medicine", "tablet", "capsule", "syrup", "paracetamol", "pain", "fever", "cold", "cough", "mg", "drop", "injection", "gel", "ointment", "sachet", "susp", "inj"],
+        "baby": ["baby", "infant", "kids", "child", "newborn"],
+      };
+
+      const detectCategory = (productName: string): string | undefined => {
+        const searchText = productName.toLowerCase();
+        
+        for (const [categorySlug, keywords] of Object.entries(categoryKeywords)) {
+          for (const keyword of keywords) {
+            if (searchText.includes(keyword.toLowerCase())) {
+              const matchedCategory = existingCategories.find(c => c.slug === categorySlug);
+              if (matchedCategory) {
+                return matchedCategory.id;
+              }
+            }
+          }
+        }
+        return existingCategories.find(c => c.slug === "medicines")?.id;
+      };
+
+      const findBrandId = (brandName: string): string | undefined => {
+        if (!brandName) return undefined;
+        const slug = brandName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+        return existingBrands.find(b => b.slug === slug || b.name.toLowerCase() === brandName.toLowerCase())?.id;
+      };
+
+      // Collect products from all pages
+      const allProductData: Array<{name: string; price: number; image: string; brand: string}> = [];
+      
+      for (let page = startPage; page <= endPage; page++) {
+        const url = `https://dwatson.pk/medicines.html?p=${page}`;
+        
+        try {
+          const response = await axios.get(url, {
+            headers: {
+              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+              'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+              'Accept-Language': 'en-US,en;q=0.9',
+              'Cache-Control': 'no-cache',
+            },
+            timeout: 60000
+          });
+
+          const $ = cheerio.load(response.data);
+
+          // D.Watson product structure: li.product-item or .product-item-info
+          $('.product-item, .item.product, li.item').each((_, el) => {
+            const $item = $(el);
+            
+            // Extract product name from strong a or .product-item-link
+            let name = $item.find('strong a, .product-item-link, a.product-item-link').first().text().trim();
+            if (!name) {
+              name = $item.find('a[href*=".html"]').first().text().trim();
+            }
+            if (!name || name.length < 2) return;
+            
+            // Extract price - look for Rs. pattern
+            const itemText = $item.text();
+            const priceMatch = itemText.match(/Rs\.\s*([\d,]+(?:\.\d{1,2})?)/i);
+            const price = priceMatch ? parseFloat(priceMatch[1].replace(/,/g, '')) : 0;
+            
+            // Extract image
+            let image = '';
+            const $img = $item.find('img.product-image-photo, img[src*="media/catalog"]').first();
+            if ($img.length) {
+              image = $img.attr('src') || $img.attr('data-src') || '';
+            }
+            if (!image) {
+              const $anyImg = $item.find('img').first();
+              image = $anyImg.attr('src') || $anyImg.attr('data-src') || '';
+            }
+            
+            // Extract brand if available
+            const brand = $item.find('.brand-name, .product-brand').text().trim();
+            
+            if (name && price > 0) {
+              allProductData.push({ name, price, image, brand });
+            }
+          });
+          
+          // Alternative method: Look for product links in ordered/unordered lists
+          if (allProductData.length === 0) {
+            $('ol.products li, ul.products li').each((_, el) => {
+              const $item = $(el);
+              
+              const $link = $item.find('a[href*=".html"]').first();
+              const name = $item.find('strong').first().text().trim() || $link.text().trim();
+              if (!name || name.length < 2) return;
+              
+              const itemText = $item.text();
+              const priceMatch = itemText.match(/Rs\.\s*([\d,]+(?:\.\d{1,2})?)/i);
+              const price = priceMatch ? parseFloat(priceMatch[1].replace(/,/g, '')) : 0;
+              
+              const image = $item.find('img').first().attr('src') || '';
+              const brand = '';
+              
+              if (name && price > 0) {
+                allProductData.push({ name, price, image, brand });
+              }
+            });
+          }
+        } catch (pageError) {
+          console.error(`Failed to fetch D.Watson page ${page}:`, pageError);
+        }
+      }
+
+      // Deduplicate by name
+      const seen = new Set<string>();
+      const uniqueProducts = allProductData.filter(p => {
+        const key = p.name.toLowerCase().trim();
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+
+      const productsToProcess = uniqueProducts.slice(0, maxProducts);
+
+      for (const product of productsToProcess) {
+        try {
+          const { name, price, image, brand } = product;
+          
+          // Check for duplicates in database
+          if (existingNames.has(name.toLowerCase().trim())) {
+            importedProducts.push({
+              name,
+              price,
+              image,
+              brand,
+              status: "skipped",
+              error: "Product already exists"
+            });
+            skipped++;
+            continue;
+          }
+
+          if (name && price > 0) {
+            const categoryId = detectCategory(name);
+            const brandId = findBrandId(brand);
+            
+            await storage.createProduct({
+              name,
+              slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, ""),
+              description: `Imported from D.Watson Pharmacy`,
+              price,
+              images: image ? [image] : [],
+              categoryId: categoryId || undefined,
+              brandId: brandId || undefined,
+              isActive: true,
+              isFeatured: false,
+              stock: 20,
+            });
+
+            existingNames.add(name.toLowerCase().trim());
+            importedProducts.push({
+              name,
+              price,
+              image: image || "https://via.placeholder.com/100",
+              brand,
+              status: "success",
+            });
+            imported++;
+          } else if (name) {
+            importedProducts.push({
+              name,
+              price,
+              image: image || "",
+              brand,
+              status: "error",
+              error: price <= 0 ? "Invalid price" : "Missing data"
+            });
+            failed++;
+          }
+        } catch (productError) {
+          failed++;
+        }
+      }
+
+      res.json({
+        success: imported > 0 || skipped > 0,
+        imported,
+        failed,
+        skipped,
+        products: importedProducts,
+        message: allProductData.length === 0 ? "D.Watson may have changed their page structure." : undefined
+      });
+    } catch (error) {
+      console.error("D.Watson import error:", error);
+      res.status(500).json({ 
+        error: "Failed to import products from D.Watson", 
         message: error instanceof Error ? error.message : "Unknown error"
       });
     }

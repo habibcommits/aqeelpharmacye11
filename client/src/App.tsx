@@ -33,6 +33,7 @@ import AdminOrders from "@/pages/admin/orders";
 import AdminBrands from "@/pages/admin/brands";
 import AdminImport from "@/pages/admin/import";
 import AdminNajeebImport from "@/pages/admin/najeeb-import";
+import AdminDWatsonImport from "@/pages/admin/dwatson-import";
 
 function StorefrontLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -143,6 +144,11 @@ function Router() {
       <Route path="/admin/najeeb-import">
         <AdminLayout>
           <AdminNajeebImport />
+        </AdminLayout>
+      </Route>
+      <Route path="/admin/dwatson-import">
+        <AdminLayout>
+          <AdminDWatsonImport />
         </AdminLayout>
       </Route>
 
