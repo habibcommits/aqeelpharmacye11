@@ -11,10 +11,10 @@ interface HeroBannerProps {
 const defaultBanners: Banner[] = [
   {
     id: "1",
-    title: "Summer Collection 2025",
-    subtitle: "Protect your skin with our premium sunscreens and skincare essentials",
+    title: "Cosmetics & Medicines",
+    subtitle: "Your trusted pharmacy for premium cosmetics, skincare, and authentic medicines",
     image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1920&h=700&fit=crop",
-    link: "/category/skin-care",
+    link: "/products",
     isActive: true,
     order: 0,
   },
