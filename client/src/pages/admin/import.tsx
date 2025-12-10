@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { Link } from "wouter";
-import { Download, Loader2, CheckCircle, AlertCircle, ExternalLink, Package, ArrowLeft } from "lucide-react";
+import { Download, Loader2, CheckCircle, AlertCircle, ExternalLink, Package, ArrowLeft, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -15,24 +15,26 @@ import { apiRequest, queryClient } from "@/lib/queryClient";
 interface ImportResult {
   success: boolean;
   imported: number;
+  skipped: number;
   failed: number;
+  source: string;
   products: Array<{
     name: string;
     price: number;
     image: string;
-    status: "success" | "error";
+    status: "success" | "error" | "skipped";
     error?: string;
   }>;
 }
 
 export default function AdminImport() {
-  const [url, setUrl] = useState("https://shaheenchemistrwp.com/");
+  const [url, setUrl] = useState("");
   const [maxProducts, setMaxProducts] = useState(20);
   const { toast } = useToast();
 
   const importMutation = useMutation({
     mutationFn: async () => {
-      const response = await apiRequest("POST", "/api/admin/import-products", {
+      const response = await apiRequest("POST", "/api/admin/import-from-url", {
         url,
         maxProducts,
       });
@@ -42,7 +44,7 @@ export default function AdminImport() {
       queryClient.invalidateQueries({ queryKey: ["/api/products"] });
       toast({
         title: "Import Complete",
-        description: `Successfully imported ${data.imported} products. ${data.failed} failed.`,
+        description: `Imported ${data.imported} products from ${data.source}. ${data.skipped} skipped, ${data.failed} failed.`,
       });
     },
     onError: (error) => {
@@ -54,6 +56,20 @@ export default function AdminImport() {
     },
   });
 
+  const detectSource = (inputUrl: string): string => {
+    try {
+      const hostname = new URL(inputUrl).hostname.toLowerCase();
+      if (hostname.includes("najeeb")) return "Najeeb Pharmacy";
+      if (hostname.includes("dwatson")) return "D.Watson";
+      if (hostname.includes("shaheen")) return "Shaheen Chemist";
+      return "Unknown Partner";
+    } catch {
+      return "Enter a valid URL";
+    }
+  };
+
+  const detectedSource = url ? detectSource(url) : "";
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
@@ -64,7 +80,7 @@ export default function AdminImport() {
         </Button>
         <div>
           <h1 className="text-2xl font-bold mb-1">Import Products</h1>
-          <p className="text-muted-foreground">Import products from your partner website</p>
+          <p className="text-muted-foreground">Import products from partner pharmacy websites</p>
         </div>
       </div>
 
@@ -72,61 +88,70 @@ export default function AdminImport() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Download className="w-5 h-5" />
-              Import from Partner
+              <Globe className="w-5 h-5" />
+              Import from URL
             </CardTitle>
             <CardDescription>
-              Import products directly from Shaheen Chemist website. Products will be added to your catalog.
+              Enter the URL of any supported partner website to import products. Supported: Najeeb Pharmacy, D.Watson, Shaheen Chemist.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="url">Source URL</Label>
+              <Label htmlFor="url">Partner Website URL</Label>
               <div className="flex gap-2">
                 <Input
                   id="url"
                   value={url}
                   onChange={(e) => setUrl(e.target.value)}
-                  placeholder="https://shaheenchemistrwp.com/"
+                  placeholder="https://www.najeebpharmacy.com/products or https://dwatson.pk/medicines.html"
                   data-testid="input-import-url"
                 />
-                <Button variant="outline" size="icon" asChild>
-                  <a href={url} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-                </Button>
+                {url && (
+                  <Button variant="outline" size="icon" asChild>
+                    <a href={url} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  </Button>
+                )}
               </div>
-              <p className="text-xs text-muted-foreground">
-                The partner website URL to import products from
-              </p>
+              {url && detectedSource && (
+                <div className="flex items-center gap-2 mt-2">
+                  <Badge variant={detectedSource === "Enter a valid URL" ? "destructive" : "secondary"}>
+                    {detectedSource}
+                  </Badge>
+                  {detectedSource !== "Enter a valid URL" && detectedSource !== "Unknown Partner" && (
+                    <span className="text-xs text-green-600">Supported partner detected</span>
+                  )}
+                </div>
+              )}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="maxProducts">Max Products</Label>
+              <Label htmlFor="maxProducts">Max Products to Import</Label>
               <Input
                 id="maxProducts"
                 type="number"
                 min={1}
-                max={100}
+                max={200}
                 value={maxProducts}
                 onChange={(e) => setMaxProducts(parseInt(e.target.value) || 20)}
                 data-testid="input-max-products"
               />
               <p className="text-xs text-muted-foreground">
-                Maximum number of products to import (1-100)
+                Maximum number of products to import (1-200)
               </p>
             </div>
 
             <Button
               className="w-full"
               onClick={() => importMutation.mutate()}
-              disabled={importMutation.isPending}
+              disabled={importMutation.isPending || !url || detectedSource === "Enter a valid URL"}
               data-testid="button-start-import"
             >
               {importMutation.isPending ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Importing Products...
+                  Importing from {detectedSource}...
                 </>
               ) : (
                 <>
@@ -140,7 +165,7 @@ export default function AdminImport() {
               <div className="space-y-2">
                 <Progress value={undefined} className="h-2" />
                 <p className="text-sm text-muted-foreground text-center">
-                  Fetching products from partner website...
+                  Fetching products from {detectedSource}...
                 </p>
               </div>
             )}
@@ -159,7 +184,7 @@ export default function AdminImport() {
               <div className="text-center py-12">
                 <Package className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
                 <p className="text-muted-foreground">
-                  Start an import to see results here
+                  Enter a URL and start an import to see results here
                 </p>
               </div>
             )}
@@ -168,7 +193,7 @@ export default function AdminImport() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between p-4 bg-muted rounded-lg">
                   <div className="flex items-center gap-3">
-                    {importMutation.data.success ? (
+                    {importMutation.data.imported > 0 ? (
                       <CheckCircle className="w-8 h-8 text-green-500" />
                     ) : (
                       <AlertCircle className="w-8 h-8 text-yellow-500" />
@@ -176,14 +201,19 @@ export default function AdminImport() {
                     <div>
                       <p className="font-semibold">Import Complete</p>
                       <p className="text-sm text-muted-foreground">
-                        {importMutation.data.imported} imported, {importMutation.data.failed} failed
+                        Source: {importMutation.data.source}
                       </p>
                     </div>
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 flex-wrap">
                     <Badge variant="secondary" className="bg-green-500/10 text-green-500">
-                      {importMutation.data.imported} Success
+                      {importMutation.data.imported} Imported
                     </Badge>
+                    {importMutation.data.skipped > 0 && (
+                      <Badge variant="secondary" className="bg-yellow-500/10 text-yellow-500">
+                        {importMutation.data.skipped} Skipped
+                      </Badge>
+                    )}
                     {importMutation.data.failed > 0 && (
                       <Badge variant="secondary" className="bg-red-500/10 text-red-500">
                         {importMutation.data.failed} Failed
@@ -205,16 +235,22 @@ export default function AdminImport() {
                             src={product.image || "https://via.placeholder.com/40"}
                             alt={product.name}
                             className="w-full h-full object-cover"
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).src = "https://via.placeholder.com/40";
+                            }}
                           />
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="font-medium text-sm line-clamp-1">{product.name}</p>
                           <p className="text-xs text-muted-foreground">
                             Rs.{product.price.toLocaleString()}
+                            {product.error && <span className="ml-2 text-red-500">({product.error})</span>}
                           </p>
                         </div>
                         {product.status === "success" ? (
                           <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                        ) : product.status === "skipped" ? (
+                          <AlertCircle className="w-4 h-4 text-yellow-500 flex-shrink-0" />
                         ) : (
                           <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
                         )}
@@ -236,45 +272,58 @@ export default function AdminImport() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Partner Import Options</CardTitle>
+          <CardTitle>Supported Partner Websites</CardTitle>
           <CardDescription>
-            Import products from our dedicated partner pharmacies
+            Click on any partner to quickly set their URL
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid md:grid-cols-2 gap-4">
-            <Link href="/admin/najeeb-import" data-testid="link-najeeb-import">
-              <div className="p-4 border rounded-lg hover-elevate cursor-pointer">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Package className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-semibold">Najeeb Pharmacy</p>
-                    <p className="text-xs text-muted-foreground">2774+ products available</p>
-                  </div>
+          <div className="grid md:grid-cols-3 gap-4">
+            <button
+              onClick={() => setUrl("https://www.najeebpharmacy.com/products")}
+              className="p-4 border rounded-lg hover-elevate cursor-pointer text-left"
+              data-testid="button-set-najeeb-url"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Package className="w-5 h-5 text-primary" />
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  Import pharmaceutical products from najeebpharmacy.com
-                </p>
-              </div>
-            </Link>
-            <Link href="/admin/dwatson-import" data-testid="link-dwatson-import">
-              <div className="p-4 border rounded-lg hover-elevate cursor-pointer">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Package className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-semibold">D.Watson Pharmacy</p>
-                    <p className="text-xs text-muted-foreground">6985+ medicines available</p>
-                  </div>
+                <div>
+                  <p className="font-semibold">Najeeb Pharmacy</p>
+                  <p className="text-xs text-muted-foreground">najeebpharmacy.com</p>
                 </div>
-                <p className="text-sm text-muted-foreground">
-                  Import medicines from dwatson.pk pharmacy
-                </p>
               </div>
-            </Link>
+            </button>
+            <button
+              onClick={() => setUrl("https://dwatson.pk/medicines.html")}
+              className="p-4 border rounded-lg hover-elevate cursor-pointer text-left"
+              data-testid="button-set-dwatson-url"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Package className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="font-semibold">D.Watson</p>
+                  <p className="text-xs text-muted-foreground">dwatson.pk</p>
+                </div>
+              </div>
+            </button>
+            <button
+              onClick={() => setUrl("https://shaheenchemistrwp.com/")}
+              className="p-4 border rounded-lg hover-elevate cursor-pointer text-left"
+              data-testid="button-set-shaheen-url"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Package className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <p className="font-semibold">Shaheen Chemist</p>
+                  <p className="text-xs text-muted-foreground">shaheenchemistrwp.com</p>
+                </div>
+              </div>
+            </button>
           </div>
         </CardContent>
       </Card>
@@ -286,9 +335,9 @@ export default function AdminImport() {
         <CardContent className="prose prose-sm max-w-none text-muted-foreground">
           <ul className="space-y-2 list-disc list-inside">
             <li>Products are imported with their name, description, price, and images</li>
-            <li>Duplicate products (same name) will be skipped</li>
+            <li>Duplicate products (same name) will be skipped automatically</li>
             <li>Imported products will be set as active by default</li>
-            <li>You can edit imported products after import to add categories and brands</li>
+            <li>Categories are auto-detected based on product names</li>
             <li>Images are linked directly from the source website</li>
             <li>Large imports may take a few minutes to complete</li>
           </ul>

@@ -1341,6 +1341,352 @@ export async function registerRoutes(
     }
   });
 
+  // Unified URL-based Product Import - Auto-detects source and uses appropriate scraper
+  app.post("/api/admin/import-from-url", async (req: Request, res: Response) => {
+    try {
+      const { url, maxProducts = 50 } = req.body;
+      
+      if (!url) {
+        return res.status(400).json({ error: "URL is required" });
+      }
+
+      // Detect source from URL
+      let source = "Unknown";
+      let hostname = "";
+      try {
+        hostname = new URL(url).hostname.toLowerCase();
+        if (hostname.includes("najeeb")) source = "Najeeb Pharmacy";
+        else if (hostname.includes("dwatson")) source = "D.Watson";
+        else if (hostname.includes("shaheen")) source = "Shaheen Chemist";
+      } catch {
+        return res.status(400).json({ error: "Invalid URL provided" });
+      }
+
+      const importedProducts: Array<{
+        name: string;
+        price: number;
+        image: string;
+        status: "success" | "error" | "skipped";
+        error?: string;
+      }> = [];
+      
+      let imported = 0;
+      let failed = 0;
+      let skipped = 0;
+
+      // Get existing data
+      const existingCategories = await storage.getCategories();
+      const existingProducts = await storage.getProducts();
+      const existingBrands = await storage.getBrands();
+      const existingNames = new Set(existingProducts.map(p => p.name.toLowerCase().trim()));
+
+      // Category detection helper
+      const categoryKeywords: Record<string, string[]> = {
+        "skin-care": ["skin", "face", "cleanser", "moisturizer", "serum", "cream", "lotion", "facial", "acne", "derma", "whitening"],
+        "hair-care": ["hair", "shampoo", "conditioner", "scalp", "dandruff", "hairfall", "anagrow", "minoxidil"],
+        "vitamins": ["vitamin", "supplement", "multivitamin", "omega", "calcium", "iron", "zinc", "tablets"],
+        "medicines": ["medicine", "tablet", "capsule", "syrup", "paracetamol", "pain", "fever", "cold", "cough", "mg", "drop", "injection", "gel", "ointment", "sachet", "susp", "inj"],
+        "baby": ["baby", "infant", "kids", "child", "newborn"],
+        "sunscreen": ["sunscreen", "spf", "sunblock", "sun protection"],
+      };
+
+      const detectCategory = (productName: string): string | undefined => {
+        const searchText = productName.toLowerCase();
+        for (const [categorySlug, keywords] of Object.entries(categoryKeywords)) {
+          for (const keyword of keywords) {
+            if (searchText.includes(keyword.toLowerCase())) {
+              const matchedCategory = existingCategories.find(c => c.slug === categorySlug);
+              if (matchedCategory) return matchedCategory.id;
+            }
+          }
+        }
+        return existingCategories.find(c => c.slug === "medicines")?.id;
+      };
+
+      // Price parsing helper - handles various formats
+      const parsePrice = (text: string): number => {
+        let clean = text
+          .replace(/Rs\.?/gi, '')
+          .replace(/PKR/gi, '')
+          .replace(/₨/g, '')
+          .replace(/₹/g, '')
+          .replace(/\$/g, '')
+          .replace(/\s/g, '')
+          .trim();
+        
+        if (/,\d{3}/.test(clean)) {
+          clean = clean.replace(/,/g, '');
+        } else if (/,\d{2}$/.test(clean)) {
+          clean = clean.replace(',', '.');
+        }
+        return parseFloat(clean) || 0;
+      };
+
+      // Collect products based on source
+      const allProductData: Array<{name: string; price: number; image: string}> = [];
+
+      const axiosConfig = {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+          'Accept-Language': 'en-US,en;q=0.9',
+        },
+        timeout: 60000
+      };
+
+      if (source === "Najeeb Pharmacy") {
+        // Najeeb Pharmacy scraping - Updated selectors
+        try {
+          const response = await axios.get(url, axiosConfig);
+          const $ = cheerio.load(response.data);
+
+          // Look for product cards - Najeeb uses various structures
+          $('a[href*="/products/"]').each((_, el) => {
+            const $link = $(el);
+            const href = $link.attr('href') || '';
+            
+            // Accept any /products/ link (not just numeric IDs)
+            if (!href.includes('/products/')) return;
+            
+            let name = $link.find('h6, h5, .product-name, .title').text().trim();
+            if (!name) name = $link.text().trim();
+            if (!name || name.length < 3 || name.length > 200) return;
+            
+            let $card = $link.closest('.card, .product-card, .col, [class*="col-"], .product-item');
+            if ($card.length === 0) $card = $link.parent().parent().parent().parent();
+            
+            const cardText = $card.text();
+            // Look for various price patterns
+            const priceMatch = cardText.match(/(?:Rs\.?|PKR|₨)\s*([\d,]+(?:\.\d{1,2})?)/i) ||
+                               cardText.match(/([\d,]+(?:\.\d{1,2})?)\s*(?:Rs|PKR)/i);
+            const price = priceMatch ? parsePrice(priceMatch[1]) : 0;
+            
+            let image = '';
+            $card.find('img').each((_, imgEl) => {
+              const src = $(imgEl).attr('src') || $(imgEl).attr('data-src') || '';
+              if (src && !image) {
+                image = src.startsWith('http') ? src : `https://api.najeebmart.com${src.startsWith('/') ? '' : '/'}${src}`;
+              }
+            });
+            
+            if (price > 0) {
+              allProductData.push({ name, price, image });
+            }
+          });
+
+          // Alternative: Find product items directly
+          if (allProductData.length === 0) {
+            $('.product-item, .product-card, .card').each((_, el) => {
+              const $item = $(el);
+              const name = $item.find('h6 a, h5 a, .product-name, .title').first().text().trim();
+              if (!name || name.length < 3) return;
+              
+              const itemText = $item.text();
+              const priceMatch = itemText.match(/(?:Rs\.?|PKR|₨)\s*([\d,]+(?:\.\d{1,2})?)/i);
+              const price = priceMatch ? parsePrice(priceMatch[1]) : 0;
+              
+              const $img = $item.find('img').first();
+              let image = $img.attr('src') || $img.attr('data-src') || '';
+              if (image && !image.startsWith('http')) {
+                image = `https://api.najeebmart.com${image.startsWith('/') ? '' : '/'}${image}`;
+              }
+              
+              if (price > 0) {
+                allProductData.push({ name, price, image });
+              }
+            });
+          }
+        } catch (err) {
+          console.error("Najeeb scraping error:", err);
+        }
+      } else if (source === "D.Watson") {
+        // D.Watson scraping - Updated selectors
+        try {
+          const response = await axios.get(url, axiosConfig);
+          const $ = cheerio.load(response.data);
+
+          // D.Watson uses Magento structure
+          $('.product-item, .item.product, li.item, .product-item-info').each((_, el) => {
+            const $item = $(el);
+            
+            let name = $item.find('.product-item-link, strong a, a.product-item-link').first().text().trim();
+            if (!name) name = $item.find('a[href*=".html"]').first().text().trim();
+            if (!name || name.length < 3) return;
+            
+            // D.Watson uses data-price-amount or various price selectors
+            let price = 0;
+            const dataPriceEl = $item.find('[data-price-amount]').first();
+            if (dataPriceEl.length) {
+              price = parseFloat(dataPriceEl.attr('data-price-amount') || '0');
+            }
+            if (!price) {
+              const priceEl = $item.find('.price, .final-price .price, .special-price .price').first();
+              const priceText = priceEl.text();
+              price = parsePrice(priceText);
+            }
+            if (!price) {
+              const itemText = $item.text();
+              const priceMatch = itemText.match(/(?:Rs\.?|PKR|₨)\s*([\d,]+(?:\.\d{1,2})?)/i);
+              if (priceMatch) price = parsePrice(priceMatch[1]);
+            }
+            
+            let image = '';
+            const $img = $item.find('img.product-image-photo, img[src*="media/catalog"], img').first();
+            image = $img.attr('src') || $img.attr('data-src') || '';
+            
+            if (price > 0) {
+              allProductData.push({ name, price, image });
+            }
+          });
+
+          // Alternative structure
+          if (allProductData.length === 0) {
+            $('ol.products li, ul.products li').each((_, el) => {
+              const $item = $(el);
+              const name = $item.find('strong, .product-item-link').first().text().trim();
+              if (!name || name.length < 3) return;
+              
+              let price = 0;
+              const dataPriceEl = $item.find('[data-price-amount]').first();
+              if (dataPriceEl.length) {
+                price = parseFloat(dataPriceEl.attr('data-price-amount') || '0');
+              } else {
+                const priceText = $item.find('.price').first().text();
+                price = parsePrice(priceText);
+              }
+              
+              const image = $item.find('img').first().attr('src') || '';
+              
+              if (price > 0) {
+                allProductData.push({ name, price, image });
+              }
+            });
+          }
+        } catch (err) {
+          console.error("D.Watson scraping error:", err);
+        }
+      } else {
+        // Generic/Shaheen scraping - WooCommerce style
+        try {
+          const response = await axios.get(url, axiosConfig);
+          const $ = cheerio.load(response.data);
+
+          const productSelectors = ['.product', '.products .product', '.product-item', '.product-card', 'li.product', '[data-product-id]'];
+          let $products: cheerio.Cheerio<cheerio.Element> | null = null;
+          
+          for (const selector of productSelectors) {
+            const found = $(selector);
+            if (found.length > 0) { $products = found; break; }
+          }
+
+          if ($products && $products.length > 0) {
+            $products.each((_, el) => {
+              const $item = $(el);
+              
+              const nameSelectors = ['.woocommerce-loop-product__title', '.product-title', '.product-name', 'h2', 'h3', '.title'];
+              let name = '';
+              for (const sel of nameSelectors) {
+                const found = $item.find(sel).first().text().trim();
+                if (found) { name = found; break; }
+              }
+              if (!name) name = $item.find('a').first().text().trim();
+              if (!name || name.length < 3) return;
+              
+              const priceSelectors = ['.price ins .amount', '.price .amount', '.woocommerce-Price-amount', '.product-price', '.price'];
+              let priceText = '';
+              for (const sel of priceSelectors) {
+                const found = $item.find(sel).first().text().trim();
+                if (found) { priceText = found; break; }
+              }
+              const price = parsePrice(priceText);
+              
+              const imgSelectors = ['img.wp-post-image', 'img.attachment-woocommerce_thumbnail', '.product-image img', 'img'];
+              let image = '';
+              for (const sel of imgSelectors) {
+                const imgEl = $item.find(sel).first();
+                image = imgEl.attr('src') || imgEl.attr('data-src') || imgEl.attr('data-lazy-src') || '';
+                if (image) break;
+              }
+              if (image && !image.startsWith('http')) {
+                try {
+                  const baseUrl = new URL(url);
+                  image = new URL(image, baseUrl.origin).toString();
+                } catch {}
+              }
+              
+              if (price > 0) {
+                allProductData.push({ name, price, image });
+              }
+            });
+          }
+        } catch (err) {
+          console.error("Generic scraping error:", err);
+        }
+      }
+
+      // Deduplicate
+      const seen = new Set<string>();
+      const uniqueProducts = allProductData.filter(p => {
+        const key = p.name.toLowerCase().trim();
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+
+      // Process products
+      const productsToProcess = uniqueProducts.slice(0, maxProducts);
+
+      for (const product of productsToProcess) {
+        try {
+          const { name, price, image } = product;
+          
+          if (existingNames.has(name.toLowerCase().trim())) {
+            importedProducts.push({ name, price, image, status: "skipped", error: "Product already exists" });
+            skipped++;
+            continue;
+          }
+
+          const categoryId = detectCategory(name);
+          
+          await storage.createProduct({
+            name,
+            slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, ""),
+            description: `Imported from ${source}`,
+            price,
+            images: image ? [image] : [],
+            categoryId: categoryId || undefined,
+            isActive: true,
+            isFeatured: false,
+            stock: 20,
+          });
+
+          existingNames.add(name.toLowerCase().trim());
+          importedProducts.push({ name, price, image: image || "https://via.placeholder.com/100", status: "success" });
+          imported++;
+        } catch (productError) {
+          failed++;
+          importedProducts.push({ name: product.name, price: product.price, image: product.image, status: "error", error: "Failed to save" });
+        }
+      }
+
+      res.json({
+        success: imported > 0,
+        imported,
+        failed,
+        skipped,
+        source,
+        products: importedProducts,
+        message: allProductData.length === 0 ? `Could not find products on ${source}. The website structure may have changed.` : undefined
+      });
+    } catch (error) {
+      console.error("Import from URL error:", error);
+      res.status(500).json({ 
+        error: "Failed to import products", 
+        message: error instanceof Error ? error.message : "Unknown error"
+      });
+    }
+  });
+
   // Sitemap.xml - Dynamic sitemap for Google indexing
   app.get("/sitemap.xml", async (req: Request, res: Response) => {
     try {
