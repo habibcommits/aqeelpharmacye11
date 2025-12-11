@@ -64,19 +64,20 @@ async function buildAll() {
   });
 
   console.log("building Vercel serverless function...");
-  await mkdir("dist/api", { recursive: true });
+  await mkdir("api", { recursive: true });
   
+  // Bundle the API with all server code into a single file
   await esbuild({
     entryPoints: ["api/index.ts"],
     platform: "node",
     bundle: true,
     format: "esm",
-    outfile: "dist/api/index.js",
+    outfile: "api/index.mjs",
     define: {
       "process.env.NODE_ENV": '"production"',
     },
     minify: true,
-    external: externals,
+    external: ["@vercel/node"],
     logLevel: "info",
   });
 }
