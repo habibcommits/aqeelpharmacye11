@@ -4,22 +4,22 @@
   "outputDirectory": "dist/public",
   "framework": null,
   "functions": {
-    "api/index.mjs": {
+    "api/index.js": {
       "maxDuration": 60
     }
   },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/index.mjs"
+      "destination": "/api/index.js"
     },
     {
       "source": "/sitemap.xml",
-      "destination": "/api/index.mjs"
+      "destination": "/api/index.js"
     },
     {
       "source": "/robots.txt",
-      "destination": "/api/index.mjs"
+      "destination": "/api/index.js"
     },
     {
       "source": "/((?!api|assets|.*\\..*).*)",

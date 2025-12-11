@@ -1,0 +1,156 @@
+Time
+Status
+Host
+Request
+Messages
+Dec 11 12:01:56.03
+POST
+500
+aqeelpharmacye11.vercel.app
+/api/admin/import-from-url
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:51.36
+POST
+500
+aqeelpharmacye11.vercel.app
+/api/admin/import-from-url
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:45.76
+GET
+500
+aqeelpharmacye11.vercel.app
+/api/orders
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:42.24
+GET
+500
+aqeelpharmacye11.vercel.app
+/api/orders
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:42.24
+GET
+500
+aqeelpharmacye11.vercel.app
+/api/products
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:30.26
+GET
+500
+aqeelpharmacye11.vercel.app
+/api/products/featured
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:30.26
+GET
+500
+aqeelpharmacye11.vercel.app
+/api/brands
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:30.26
+GET
+500
+aqeelpharmacye11.vercel.app
+/api/banners
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:30.26
+GET
+500
+aqeelpharmacye11.vercel.app
+/api/products
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:23.41
+GET
+500
+aqeelpharmacye11-kpwh0r3g3-habibcommits-projects.vercel.app
+/api/products/featured
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue. Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:23.41
+GET
+500
+aqeelpharmacye11-kpwh0r3g3-habibcommits-projects.vercel.app
+/api/brands
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue. Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:23.41
+GET
+500
+aqeelpharmacye11-kpwh0r3g3-habibcommits-projects.vercel.app
+/api/banners
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue. Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:23.41
+GET
+500
+aqeelpharmacye11-kpwh0r3g3-habibcommits-projects.vercel.app
+/api/products
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue. Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:23.40
+GET
+500
+aqeelpharmacye11-kpwh0r3g3-habibcommits-projects.vercel.app
+/api/banners
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue. Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:23.40
+GET
+500
+aqeelpharmacye11-kpwh0r3g3-habibcommits-projects.vercel.app
+/api/brands
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue. Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:23.40
+GET
+---
+aqeelpharmacye11-kpwh0r3g3-habibcommits-projects.vercel.app
+/api/products/featured
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:23.40
+GET
+500
+aqeelpharmacye11-kpwh0r3g3-habibcommits-projects.vercel.app
+/api/products
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue. Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:23.01
+GET
+500
+aqeelpharmacye11-kpwh0r3g3-habibcommits-projects.vercel.app
+/api/brands
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue. Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:23.01
+GET
+500
+aqeelpharmacye11-kpwh0r3g3-habibcommits-projects.vercel.app
+/api/products/featured
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue. Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:23.01
+GET
+500
+aqeelpharmacye11-kpwh0r3g3-habibcommits-projects.vercel.app
+/api/banners
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue. Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:23.01
+GET
+500
+aqeelpharmacye11-kpwh0r3g3-habibcommits-projects.vercel.app
+/api/products
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:23.00
+GET
+500
+aqeelpharmacye11-kpwh0r3g3-habibcommits-projects.vercel.app
+/api/brands
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue. Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:23.00
+GET
+500
+aqeelpharmacye11-kpwh0r3g3-habibcommits-projects.vercel.app
+/api/products/featured
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue. Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:23.00
+GET
+500
+aqeelpharmacye11-kpwh0r3g3-habibcommits-projects.vercel.app
+/api/banners
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue. Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:01:23.00
+GET
+500
+aqeelpharmacye11-kpwh0r3g3-habibcommits-projects.vercel.app
+/api/products
+Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue. Error: Dynamic require of "path" is not supported at file:///var/task/api/index.mjs:1:387 at file:///var/task/api/index.mjs:1:961 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:20:18093 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:589 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:63:1671 at file:///var/task/api/index.mjs:1:499 at file:///var/task/api/index.mjs:284:38107 Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+No more logs to show within selected timeline
