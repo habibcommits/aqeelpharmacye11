@@ -64,14 +64,14 @@ async function buildAll() {
   });
 
   console.log("building Vercel serverless function...");
-  await mkdir("dist/public/api", { recursive: true });
+  await mkdir("dist/api", { recursive: true });
   
   await esbuild({
     entryPoints: ["api/index.ts"],
     platform: "node",
     bundle: true,
     format: "esm",
-    outfile: "dist/public/api/index.js",
+    outfile: "dist/api/index.js",
     define: {
       "process.env.NODE_ENV": '"production"',
     },
