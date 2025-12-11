@@ -23,7 +23,7 @@
     },
     {
       "source": "/((?!api|dist|_next|static|public|.*\\..*).*)",
-      "destination": "/index.html"
+      "destination": "/public/index.html"
     }
   ],
   "headers": [
