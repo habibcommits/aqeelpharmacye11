@@ -1,0 +1,62 @@
+11:27:46.673 Running build in Washington, D.C., USA (East) – iad1
+11:27:46.674 Build machine configuration: 2 cores, 8 GB
+11:27:46.796 Cloning github.com/habibcommits/aqeelpharmacye11 (Branch: main, Commit: e8c5515)
+11:27:47.131 Cloning completed: 335.000ms
+11:27:47.790 Restored build cache from previous deployment (86EX2X2BBHygCZWDxe29CMVPtEcT)
+11:27:48.479 Running "vercel build"
+11:27:48.953 Vercel CLI 49.1.2
+11:27:50.615 Installing dependencies...
+11:27:53.649 
+11:27:53.650 up to date in 3s
+11:27:53.650 
+11:27:53.650 92 packages are looking for funding
+11:27:53.650   run `npm fund` for details
+11:27:53.788 
+11:27:53.789 > rest-express@1.0.0 build
+11:27:53.789 > tsx script/build.ts
+11:27:53.789 
+11:27:55.174 building client...
+11:27:55.324 [36mvite v5.4.20 [32mbuilding for production...[36m[39m
+11:27:56.057 transforming...
+11:27:57.423 
+11:27:57.423 A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+11:28:02.769 [32m✓[39m 2197 modules transformed.
+11:28:03.252 rendering chunks...
+11:28:03.270 computing gzip size...
+11:28:03.294 [2m../dist/public/[22m[32mindex.html                                         [39m[1m[2m  5.43 kB[22m[1m[22m[2m │ gzip:   1.50 kB[22m
+11:28:03.294 [2m../dist/public/[22m[2massets/[22m[32maqeelph_logo_1765266347695-DAyxmfIo.png     [39m[1m[2m118.64 kB[22m[1m[22m
+11:28:03.295 [2m../dist/public/[22m[2massets/[22m[32mskincare_serum_bottl_8b7062d6-CwRTnwOW.jpg  [39m[1m[2m140.86 kB[22m[1m[22m
+11:28:03.295 [2m../dist/public/[22m[2massets/[22m[32mgarnier_natural_beau_22ccbb07-CPzyEJs1.jpg  [39m[1m[2m151.27 kB[22m[1m[22m
+11:28:03.295 [2m../dist/public/[22m[2massets/[22m[32mneutrogena_skincare__3ce100c2-CuPmQYjr.jpg  [39m[1m[2m160.30 kB[22m[1m[22m
+11:28:03.296 [2m../dist/public/[22m[2massets/[22m[32mprofessional_hair_ca_10174b47-DK8gXfNj.jpg  [39m[1m[2m160.99 kB[22m[1m[22m
+11:28:03.296 [2m../dist/public/[22m[2massets/[22m[32msunscreen_lotion_bot_1c2f4325-DaAebprR.jpg  [39m[1m[2m168.31 kB[22m[1m[22m
+11:28:03.296 [2m../dist/public/[22m[2massets/[22m[32mpantene_shampoo_hair_bd5703bf-CY_mtPiC.jpg  [39m[1m[2m281.25 kB[22m[1m[22m
+11:28:03.296 [2m../dist/public/[22m[2massets/[22m[32mdove_beauty_brand_lo_3deafb74-ClglwpJx.jpg  [39m[1m[2m284.52 kB[22m[1m[22m
+11:28:03.297 [2m../dist/public/[22m[2massets/[22m[32mcerave_skincare_bran_91b21ecf-zSBwvcpS.jpg  [39m[1m[2m372.57 kB[22m[1m[22m
+11:28:03.297 [2m../dist/public/[22m[2massets/[22m[32ml'oreal_beauty_cosme_0a109609-DaRgZpxA.jpg  [39m[1m[2m435.77 kB[22m[1m[22m
+11:28:03.297 [2m../dist/public/[22m[2massets/[22m[35mindex-uJnntFva.css                          [39m[1m[2m 99.95 kB[22m[1m[22m[2m │ gzip:  15.41 kB[22m
+11:28:03.297 [2m../dist/public/[22m[2massets/[22m[36mindex-DOsWB3lF.js                           [39m[1m[33m733.14 kB[39m[22m[2m │ gzip: 205.95 kB[22m
+11:28:03.298 [33m
+11:28:03.298 (!) Some chunks are larger than 500 kB after minification. Consider:
+11:28:03.298 - Using dynamic import() to code-split the application
+11:28:03.298 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+11:28:03.299 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+11:28:03.299 [32m✓ built in 7.29s[39m
+11:28:03.299 building server...
+11:28:03.872 
+11:28:03.873   dist/index.cjs  3.2mb ⚠️
+11:28:03.873 
+11:28:03.874 ⚡ Done in 565ms
+11:28:03.875 building Vercel serverless function...
+11:28:04.332 
+11:28:04.337   dist/api/index.js  3.2mb ⚠️
+11:28:04.338 
+11:28:04.338 ⚡ Done in 455ms
+11:28:04.648 Using TypeScript 5.6.3 (local user-provided)
+11:28:15.240 Build Completed in /vercel/output [25s]
+11:28:15.502 Deploying outputs...
+11:28:21.131 Deployment completed
+11:28:21.770 Creating build cache...
+11:28:46.584 Created build cache: 24.814s
+11:28:46.586 Uploading build cache [108.54 MB]
+11:28:48.765 Build cache uploaded: 2.180s
