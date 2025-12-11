@@ -1,0 +1,186 @@
+Time
+Status
+Host
+Request
+Messages
+Dec 11 12:05:59.76
+POST
+500
+aqeelpharmacye11.vercel.app
+/api/admin/import-from-url
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:50.20
+POST
+500
+aqeelpharmacye11.vercel.app
+/api/admin/import-from-url
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:48.88
+GET
+500
+aqeelpharmacye11.vercel.app
+/api/admin/import-from-url
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:46.54
+POST
+500
+aqeelpharmacye11.vercel.app
+/api/admin/import-from-url
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:38.54
+GET
+500
+aqeelpharmacye11.vercel.app
+/api/orders
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:38.54
+GET
+500
+aqeelpharmacye11.vercel.app
+/api/products
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:20.11
+GET
+500
+aqeelpharmacye11.vercel.app
+/api/brands
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:20.11
+GET
+500
+aqeelpharmacye11.vercel.app
+/api/products/featured
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:20.11
+GET
+500
+aqeelpharmacye11.vercel.app
+/api/products
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:20.11
+GET
+500
+aqeelpharmacye11.vercel.app
+/api/banners
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:16.70
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/brands
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:16.70
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/products
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:16.70
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/banners
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:16.70
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/products/featured
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:06.73
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/banners
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue. ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:06.73
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/brands
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue. ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:06.73
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/products/featured
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue. ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:06.72
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/products
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue. ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:06.63
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/brands
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue. ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:06.63
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/products/featured
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:06.63
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/banners
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue. ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:06.63
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/products
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue. ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:06.06
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/brands
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue. ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:06.06
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/banners
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue. ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:06.06
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/products/featured
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue. ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:06.06
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/products
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:06.06
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/products
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue. ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:06.05
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/brands
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue. ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:06.05
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/products/featured
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue. ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+Dec 11 12:05:06.05
+GET
+500
+aqeelpharmacye11-cepwlhgyh-habibcommits-projects.vercel.app
+/api/banners
+ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue. ReferenceError: module is not defined in ES module scope This file is being treated as an ES module because it has a '.js' file extension and '/var/task/package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension. at file:///var/task/api/index.js:284:38211 at ModuleJob.run (node:internal/modules/esm/module_job:325:25) at async ModuleLoader.import (node:internal/modules/esm/loader:606:24) at async d (/opt/rust/nodejs.js:17:24516) Node.js process exited with exit status: 1. The logs above can help with debugging the issue.
+No more logs to show within selected timeline
