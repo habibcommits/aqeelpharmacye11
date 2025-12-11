@@ -68,7 +68,7 @@ async function buildAll() {
   
   // Bundle the API with all server code into a single file
   await esbuild({
-    entryPoints: ["api/index.ts"],
+    entryPoints: ["api/vercel-handler.ts"],
     platform: "node",
     bundle: true,
     format: "esm",
