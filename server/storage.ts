@@ -11,7 +11,7 @@ import {
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 import type { IStorage, CreateOrderItem } from './storage-types';
-import { seedCategories, seedBrands, seedProducts } from './seed-data';
+import { seedCategories, allBrands, seedProducts } from './seed-data';
 
 export type { IStorage, CreateOrderItem } from './storage-types';
 
@@ -57,7 +57,7 @@ export class MemStorage implements IStorage {
       });
     });
 
-    seedBrands.forEach((brand) => {
+    allBrands.forEach((brand) => {
       const id = randomUUID();
       this.brands.set(id, { 
         id, 
