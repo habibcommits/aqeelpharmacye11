@@ -12,6 +12,7 @@ import {
   otpVerifySchema,
   clientProfileSchema,
 } from "../shared/schema";
+import { seedCategories, seedBrands, seedProducts } from "../server/seed-data";
 
 const app = express();
 
@@ -1342,6 +1343,80 @@ Allow: /
 Sitemap: https://aqeelpharmacy.com/sitemap.xml`;
   res.setHeader("Content-Type", "text/plain");
   res.send(robotsTxt);
+});
+
+app.post("/api/admin/seed-database", async (req: Request, res: Response) => {
+  try {
+    const db = await connectToMongo();
+    const results = {
+      categories: { created: 0, skipped: 0 },
+      brands: { created: 0, skipped: 0 },
+      products: { created: 0, skipped: 0 }
+    };
+
+    const categoryMap: Record<string, string> = {};
+    for (const cat of seedCategories) {
+      const existing = await db.getCategoryBySlug(cat.slug);
+      if (existing) {
+        categoryMap[cat.slug] = existing.id;
+        results.categories.skipped++;
+      } else {
+        const created = await db.createCategory(cat);
+        categoryMap[cat.slug] = created.id;
+        results.categories.created++;
+      }
+    }
+
+    const brandMap: Record<string, string> = {};
+    for (const brand of seedBrands) {
+      const existing = await db.getBrandBySlug(brand.slug);
+      if (existing) {
+        brandMap[brand.slug] = existing.id;
+        results.brands.skipped++;
+      } else {
+        const created = await db.createBrand(brand);
+        brandMap[brand.slug] = created.id;
+        results.brands.created++;
+      }
+    }
+
+    for (const product of seedProducts) {
+      const existing = await db.getProductBySlug(product.slug);
+      if (existing) {
+        results.products.skipped++;
+        continue;
+      }
+
+      const categoryId = categoryMap[product.categorySlug] || null;
+      const brandId = brandMap[product.brandSlug] || null;
+
+      await db.createProduct({
+        name: product.name,
+        slug: product.slug,
+        description: product.description,
+        price: product.price,
+        comparePrice: product.comparePrice,
+        images: product.images,
+        categoryId: categoryId,
+        brandId: brandId,
+        stock: product.stock,
+        isFeatured: product.isFeatured,
+        isActive: product.isActive,
+        sku: product.sku,
+        tags: product.tags
+      });
+      results.products.created++;
+    }
+
+    res.json({ 
+      success: true, 
+      message: "Database seeded successfully",
+      results 
+    });
+  } catch (error) {
+    console.error("Seed error:", error);
+    res.status(500).json({ error: "Failed to seed database" });
+  }
 });
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
