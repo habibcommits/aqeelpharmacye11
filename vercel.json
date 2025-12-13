@@ -3,23 +3,25 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist/public",
   "framework": null,
+  "installCommand": "npm install",
   "functions": {
-    "api/index.cjs": {
-      "maxDuration": 60
+    "api/index.ts": {
+      "maxDuration": 60,
+      "memory": 1024
     }
   },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/index.cjs"
+      "destination": "/api/index.ts"
     },
     {
       "source": "/sitemap.xml",
-      "destination": "/api/index.cjs"
+      "destination": "/api/index.ts"
     },
     {
       "source": "/robots.txt",
-      "destination": "/api/index.cjs"
+      "destination": "/api/index.ts"
     },
     {
       "source": "/((?!api|assets|.*\\..*).*)",

@@ -232,6 +232,31 @@ export class MongoStorage implements IStorage {
     return toPlainObject<BannerType>(banner);
   }
 
+  async updateBanner(id: string, bannerData: Partial<InsertBanner>): Promise<BannerType | undefined> {
+    await this.ensureConnection();
+    const banner = await Banner.findByIdAndUpdate(id, bannerData, { new: true });
+    return banner ? toPlainObject<BannerType>(banner) : undefined;
+  }
+
+  async deleteBanner(id: string): Promise<boolean> {
+    await this.ensureConnection();
+    const result = await Banner.findByIdAndDelete(id);
+    return !!result;
+  }
+
+  async searchProducts(query: string): Promise<ProductType[]> {
+    await this.ensureConnection();
+    const products = await Product.find({
+      isActive: true,
+      $or: [
+        { name: { $regex: query, $options: 'i' } },
+        { description: { $regex: query, $options: 'i' } },
+        { sku: { $regex: query, $options: 'i' } }
+      ]
+    }).limit(20);
+    return products.map(p => toPlainObject<ProductType>(p));
+  }
+
   // Clients
   async getClient(id: string): Promise<ClientType | undefined> {
     await this.ensureConnection();
