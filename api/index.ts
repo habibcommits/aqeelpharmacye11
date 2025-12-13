@@ -22,7 +22,7 @@ let storage: MongoStorage | null = null;
 let isConnected = false;
 
 async function connectToMongo() {
-  if (isConnected && storage) {
+  if (isConnected && storage && mongoose.connection.readyState === 1) {
     return storage;
   }
 
@@ -32,7 +32,9 @@ async function connectToMongo() {
   }
 
   try {
-    await mongoose.connect(mongoUri);
+    if (mongoose.connection.readyState !== 1) {
+      await mongoose.connect(mongoUri);
+    }
     isConnected = true;
     storage = new MongoStorage();
     console.log("Connected to MongoDB");
@@ -84,6 +86,35 @@ async function sendOtpEmail(email: string, otp: string): Promise<boolean> {
     console.error("Email send error:", error);
     return false;
   }
+}
+
+const categoryKeywords: Record<string, string[]> = {
+  "skin-care": ["skin", "face", "cleanser", "moisturizer", "serum", "cream", "lotion", "facial", "acne", "derma", "whitening"],
+  "hair-care": ["hair", "shampoo", "conditioner", "scalp", "dandruff", "hairfall", "anagrow", "minoxidil"],
+  "vitamins": ["vitamin", "supplement", "multivitamin", "omega", "calcium", "iron", "zinc", "tablets"],
+  "medicines": ["medicine", "tablet", "capsule", "syrup", "paracetamol", "pain", "fever", "cold", "cough", "mg", "drop", "injection", "gel", "ointment", "sachet", "susp", "inj"],
+  "baby": ["baby", "infant", "kids", "child", "newborn"],
+  "sunscreen": ["sunscreen", "spf", "sunblock", "sun protection"],
+  "makeup": ["makeup", "lipstick", "foundation", "mascara", "eyeshadow", "concealer", "blush", "primer"],
+  "fragrance": ["perfume", "fragrance", "cologne", "body spray", "mist", "attar", "scent"],
+};
+
+function parsePrice(text: string): number {
+  let clean = text
+    .replace(/Rs\.?/gi, '')
+    .replace(/PKR/gi, '')
+    .replace(/₨/g, '')
+    .replace(/₹/g, '')
+    .replace(/\$/g, '')
+    .replace(/\s/g, '')
+    .trim();
+  
+  if (/,\d{3}/.test(clean)) {
+    clean = clean.replace(/,/g, '');
+  } else if (/,\d{2}$/.test(clean)) {
+    clean = clean.replace(',', '.');
+  }
+  return parseFloat(clean) || 0;
 }
 
 app.get("/api/products", async (req: Request, res: Response) => {
@@ -208,6 +239,32 @@ app.post("/api/categories", async (req: Request, res: Response) => {
     res.status(201).json(category);
   } catch (error) {
     res.status(500).json({ error: "Failed to create category" });
+  }
+});
+
+app.patch("/api/categories/:id", async (req: Request, res: Response) => {
+  try {
+    const db = await connectToMongo();
+    const category = await db.updateCategory(req.params.id, req.body);
+    if (!category) {
+      return res.status(404).json({ error: "Category not found" });
+    }
+    res.json(category);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update category" });
+  }
+});
+
+app.delete("/api/categories/:id", async (req: Request, res: Response) => {
+  try {
+    const db = await connectToMongo();
+    const deleted = await db.deleteCategory(req.params.id);
+    if (!deleted) {
+      return res.status(404).json({ error: "Category not found" });
+    }
+    res.status(204).send();
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete category" });
   }
 });
 
@@ -603,6 +660,642 @@ app.get("/api/search", async (req: Request, res: Response) => {
     res.json(products);
   } catch (error) {
     res.status(500).json({ error: "Failed to search products" });
+  }
+});
+
+app.post("/api/admin/import-brands", async (req: Request, res: Response) => {
+  try {
+    const db = await connectToMongo();
+    const axios = (await import("axios")).default;
+    const cheerio = await import("cheerio");
+    
+    const { url, deleteExisting = false } = req.body;
+    
+    if (!url) {
+      return res.status(400).json({ error: "URL is required" });
+    }
+
+    const importedBrands: Array<{
+      name: string;
+      logo: string;
+      status: "success" | "error" | "skipped";
+      error?: string;
+    }> = [];
+
+    if (deleteExisting) {
+      const existingBrands = await db.getBrands();
+      for (const brand of existingBrands) {
+        await db.deleteBrand(brand.id);
+      }
+    }
+
+    const existingBrands = await db.getBrands();
+    const existingSlugs = new Set(existingBrands.map(b => b.slug.toLowerCase()));
+
+    const response = await axios.get(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      },
+      timeout: 30000
+    });
+
+    const $ = cheerio.load(response.data);
+
+    const brandElements: Array<{ name: string; logo: string }> = [];
+
+    const hostname = new URL(url).hostname.toLowerCase();
+    const isNajeeb = hostname.includes("najeeb");
+    const isDWatson = hostname.includes("dwatson");
+
+    if (isNajeeb) {
+      $('a[href*="?brand="]').each((_, el) => {
+        const $el = $(el);
+        const href = $el.attr('href') || '';
+        const brandParam = new URLSearchParams(href.split('?')[1]).get('brand');
+        const name = brandParam || $el.text().trim();
+        if (name && name.length > 1 && !name.includes('All')) {
+          brandElements.push({ name, logo: '' });
+        }
+      });
+      
+      if (brandElements.length === 0) {
+        $('a').each((_, el) => {
+          const $el = $(el);
+          const href = $el.attr('href') || '';
+          if (href.includes('brand=')) {
+            const name = $el.text().trim();
+            if (name && name.length > 1 && !name.toLowerCase().includes('all')) {
+              brandElements.push({ name, logo: '' });
+            }
+          }
+        });
+      }
+    }
+
+    if (isDWatson && brandElements.length === 0) {
+      $('.brand-name, .brand-item, .brands a').each((_, el) => {
+        const $el = $(el);
+        const name = $el.text().trim();
+        const logo = $el.find('img').attr('src') || '';
+        if (name && name.length > 1) {
+          brandElements.push({ name, logo });
+        }
+      });
+    }
+
+    if (brandElements.length === 0) {
+      $('a[href*="/collections/"], a[href*="/brand/"], a[href*="brand="]').each((_, el) => {
+        const $el = $(el);
+        const img = $el.find('img');
+        if (img.length > 0) {
+          const name = img.attr('alt') || $el.text().trim();
+          const logo = img.attr('src') || '';
+          if (name && name.length > 1) {
+            brandElements.push({ name, logo });
+          }
+        } else {
+          const name = $el.text().trim();
+          if (name && name.length > 1 && !name.toLowerCase().includes('all')) {
+            brandElements.push({ name, logo: '' });
+          }
+        }
+      });
+    }
+
+    if (brandElements.length === 0) {
+      return res.json({
+        success: false,
+        imported: 0,
+        skipped: 0,
+        failed: 0,
+        brands: [],
+        message: "No brands found on the page. The website structure may not be supported."
+      });
+    }
+
+    const uniqueBrands = new Map<string, { name: string; logo: string }>();
+    for (const brand of brandElements) {
+      const normalizedName = brand.name.trim();
+      if (normalizedName && !uniqueBrands.has(normalizedName.toLowerCase())) {
+        uniqueBrands.set(normalizedName.toLowerCase(), brand);
+      }
+    }
+
+    let imported = 0;
+    let skipped = 0;
+    let failed = 0;
+
+    for (const [, brand] of Array.from(uniqueBrands)) {
+      const slug = brand.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      
+      if (existingSlugs.has(slug)) {
+        importedBrands.push({
+          name: brand.name,
+          logo: brand.logo,
+          status: "skipped",
+          error: "Brand already exists"
+        });
+        skipped++;
+        continue;
+      }
+
+      try {
+        await db.createBrand({
+          name: brand.name,
+          slug,
+          logo: brand.logo,
+          description: null,
+        });
+
+        existingSlugs.add(slug);
+        importedBrands.push({
+          name: brand.name,
+          logo: brand.logo,
+          status: "success"
+        });
+        imported++;
+      } catch (error) {
+        importedBrands.push({
+          name: brand.name,
+          logo: brand.logo,
+          status: "error",
+          error: error instanceof Error ? error.message : "Failed to create brand"
+        });
+        failed++;
+      }
+    }
+
+    res.json({
+      success: true,
+      imported,
+      skipped,
+      failed,
+      brands: importedBrands,
+      message: `Imported ${imported} brands, skipped ${skipped} duplicates, ${failed} failed`
+    });
+
+  } catch (error) {
+    console.error("Brand import error:", error);
+    res.status(500).json({ 
+      error: error instanceof Error ? error.message : "Failed to import brands"
+    });
+  }
+});
+
+app.post("/api/admin/import-from-url", async (req: Request, res: Response) => {
+  try {
+    const db = await connectToMongo();
+    const axios = (await import("axios")).default;
+    const cheerio = await import("cheerio");
+    
+    const { url, maxProducts = 50 } = req.body;
+    
+    if (!url) {
+      return res.status(400).json({ error: "URL is required" });
+    }
+
+    const safeMaxProducts = Math.min(Math.max(1, maxProducts || 50), 100);
+
+    let source = "Unknown";
+    let hostname = "";
+    try {
+      hostname = new URL(url).hostname.toLowerCase();
+      if (hostname.includes("najeeb")) source = "Najeeb Pharmacy";
+      else if (hostname.includes("dwatson")) source = "D.Watson";
+      else if (hostname.includes("shaheen")) source = "Shaheen Chemist";
+    } catch {
+      return res.status(400).json({ error: "Invalid URL provided" });
+    }
+
+    const importedProducts: Array<{
+      name: string;
+      price: number;
+      image: string;
+      status: "success" | "error" | "skipped";
+      error?: string;
+    }> = [];
+    
+    let imported = 0;
+    let failed = 0;
+    let skipped = 0;
+
+    const existingCategories = await db.getCategories();
+    const existingProducts = await db.getProducts();
+    const existingBrands = await db.getBrands();
+    const existingNames = new Set(existingProducts.map(p => p.name.toLowerCase().trim()));
+
+    const detectCategory = (productName: string): string | undefined => {
+      const searchText = productName.toLowerCase();
+      for (const [categorySlug, keywords] of Object.entries(categoryKeywords)) {
+        for (const keyword of keywords) {
+          if (searchText.includes(keyword.toLowerCase())) {
+            const matchedCategory = existingCategories.find(c => c.slug === categorySlug);
+            if (matchedCategory) return matchedCategory.id;
+          }
+        }
+      }
+      return existingCategories.find(c => c.slug === "medicines")?.id;
+    };
+
+    const allProductData: Array<{name: string; price: number; image: string}> = [];
+
+    const axiosConfig = {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      },
+      timeout: 30000
+    };
+
+    try {
+      const response = await axios.get(url, axiosConfig);
+      const $ = cheerio.load(response.data);
+
+      if (source === "Shaheen Chemist") {
+        $('.product-item, .product-card, .card, [class*="product"]').each((_, el) => {
+          const $item = $(el);
+          
+          let name = $item.find('.product-title, .product-name, h2 a, h3 a, h4 a, .title a').first().text().trim();
+          if (!name) {
+            name = $item.find('a[href*="/product"]').first().text().trim();
+          }
+          if (!name || name.length < 3) return;
+          
+          const itemText = $item.text();
+          const priceMatch = itemText.match(/(?:Rs\.?|PKR|₨)\s*([\d,]+(?:\.\d{1,2})?)/i);
+          const price = priceMatch ? parsePrice(priceMatch[1]) : 0;
+          
+          let image = '';
+          const $img = $item.find('img').first();
+          image = $img.attr('src') || $img.attr('data-src') || '';
+          
+          if (name && price > 0) {
+            allProductData.push({ name, price, image });
+          }
+        });
+      } else if (source === "Najeeb Pharmacy") {
+        $('a[href*="/products/"]').each((_, el) => {
+          const $link = $(el);
+          const href = $link.attr('href') || '';
+          
+          if (!href.includes('/products/')) return;
+          
+          let name = $link.find('h6, h5, .product-name, .title').text().trim();
+          if (!name) name = $link.text().trim();
+          if (!name || name.length < 3 || name.length > 200) return;
+          
+          let $card = $link.closest('.card, .product-card, .col, [class*="col-"], .product-item');
+          if ($card.length === 0) $card = $link.parent().parent().parent().parent();
+          
+          const cardText = $card.text();
+          const priceMatch = cardText.match(/(?:Rs\.?|PKR|₨)\s*([\d,]+(?:\.\d{1,2})?)/i);
+          const price = priceMatch ? parsePrice(priceMatch[1]) : 0;
+          
+          let image = '';
+          $card.find('img').each((_, imgEl) => {
+            const src = $(imgEl).attr('src') || $(imgEl).attr('data-src') || '';
+            if (src && !image) {
+              image = src.startsWith('http') ? src : `https://api.najeebmart.com${src.startsWith('/') ? '' : '/'}${src}`;
+            }
+          });
+          
+          if (price > 0) {
+            allProductData.push({ name, price, image });
+          }
+        });
+      } else if (source === "D.Watson") {
+        $('.product-item, .item.product, li.item').each((_, el) => {
+          const $item = $(el);
+          
+          let name = $item.find('strong a, .product-item-link, a.product-item-link').first().text().trim();
+          if (!name) {
+            name = $item.find('a[href*=".html"]').first().text().trim();
+          }
+          if (!name || name.length < 2) return;
+          
+          const itemText = $item.text();
+          const priceMatch = itemText.match(/Rs\.\s*([\d,]+(?:\.\d{1,2})?)/i);
+          const price = priceMatch ? parsePrice(priceMatch[1]) : 0;
+          
+          let image = '';
+          const $img = $item.find('img.product-image-photo, img[src*="media/catalog"]').first();
+          if ($img.length) {
+            image = $img.attr('src') || $img.attr('data-src') || '';
+          }
+          if (!image) {
+            const $anyImg = $item.find('img').first();
+            image = $anyImg.attr('src') || $anyImg.attr('data-src') || '';
+          }
+          
+          if (name && price > 0) {
+            allProductData.push({ name, price, image });
+          }
+        });
+      } else {
+        $('[class*="product"]').each((_, el) => {
+          const $item = $(el);
+          
+          let name = $item.find('h2, h3, h4, .title, .name, a').first().text().trim();
+          if (!name || name.length < 3) return;
+          
+          const itemText = $item.text();
+          const priceMatch = itemText.match(/(?:Rs\.?|PKR|₨|\$)\s*([\d,]+(?:\.\d{1,2})?)/i);
+          const price = priceMatch ? parsePrice(priceMatch[1]) : 0;
+          
+          let image = $item.find('img').first().attr('src') || '';
+          
+          if (name && price > 0) {
+            allProductData.push({ name, price, image });
+          }
+        });
+      }
+    } catch (fetchError) {
+      console.error("Fetch error:", fetchError);
+      return res.status(500).json({ 
+        error: "Failed to fetch the website",
+        message: fetchError instanceof Error ? fetchError.message : "Network error"
+      });
+    }
+
+    const seen = new Set<string>();
+    const uniqueProducts = allProductData.filter(p => {
+      const key = p.name.toLowerCase().trim();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+
+    const productsToProcess = uniqueProducts.slice(0, safeMaxProducts);
+
+    for (const product of productsToProcess) {
+      try {
+        const { name, price, image } = product;
+        
+        if (existingNames.has(name.toLowerCase().trim())) {
+          importedProducts.push({
+            name,
+            price,
+            image,
+            status: "skipped",
+            error: "Product already exists"
+          });
+          skipped++;
+          continue;
+        }
+
+        if (name && price > 0) {
+          const categoryId = detectCategory(name);
+          
+          await db.createProduct({
+            name,
+            slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, ""),
+            description: `Imported from ${source}`,
+            price,
+            images: image ? [image] : [],
+            categoryId: categoryId || undefined,
+            isActive: true,
+            isFeatured: false,
+            stock: 20,
+          });
+
+          existingNames.add(name.toLowerCase().trim());
+          importedProducts.push({
+            name,
+            price,
+            image: image || "",
+            status: "success",
+          });
+          imported++;
+        } else {
+          importedProducts.push({
+            name,
+            price,
+            image: image || "",
+            status: "error",
+            error: price <= 0 ? "Invalid price" : "Missing data"
+          });
+          failed++;
+        }
+      } catch (productError) {
+        failed++;
+        importedProducts.push({
+          name: product.name,
+          price: product.price,
+          image: product.image || "",
+          status: "error",
+          error: productError instanceof Error ? productError.message : "Failed to save"
+        });
+      }
+    }
+
+    res.json({
+      success: imported > 0 || skipped > 0,
+      source,
+      imported,
+      failed,
+      skipped,
+      products: importedProducts,
+      message: allProductData.length === 0 ? `Could not find products on ${source}. The website structure may have changed.` : undefined
+    });
+  } catch (error) {
+    console.error("Import error:", error);
+    res.status(500).json({ 
+      error: "Failed to import products", 
+      message: error instanceof Error ? error.message : "Unknown error"
+    });
+  }
+});
+
+app.post("/api/admin/import-products", async (req: Request, res: Response) => {
+  try {
+    const db = await connectToMongo();
+    const axios = (await import("axios")).default;
+    const cheerio = await import("cheerio");
+    
+    const { url, maxProducts = 20 } = req.body;
+    
+    if (!url) {
+      return res.status(400).json({ error: "URL is required" });
+    }
+    
+    const existingCategories = await db.getCategories();
+    const existingProducts = await db.getProducts();
+    const existingNames = new Set(existingProducts.map(p => p.name.toLowerCase().trim()));
+    
+    const detectCategory = (productName: string, productUrl: string = ""): string | undefined => {
+      const searchText = (productName + " " + productUrl).toLowerCase();
+      
+      for (const [categorySlug, keywords] of Object.entries(categoryKeywords)) {
+        for (const keyword of keywords) {
+          if (searchText.includes(keyword.toLowerCase())) {
+            const matchedCategory = existingCategories.find(c => c.slug === categorySlug);
+            if (matchedCategory) {
+              return matchedCategory.id;
+            }
+          }
+        }
+      }
+      return undefined;
+    };
+
+    const response = await axios.get(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+      },
+      timeout: 30000
+    });
+
+    const $ = cheerio.load(response.data);
+
+    const productSelectors = [
+      '.product',
+      '.products .product',
+      '.woocommerce-loop-product',
+      '.product-item',
+      '.product-card',
+      'li.product',
+      '.shop-product',
+      '[data-product-id]'
+    ];
+
+    let products: ReturnType<typeof $> | null = null;
+    for (const selector of productSelectors) {
+      const found = $(selector);
+      if (found.length > 0) {
+        products = found;
+        break;
+      }
+    }
+
+    if (!products || products.length === 0) {
+      const productLinks = $('a[href*="/product/"], a.woocommerce-LoopProduct-link');
+      if (productLinks.length > 0) {
+        products = productLinks.closest('li, div').filter((_, el) => $(el).find('img').length > 0);
+      }
+    }
+
+    if (!products || products.length === 0) {
+      return res.json({
+        success: false,
+        imported: 0,
+        failed: 0,
+        products: [],
+        message: "No products found on the page. The website structure may not be supported."
+      });
+    }
+
+    const importedProducts: Array<{
+      name: string;
+      price: number;
+      image: string;
+      status: "success" | "error" | "skipped";
+      error?: string;
+    }> = [];
+    
+    let imported = 0;
+    let failed = 0;
+    let skipped = 0;
+    
+    const productCount = Math.min(products.length, maxProducts);
+
+    for (let i = 0; i < productCount; i++) {
+      try {
+        const productEl = $(products[i]);
+        
+        const productUrl = productEl.find('a').first().attr('href') || '';
+        
+        const nameSelectors = ['.woocommerce-loop-product__title', '.product-title', '.product-name', 'h2', 'h3', '.title', 'a.product-link'];
+        let name = '';
+        for (const sel of nameSelectors) {
+          const found = productEl.find(sel).first().text().trim();
+          if (found) {
+            name = found;
+            break;
+          }
+        }
+        if (!name) {
+          name = productEl.find('a').first().text().trim() || `Product ${i + 1}`;
+        }
+
+        const priceSelectors = ['.price ins .amount', '.price .amount', '.woocommerce-Price-amount', '.product-price', '.price'];
+        let priceText = '';
+        for (const sel of priceSelectors) {
+          const found = productEl.find(sel).first().text().trim();
+          if (found) {
+            priceText = found;
+            break;
+          }
+        }
+        const price = parsePrice(priceText);
+
+        const imgSelectors = ['img.wp-post-image', 'img.attachment-woocommerce_thumbnail', '.product-image img', 'img'];
+        let image = '';
+        for (const sel of imgSelectors) {
+          const imgEl = productEl.find(sel).first();
+          image = imgEl.attr('src') || imgEl.attr('data-src') || imgEl.attr('data-lazy-src') || '';
+          if (image) break;
+        }
+        
+        if (image && !image.startsWith('http')) {
+          const baseUrl = new URL(url);
+          image = new URL(image, baseUrl.origin).toString();
+        }
+
+        if (name && price > 0) {
+          if (existingNames.has(name.toLowerCase().trim())) {
+            importedProducts.push({
+              name,
+              price,
+              image: image || "",
+              status: "skipped",
+              error: "Product already exists",
+            });
+            skipped++;
+            continue;
+          }
+          
+          const categoryId = detectCategory(name, productUrl);
+          
+          await db.createProduct({
+            name,
+            slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, ""),
+            description: `Imported from ${url}`,
+            price,
+            images: image ? [image] : [],
+            categoryId: categoryId || undefined,
+            isActive: true,
+            isFeatured: false,
+            stock: 20,
+          });
+
+          existingNames.add(name.toLowerCase().trim());
+          importedProducts.push({
+            name,
+            price,
+            image: image || "",
+            status: "success",
+          });
+          imported++;
+        }
+      } catch (productError) {
+        failed++;
+      }
+    }
+
+    res.json({
+      success: imported > 0 || skipped > 0,
+      imported,
+      failed,
+      skipped,
+      products: importedProducts,
+    });
+  } catch (error) {
+    console.error("Import error:", error);
+    res.status(500).json({ 
+      error: "Failed to import products", 
+      message: error instanceof Error ? error.message : "Unknown error"
+    });
   }
 });
 
