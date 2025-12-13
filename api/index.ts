@@ -1,6 +1,8 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import express, { type Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
+import axios from "axios";
+import * as cheerio from "cheerio";
 import { MongoStorage } from "../server/mongo-storage";
 import {
   insertProductSchema,
@@ -603,6 +605,449 @@ app.get("/api/search", async (req: Request, res: Response) => {
     res.json(products);
   } catch (error) {
     res.status(500).json({ error: "Failed to search products" });
+  }
+});
+
+// Admin Import Routes for Vercel Serverless
+app.post("/api/admin/import-from-url", async (req: Request, res: Response) => {
+  try {
+    const db = await connectToMongo();
+    const { url, maxProducts = 50 } = req.body;
+    
+    if (!url) {
+      return res.status(400).json({ error: "URL is required" });
+    }
+
+    let source = "Unknown";
+    let hostname = "";
+    try {
+      hostname = new URL(url).hostname.toLowerCase();
+      if (hostname.includes("najeeb")) source = "Najeeb Pharmacy";
+      else if (hostname.includes("dwatson")) source = "D.Watson";
+      else if (hostname.includes("shaheen")) source = "Shaheen Chemist";
+    } catch {
+      return res.status(400).json({ error: "Invalid URL provided" });
+    }
+
+    const importedProducts: Array<{
+      name: string;
+      price: number;
+      image: string;
+      status: "success" | "error" | "skipped";
+      error?: string;
+    }> = [];
+    
+    let imported = 0;
+    let failed = 0;
+    let skipped = 0;
+
+    const existingCategories = await db.getCategories();
+    const existingProducts = await db.getProducts();
+    const existingNames = new Set(existingProducts.map(p => p.name.toLowerCase().trim()));
+
+    const categoryKeywords: Record<string, string[]> = {
+      "skin-care": ["skin", "face", "cleanser", "moisturizer", "serum", "cream", "lotion", "facial", "acne", "derma", "whitening"],
+      "hair-care": ["hair", "shampoo", "conditioner", "scalp", "dandruff", "hairfall", "anagrow", "minoxidil"],
+      "vitamins": ["vitamin", "supplement", "multivitamin", "omega", "calcium", "iron", "zinc", "tablets"],
+      "medicines": ["medicine", "tablet", "capsule", "syrup", "paracetamol", "pain", "fever", "cold", "cough", "mg", "drop", "injection", "gel", "ointment", "sachet", "susp", "inj"],
+      "baby": ["baby", "infant", "kids", "child", "newborn"],
+      "sunscreen": ["sunscreen", "spf", "sunblock", "sun protection"],
+    };
+
+    const detectCategory = (productName: string): string | undefined => {
+      const searchText = productName.toLowerCase();
+      for (const [categorySlug, keywords] of Object.entries(categoryKeywords)) {
+        for (const keyword of keywords) {
+          if (searchText.includes(keyword.toLowerCase())) {
+            const matchedCategory = existingCategories.find(c => c.slug === categorySlug);
+            if (matchedCategory) return matchedCategory.id;
+          }
+        }
+      }
+      return existingCategories.find(c => c.slug === "medicines")?.id;
+    };
+
+    const parsePrice = (text: string): number => {
+      let clean = text
+        .replace(/Rs\.?/gi, '')
+        .replace(/PKR/gi, '')
+        .replace(/₨/g, '')
+        .replace(/₹/g, '')
+        .replace(/\$/g, '')
+        .replace(/\s/g, '')
+        .trim();
+      
+      if (/,\d{3}/.test(clean)) {
+        clean = clean.replace(/,/g, '');
+      } else if (/,\d{2}$/.test(clean)) {
+        clean = clean.replace(',', '.');
+      }
+      return parseFloat(clean) || 0;
+    };
+
+    const allProductData: Array<{name: string; price: number; image: string}> = [];
+
+    const axiosConfig = {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9',
+      },
+      timeout: 30000
+    };
+
+    try {
+      const response = await axios.get(url, axiosConfig);
+      const $ = cheerio.load(response.data);
+
+      if (source === "Najeeb Pharmacy") {
+        $('a[href*="/products/"]').each((_, el) => {
+          const $link = $(el);
+          const href = $link.attr('href') || '';
+          if (!href.includes('/products/')) return;
+          
+          let name = $link.find('h6, h5, .product-name, .title').text().trim();
+          if (!name) name = $link.text().trim();
+          if (!name || name.length < 3 || name.length > 200) return;
+          
+          let $card = $link.closest('.card, .product-card, .col, [class*="col-"], .product-item');
+          if ($card.length === 0) $card = $link.parent().parent().parent().parent();
+          
+          const cardText = $card.text();
+          const priceMatch = cardText.match(/(?:Rs\.?|PKR|₨)\s*([\d,]+(?:\.\d{1,2})?)/i) ||
+                             cardText.match(/([\d,]+(?:\.\d{1,2})?)\s*(?:Rs|PKR)/i);
+          const price = priceMatch ? parsePrice(priceMatch[1]) : 0;
+          
+          let image = '';
+          $card.find('img').each((_, imgEl) => {
+            const src = $(imgEl).attr('src') || $(imgEl).attr('data-src') || '';
+            if (src && !image) {
+              image = src.startsWith('http') ? src : `https://api.najeebmart.com${src.startsWith('/') ? '' : '/'}${src}`;
+            }
+          });
+          
+          if (price > 0) {
+            allProductData.push({ name, price, image });
+          }
+        });
+      } else if (source === "D.Watson") {
+        $('.product-item, .item.product, li.item, .product-item-info').each((_, el) => {
+          const $item = $(el);
+          
+          let name = $item.find('.product-item-link, strong a, a.product-item-link').first().text().trim();
+          if (!name) name = $item.find('a[href*=".html"]').first().text().trim();
+          if (!name || name.length < 3) return;
+          
+          let price = 0;
+          const dataPriceEl = $item.find('[data-price-amount]').first();
+          if (dataPriceEl.length) {
+            price = parseFloat(dataPriceEl.attr('data-price-amount') || '0');
+          }
+          if (!price) {
+            const priceEl = $item.find('.price, .final-price .price, .special-price .price').first();
+            price = parsePrice(priceEl.text());
+          }
+          if (!price) {
+            const priceMatch = $item.text().match(/(?:Rs\.?|PKR|₨)\s*([\d,]+(?:\.\d{1,2})?)/i);
+            if (priceMatch) price = parsePrice(priceMatch[1]);
+          }
+          
+          const $img = $item.find('img.product-image-photo, img[src*="media/catalog"], img').first();
+          const image = $img.attr('src') || $img.attr('data-src') || '';
+          
+          if (price > 0) {
+            allProductData.push({ name, price, image });
+          }
+        });
+      } else {
+        const productSelectors = ['.product', '.products .product', '.product-item', '.product-card', 'li.product', '[data-product-id]'];
+        let $products: ReturnType<typeof $> | null = null;
+        
+        for (const selector of productSelectors) {
+          const found = $(selector);
+          if (found.length > 0) { $products = found; break; }
+        }
+
+        if ($products && $products.length > 0) {
+          $products.each((_, el) => {
+            const $item = $(el);
+            
+            const nameSelectors = ['.woocommerce-loop-product__title', '.product-title', '.product-name', 'h2', 'h3', '.title'];
+            let name = '';
+            for (const sel of nameSelectors) {
+              const found = $item.find(sel).first().text().trim();
+              if (found) { name = found; break; }
+            }
+            if (!name) name = $item.find('a').first().text().trim();
+            if (!name || name.length < 3) return;
+            
+            const priceSelectors = ['.price ins .amount', '.price .amount', '.woocommerce-Price-amount', '.product-price', '.price'];
+            let priceText = '';
+            for (const sel of priceSelectors) {
+              const found = $item.find(sel).first().text().trim();
+              if (found) { priceText = found; break; }
+            }
+            const price = parsePrice(priceText);
+            
+            const imgSelectors = ['img.wp-post-image', 'img.attachment-woocommerce_thumbnail', '.product-image img', 'img'];
+            let image = '';
+            for (const sel of imgSelectors) {
+              const imgEl = $item.find(sel).first();
+              image = imgEl.attr('src') || imgEl.attr('data-src') || imgEl.attr('data-lazy-src') || '';
+              if (image) break;
+            }
+            if (image && !image.startsWith('http')) {
+              try {
+                const baseUrl = new URL(url);
+                image = new URL(image, baseUrl.origin).toString();
+              } catch {}
+            }
+            
+            if (price > 0) {
+              allProductData.push({ name, price, image });
+            }
+          });
+        }
+      }
+    } catch (err) {
+      console.error("Scraping error:", err);
+    }
+
+    const seen = new Set<string>();
+    const uniqueProducts = allProductData.filter(p => {
+      const key = p.name.toLowerCase().trim();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+
+    const productsToProcess = uniqueProducts.slice(0, maxProducts);
+
+    for (const product of productsToProcess) {
+      try {
+        const { name, price, image } = product;
+        
+        if (existingNames.has(name.toLowerCase().trim())) {
+          importedProducts.push({ name, price, image, status: "skipped", error: "Product already exists" });
+          skipped++;
+          continue;
+        }
+
+        const categoryId = detectCategory(name);
+        
+        await db.createProduct({
+          name,
+          slug: name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, ""),
+          description: `Imported from ${source}`,
+          price,
+          images: image ? [image] : [],
+          categoryId: categoryId || undefined,
+          isActive: true,
+          isFeatured: false,
+          stock: 20,
+        });
+
+        existingNames.add(name.toLowerCase().trim());
+        importedProducts.push({ name, price, image: image || "https://via.placeholder.com/100", status: "success" });
+        imported++;
+      } catch (productError) {
+        failed++;
+        importedProducts.push({ name: product.name, price: product.price, image: product.image, status: "error", error: "Failed to save" });
+      }
+    }
+
+    res.json({
+      success: imported > 0,
+      imported,
+      failed,
+      skipped,
+      source,
+      products: importedProducts,
+      message: allProductData.length === 0 ? `Could not find products on ${source}. The website structure may have changed.` : undefined
+    });
+  } catch (error) {
+    console.error("Import from URL error:", error);
+    res.status(500).json({ 
+      error: "Failed to import products", 
+      message: error instanceof Error ? error.message : "Unknown error"
+    });
+  }
+});
+
+app.post("/api/admin/import-brands", async (req: Request, res: Response) => {
+  try {
+    const db = await connectToMongo();
+    const { url, deleteExisting = false } = req.body;
+    
+    if (!url) {
+      return res.status(400).json({ error: "URL is required" });
+    }
+
+    const importedBrands: Array<{
+      name: string;
+      logo: string;
+      status: "success" | "error" | "skipped";
+      error?: string;
+    }> = [];
+
+    if (deleteExisting) {
+      const existingBrands = await db.getBrands();
+      for (const brand of existingBrands) {
+        await db.deleteBrand(brand.id);
+      }
+    }
+
+    const existingBrands = await db.getBrands();
+    const existingSlugs = new Set(existingBrands.map(b => b.slug.toLowerCase()));
+
+    const response = await axios.get(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9',
+      },
+      timeout: 30000
+    });
+
+    const $ = cheerio.load(response.data);
+    const brandElements: Array<{ name: string; logo: string }> = [];
+
+    const hostname = new URL(url).hostname.toLowerCase();
+    const isNajeeb = hostname.includes("najeeb");
+    const isDWatson = hostname.includes("dwatson");
+
+    if (isNajeeb) {
+      $('a[href*="?brand="]').each((_, el) => {
+        const $el = $(el);
+        const href = $el.attr('href') || '';
+        const brandParam = new URLSearchParams(href.split('?')[1]).get('brand');
+        const name = brandParam || $el.text().trim();
+        if (name && name.length > 1 && !name.includes('All')) {
+          brandElements.push({ name, logo: '' });
+        }
+      });
+      
+      if (brandElements.length === 0) {
+        $('a').each((_, el) => {
+          const $el = $(el);
+          const href = $el.attr('href') || '';
+          if (href.includes('brand=')) {
+            const name = $el.text().trim();
+            if (name && name.length > 1 && !name.toLowerCase().includes('all')) {
+              brandElements.push({ name, logo: '' });
+            }
+          }
+        });
+      }
+    }
+
+    if (isDWatson && brandElements.length === 0) {
+      $('.brand-name, .brand-item, .brands a').each((_, el) => {
+        const $el = $(el);
+        const name = $el.text().trim();
+        const logo = $el.find('img').attr('src') || '';
+        if (name && name.length > 1) {
+          brandElements.push({ name, logo });
+        }
+      });
+    }
+
+    if (brandElements.length === 0) {
+      $('a[href*="/collections/"], a[href*="/brand/"], a[href*="brand="]').each((_, el) => {
+        const $el = $(el);
+        const img = $el.find('img');
+        if (img.length > 0) {
+          const name = img.attr('alt') || $el.text().trim();
+          const logo = img.attr('src') || '';
+          if (name && name.length > 1) {
+            brandElements.push({ name, logo });
+          }
+        } else {
+          const name = $el.text().trim();
+          if (name && name.length > 1 && !name.toLowerCase().includes('all')) {
+            brandElements.push({ name, logo: '' });
+          }
+        }
+      });
+    }
+
+    if (brandElements.length === 0) {
+      return res.json({
+        success: false,
+        imported: 0,
+        skipped: 0,
+        failed: 0,
+        brands: [],
+        message: "No brands found on the page. The website structure may not be supported."
+      });
+    }
+
+    const uniqueBrands = new Map<string, { name: string; logo: string }>();
+    for (const brand of brandElements) {
+      const normalizedName = brand.name.trim();
+      if (normalizedName && !uniqueBrands.has(normalizedName.toLowerCase())) {
+        uniqueBrands.set(normalizedName.toLowerCase(), brand);
+      }
+    }
+
+    let imported = 0;
+    let skipped = 0;
+    let failed = 0;
+
+    for (const [, brand] of Array.from(uniqueBrands)) {
+      const slug = brand.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      
+      if (existingSlugs.has(slug)) {
+        importedBrands.push({
+          name: brand.name,
+          logo: brand.logo,
+          status: "skipped",
+          error: "Brand already exists"
+        });
+        skipped++;
+        continue;
+      }
+
+      try {
+        await db.createBrand({
+          name: brand.name,
+          slug,
+          logo: brand.logo,
+          description: null,
+        });
+
+        existingSlugs.add(slug);
+        importedBrands.push({
+          name: brand.name,
+          logo: brand.logo,
+          status: "success"
+        });
+        imported++;
+      } catch (error) {
+        importedBrands.push({
+          name: brand.name,
+          logo: brand.logo,
+          status: "error",
+          error: error instanceof Error ? error.message : "Failed to create brand"
+        });
+        failed++;
+      }
+    }
+
+    res.json({
+      success: true,
+      imported,
+      skipped,
+      failed,
+      brands: importedBrands,
+      message: `Imported ${imported} brands, skipped ${skipped} duplicates, ${failed} failed`
+    });
+
+  } catch (error) {
+    console.error("Brand import error:", error);
+    res.status(500).json({ 
+      error: error instanceof Error ? error.message : "Failed to import brands"
+    });
   }
 });
 
