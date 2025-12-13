@@ -11,6 +11,7 @@ import {
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 import type { IStorage, CreateOrderItem } from './storage-types';
+import { seedCategories, seedBrands, seedProducts } from './seed-data';
 
 export type { IStorage, CreateOrderItem } from './storage-types';
 
@@ -44,18 +45,7 @@ export class MemStorage implements IStorage {
   }
 
   private initializeSampleData() {
-    const categories: InsertCategory[] = [
-      { name: "Skin Care", slug: "skin-care", description: "Cleansers, moisturizers, and treatments" },
-      { name: "Hair Care", slug: "hair-care", description: "Shampoos, serums, and treatments" },
-      { name: "Makeup", slug: "makeup", description: "Lipsticks, foundations, and palettes" },
-      { name: "Fragrance", slug: "fragrance", description: "Perfumes and body mists" },
-      { name: "Sunscreen", slug: "sunscreen", description: "SPF protection for all skin types" },
-      { name: "Baby Care", slug: "baby", description: "Gentle products for babies" },
-      { name: "Vitamins", slug: "vitamins", description: "Supplements and wellness products" },
-      { name: "Medicines", slug: "medicines", description: "OTC medicines and healthcare" },
-    ];
-
-    categories.forEach((cat) => {
+    seedCategories.forEach((cat) => {
       const id = randomUUID();
       this.categories.set(id, { 
         id, 
@@ -67,117 +57,7 @@ export class MemStorage implements IStorage {
       });
     });
 
-    const brands: InsertBrand[] = [
-      // A
-      { name: "Abbott", slug: "abbott", description: "Global healthcare company" },
-      { name: "AcneRid", slug: "acnerid", description: "Acne treatment solutions" },
-      { name: "Aichun Beauty", slug: "aichun-beauty", description: "Beauty and skincare products" },
-      { name: "Anexa", slug: "anexa", description: "Healthcare products" },
-      { name: "Aptamil", slug: "aptamil", description: "Baby nutrition" },
-      { name: "Argan Deluxe", slug: "argan-deluxe", description: "Argan oil hair care" },
-      { name: "Armani", slug: "armani", description: "Luxury fragrances" },
-      { name: "Aveeno", slug: "aveeno", description: "Natural skincare" },
-      { name: "Axe", slug: "axe", description: "Men's grooming" },
-      // B
-      { name: "Babi Mild", slug: "babi-mild", description: "Baby care products" },
-      { name: "Batiste", slug: "batiste", description: "Dry shampoo specialists" },
-      { name: "Bed Head", slug: "bed-head", description: "Professional hair styling" },
-      { name: "Bentley", slug: "bentley", description: "Luxury fragrances" },
-      { name: "Brylcreem", slug: "brylcreem", description: "Men's hair styling" },
-      { name: "Burberry", slug: "burberry", description: "British luxury brand" },
-      { name: "Bvlgari", slug: "bvlgari", description: "Italian luxury brand" },
-      // C
-      { name: "Calvin Klein", slug: "calvin-klein", description: "Designer fragrances" },
-      { name: "CeraVe", slug: "cerave", description: "Developed with dermatologists" },
-      { name: "Cetaphil", slug: "cetaphil", description: "Gentle skincare for all skin types" },
-      { name: "Chanel", slug: "chanel", description: "French luxury brand" },
-      { name: "Clean & Clear", slug: "clean-clear", description: "Skincare for teens" },
-      { name: "Clear", slug: "clear", description: "Anti-dandruff hair care" },
-      { name: "Conatural", slug: "conatural", description: "Natural skincare" },
-      { name: "Cow & Gate", slug: "cow-gate", description: "Baby nutrition" },
-      // D
-      { name: "Dalan D'Olive", slug: "dalan-dolive", description: "Olive oil skincare" },
-      { name: "David Beckham", slug: "david-beckham", description: "Men's fragrances" },
-      { name: "Dior", slug: "dior", description: "French luxury brand" },
-      { name: "Dove", slug: "dove", description: "Real beauty" },
-      // E
-      { name: "Enfamil", slug: "enfamil", description: "Baby nutrition" },
-      { name: "Eskulin", slug: "eskulin", description: "Kids personal care" },
-      // F
-      { name: "Fa", slug: "fa", description: "Personal care products" },
-      { name: "Ferrari", slug: "ferrari", description: "Luxury fragrances" },
-      { name: "Finesse", slug: "finesse", description: "Hair care" },
-      { name: "FOGG", slug: "fogg", description: "Body sprays" },
-      // G
-      { name: "Garnier", slug: "garnier", description: "Natural beauty" },
-      { name: "Gatsby", slug: "gatsby", description: "Men's styling products" },
-      { name: "Got2b", slug: "got2b", description: "Hair styling" },
-      { name: "Gucci", slug: "gucci", description: "Italian luxury brand" },
-      // H
-      { name: "Headshock", slug: "headshock", description: "Hair care" },
-      { name: "Hermès", slug: "hermes", description: "French luxury brand" },
-      { name: "Hugo Boss", slug: "hugo-boss", description: "Designer fragrances" },
-      // J
-      { name: "Jaguar", slug: "jaguar", description: "Men's fragrances" },
-      { name: "Jenpharm", slug: "jenpharm", description: "Professional skincare solutions" },
-      { name: "Jimmy Choo", slug: "jimmy-choo", description: "Luxury fragrances" },
-      { name: "John Frieda", slug: "john-frieda", description: "Professional hair care" },
-      { name: "Johnson's", slug: "johnsons", description: "Baby care trusted brand" },
-      // K
-      { name: "Kenneth Cole", slug: "kenneth-cole", description: "Designer fragrances" },
-      // L
-      { name: "L'Oreal", slug: "loreal", description: "Because you're worth it" },
-      { name: "Lalique", slug: "lalique", description: "Luxury fragrances" },
-      { name: "Lux", slug: "lux", description: "Beauty soap and body wash" },
-      // M
-      { name: "Maybelline", slug: "maybelline", description: "Makeup that's NYC-inspired" },
-      { name: "Medix", slug: "medix", description: "Healthcare products" },
-      { name: "Mercedes-Benz", slug: "mercedes-benz", description: "Luxury fragrances" },
-      { name: "Mistine", slug: "mistine", description: "Thai beauty brand" },
-      { name: "Mont Blanc", slug: "mont-blanc", description: "Luxury fragrances" },
-      // N
-      { name: "Neoliva", slug: "neoliva", description: "Skincare solutions" },
-      { name: "Neutrogena", slug: "neutrogena", description: "Dermatologist recommended" },
-      { name: "Nike", slug: "nike", description: "Sports fragrances" },
-      { name: "Nivea", slug: "nivea", description: "Trusted skincare" },
-      { name: "Nutrifactor", slug: "nutrifactor", description: "Pakistani supplements" },
-      // O
-      { name: "OGX", slug: "ogx", description: "Exotic hair care" },
-      { name: "Olay", slug: "olay", description: "Anti-aging skincare" },
-      // P
-      { name: "Paco Rabanne", slug: "paco-rabanne", description: "Designer fragrances" },
-      { name: "Palmer's", slug: "palmers", description: "Cocoa butter experts" },
-      { name: "Pantene", slug: "pantene", description: "Strong is beautiful" },
-      { name: "PharmaHealth", slug: "pharmahealth", description: "Healthcare solutions" },
-      { name: "Pond's", slug: "ponds", description: "Skincare classics" },
-      // R
-      { name: "Rasasi", slug: "rasasi", description: "Arabian perfumes" },
-      { name: "Remy Marquis", slug: "remy-marquis", description: "French fragrances" },
-      // S
-      { name: "Set Wet", slug: "set-wet", description: "Men's styling" },
-      { name: "Simple", slug: "simple", description: "Kind to skin" },
-      { name: "St. Ives", slug: "st-ives", description: "Natural scrubs" },
-      { name: "Suave", slug: "suave", description: "Affordable beauty" },
-      { name: "Sudocream", slug: "sudocream", description: "Healing cream" },
-      { name: "Sunsilk", slug: "sunsilk", description: "Hair care solutions" },
-      { name: "Syoss", slug: "syoss", description: "Professional hair care" },
-      // T
-      { name: "The Ordinary", slug: "the-ordinary", description: "Clinical formulations with integrity" },
-      { name: "Thomas Kosmala", slug: "thomas-kosmala", description: "Niche fragrances" },
-      { name: "Toni&Guy", slug: "toni-guy", description: "Professional hair styling" },
-      { name: "TRESemmé", slug: "tresemme", description: "Salon-quality hair care" },
-      // V
-      { name: "Vaseline", slug: "vaseline", description: "Healing moisture" },
-      { name: "Veet", slug: "veet", description: "Hair removal experts" },
-      { name: "Versace", slug: "versace", description: "Italian luxury brand" },
-      { name: "Vince", slug: "vince", description: "Pakistani skincare" },
-      // W
-      { name: "Wella", slug: "wella", description: "Professional hair color" },
-      // Y
-      { name: "Yves Saint Laurent", slug: "ysl", description: "French luxury brand" },
-    ];
-
-    brands.forEach((brand) => {
+    seedBrands.forEach((brand) => {
       const id = randomUUID();
       this.brands.set(id, { 
         id, 
@@ -191,130 +71,14 @@ export class MemStorage implements IStorage {
     const categoryArray = Array.from(this.categories.values());
     const brandArray = Array.from(this.brands.values());
     
-    // Helper to find brand by slug
+    const findCategory = (slug: string) => categoryArray.find(c => c.slug === slug);
     const findBrand = (slug: string) => brandArray.find(b => b.slug === slug);
 
-    const sampleProducts: InsertProduct[] = [
-      {
-        name: "Cetaphil Gentle Skin Cleanser 500ml",
-        slug: "cetaphil-gentle-skin-cleanser-500ml",
-        description: "A mild, non-irritating cleanser that gently cleans without stripping skin of natural oils.",
-        price: 3250,
-        comparePrice: 3500,
-        images: ["https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&h=600&fit=crop"],
-        categoryId: categoryArray[0].id,
-        brandId: findBrand("cetaphil")?.id,
-        stock: 50,
-        isFeatured: true,
-        isActive: true,
-        sku: "CET-GC-500",
-        weight: "500ml",
-      },
-      {
-        name: "CeraVe Moisturizing Cream 453g",
-        slug: "cerave-moisturizing-cream-453g",
-        description: "Rich, non-greasy, fast-absorbing cream that provides 24-hour hydration.",
-        price: 4500,
-        comparePrice: 4800,
-        images: ["https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=600&h=600&fit=crop"],
-        categoryId: categoryArray[0].id,
-        brandId: findBrand("cerave")?.id,
-        stock: 35,
-        isFeatured: true,
-        isActive: true,
-        sku: "CER-MC-453",
-        weight: "453g",
-      },
-      {
-        name: "The Ordinary Niacinamide 10% + Zinc 1%",
-        slug: "the-ordinary-niacinamide-zinc",
-        description: "A serum targeting visible blemishes and skin congestion.",
-        price: 2100,
-        comparePrice: 2500,
-        images: ["https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&h=600&fit=crop"],
-        categoryId: categoryArray[0].id,
-        brandId: findBrand("the-ordinary")?.id,
-        stock: 80,
-        isFeatured: true,
-        isActive: true,
-        sku: "ORD-NZ-30",
-        weight: "30ml",
-      },
-      {
-        name: "L'Oreal Paris Revitalift Night Cream",
-        slug: "loreal-revitalift-night-cream",
-        description: "Anti-wrinkle + firming night cream with Pro-Retinol A.",
-        price: 3800,
-        images: ["https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&h=600&fit=crop"],
-        categoryId: categoryArray[0].id,
-        brandId: findBrand("loreal")?.id,
-        stock: 25,
-        isFeatured: true,
-        isActive: true,
-        sku: "LOR-RN-50",
-        weight: "50ml",
-      },
-      {
-        name: "Dove Intense Repair Shampoo 650ml",
-        slug: "dove-intense-repair-shampoo",
-        description: "Nourishes hair from root to tip for beautiful, strong hair.",
-        price: 1250,
-        comparePrice: 1400,
-        images: ["https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=600&h=600&fit=crop"],
-        categoryId: categoryArray[1].id,
-        brandId: findBrand("dove")?.id,
-        stock: 100,
-        isFeatured: false,
-        isActive: true,
-        sku: "DOV-IRS-650",
-        weight: "650ml",
-      },
-      {
-        name: "Jenpharm Spectra Block SPF 60",
-        slug: "jenpharm-spectra-block-spf60",
-        description: "Broad spectrum UVA/UVB protection with antioxidants.",
-        price: 1850,
-        images: ["https://images.unsplash.com/photo-1556227834-09f1de7a7d14?w=600&h=600&fit=crop"],
-        categoryId: categoryArray[4].id,
-        brandId: findBrand("jenpharm")?.id,
-        stock: 45,
-        isFeatured: true,
-        isActive: true,
-        sku: "JEN-SB-60",
-        weight: "60g",
-      },
-      {
-        name: "Johnson's Baby Lotion 500ml",
-        slug: "johnsons-baby-lotion-500ml",
-        description: "Clinically proven mild for newborn skin with 24hr moisture.",
-        price: 950,
-        images: ["https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&h=600&fit=crop"],
-        categoryId: categoryArray[5].id,
-        brandId: findBrand("johnsons")?.id,
-        stock: 70,
-        isFeatured: false,
-        isActive: true,
-        sku: "JNS-BL-500",
-        weight: "500ml",
-      },
-      {
-        name: "Centrum Adults Multivitamin 100 Tablets",
-        slug: "centrum-adults-multivitamin-100",
-        description: "Complete multivitamin with essential vitamins and minerals.",
-        price: 2850,
-        comparePrice: 3000,
-        images: ["https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&h=600&fit=crop"],
-        categoryId: categoryArray[6].id,
-        stock: 40,
-        isFeatured: true,
-        isActive: true,
-        sku: "CEN-AM-100",
-        weight: "100 tablets",
-      },
-    ];
-
-    sampleProducts.forEach((product) => {
+    seedProducts.forEach((product) => {
       const id = randomUUID();
+      const category = findCategory(product.categorySlug);
+      const brand = findBrand(product.brandSlug);
+      
       this.products.set(id, { 
         id, 
         name: product.name, 
@@ -322,15 +86,15 @@ export class MemStorage implements IStorage {
         description: toNull(product.description), 
         price: product.price, 
         comparePrice: toNull(product.comparePrice), 
-        images: toNull(product.images), 
-        categoryId: toNull(product.categoryId), 
-        brandId: toNull(product.brandId), 
+        images: product.images.length > 0 ? product.images : null, 
+        categoryId: category?.id ?? null, 
+        brandId: brand?.id ?? null, 
         stock: product.stock ?? 0, 
         isFeatured: product.isFeatured ?? false, 
         isActive: product.isActive ?? true, 
         sku: toNull(product.sku), 
-        weight: toNull(product.weight), 
-        tags: toNull(product.tags) 
+        weight: null, 
+        tags: product.tags.length > 0 ? product.tags : null 
       });
     });
   }
