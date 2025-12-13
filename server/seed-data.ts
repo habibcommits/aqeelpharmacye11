@@ -1,4 +1,5 @@
 import type { InsertCategory, InsertBrand, InsertProduct } from "@shared/schema";
+import { extendedProducts, extendedBrands } from './products-data';
 
 export const seedCategories: InsertCategory[] = [
   { name: "Skin Care", slug: "skin-care", description: "Cleansers, moisturizers, and treatments" },
@@ -703,5 +704,11 @@ export const seedProducts: SeedProductData[] = [
     isActive: true,
     sku: "CEN-TT-400",
     tags: ["Skin Care", "Toner"]
-  }
+  },
+  ...extendedProducts
 ];
+
+// Combine base brands with extended brands
+export const allBrands = [...seedBrands, ...extendedBrands.filter(eb => 
+  !seedBrands.some(sb => sb.slug === eb.slug)
+)];
