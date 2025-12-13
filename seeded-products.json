@@ -1,0 +1,3359 @@
+{
+  "brands": [
+    {
+      "name": "Abbott",
+      "slug": "abbott",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Acnerid",
+      "slug": "acnerid",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Aichun Beauty",
+      "slug": "aichun-beauty",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Anexa",
+      "slug": "anexa",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Anua",
+      "slug": "anua",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Aptamil",
+      "slug": "aptamil",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Shaheen Chemist Commercial Market",
+      "slug": "shaheen-chemist-commercial-market",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Armani",
+      "slug": "armani",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Aveeno",
+      "slug": "aveeno",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Axe",
+      "slug": "axe",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Babi Mild",
+      "slug": "babi-mild",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Kendamil",
+      "slug": "kendamil",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Sudocrem",
+      "slug": "sudocrem",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Johnson S",
+      "slug": "johnson-s",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Dove",
+      "slug": "dove",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Jenpharm",
+      "slug": "jenpharm",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Mistine",
+      "slug": "mistine",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Acure",
+      "slug": "acure",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Cerave",
+      "slug": "cerave",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Clean Clear",
+      "slug": "clean-clear",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Nike",
+      "slug": "nike",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Pond S",
+      "slug": "pond-s",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Garnier",
+      "slug": "garnier",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Neutrogena",
+      "slug": "neutrogena",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Nivea",
+      "slug": "nivea",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Syntax",
+      "slug": "syntax",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Centella",
+      "slug": "centella",
+      "description": "Quality brand products"
+    },
+    {
+      "name": "Cosrx",
+      "slug": "cosrx",
+      "description": "Quality brand products"
+    }
+  ],
+  "products": [
+    {
+      "name": "Ensure Milk Powder Vanilla, 850 g",
+      "slug": "ensure-milk-powder-vanilla-850-g",
+      "description": "Ensure is a source of complete, balanced nutrition for supplemental use with or between meals. It may benefit patients who have malnutrition, are at nutritional risk, are experiencing involuntary weight loss, or are on modified diets. For oral use. For interim sole-source nutrition. Vanilla flavored High in Omega 3",
+      "price": 6375,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-08-26T161006.179.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "abbott",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "ENSURE-MILK-POWDER-V",
+      "weight": null,
+      "tags": [
+        "Nutritional Supplement",
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Ensure Milk Powder Chocolate, 850 g",
+      "slug": "ensure-milk-powder-chocolate-850-g",
+      "description": "Ensure is a source of complete, balanced nutrition for supplemental use with or between meals. It may benefit patients who have malnutrition, are at nutritional risk, are experiencing involuntary weight loss, or are on modified diets. For oral use. For interim sole-source nutrition. Chocolate flavored High in Omega 3",
+      "price": 6375,
+      "comparePrice": 5750,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-08-26T161217.476.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "abbott",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ENSURE-MILK-POWDER-C",
+      "weight": null,
+      "tags": [
+        "Nutritional Supplement",
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Ensure Milk Powder Vanilla, 400g",
+      "slug": "ensure-milk-powder-vanilla-850-g-copy",
+      "description": "Ensure is a source of complete, balanced nutrition for supplemental use with or between meals. It may benefit patients who have malnutrition, are at nutritional risk, are experiencing involuntary weight loss, or are on modified diets. For oral use. For interim sole-source nutrition. Vanilla flavored High in Omega 3",
+      "price": 3199,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_19_2c3f6ccc-1c45-4237-976f-2d0e0b0321ed.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "abbott",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ENSURE-MILK-POWDER-V",
+      "weight": null,
+      "tags": [
+        "Nutritional Supplement",
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Abbott PediaSure Strawberry, 850 g",
+      "slug": "abbott-pediasure-strawberry-850g",
+      "description": "PediaSure® Powder with TripleSure Formula. PediaSure contains the clinically proven TripleSure System to support growth, promote immunity and help build a healthy appetite. Unique triple protein complex to help support growth... Chocolate flavored",
+      "price": 7039,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-08-26T160224.225.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "abbott",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ABBOTT-PEDIASURE-STR",
+      "weight": null,
+      "tags": [
+        "Nutritional Supplement",
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Abbott PediaSure Choclate, 850 g",
+      "slug": "abbott-pediasure-choclate-850g",
+      "description": "PediaSure® Powder with TripleSure Formula. PediaSure contains the clinically proven TripleSure System to support growth, promote immunity and help build a healthy appetite. Unique triple protein complex to help support growth... Chocolate flavored",
+      "price": 7039,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-08-26T160428.162.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "abbott",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ABBOTT-PEDIASURE-CHO",
+      "weight": null,
+      "tags": [
+        "Nutritional Supplement",
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Abbott Pediasure Chocolate Milk Powder, 400g",
+      "slug": "abbott-pediasure-chocolate-milk-powder-400g",
+      "description": "PediaSure contains the clinically proven TripleSure System to support growth, promote immunity and help build a healthy appetite. Unique triple protein complex to help support growth and development Complete, balanced nutrition1 with a new synbiotic (prebiotic plus probiotic) to support immunity 28 nutrients including essential vitamins and minerals to help support a healthy appetite Added DHA to support brain and central nervous system health Now with Arginine and Vitamin K2 to support growth a",
+      "price": 3530,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/abbott-pediasure-chocolate-400g-770925.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "abbott",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ABBOTT-PEDIASURE-CHO",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Pediasure Chocolate Milk Chocolate, 400g",
+      "slug": "pediasure-chocolate-milk-chocolate-400g",
+      "description": "PEDIASURE Powder with New Triple Sure Formula. PediaSure Triple Sure is a complete, balanced nutritional supplement that’s scientifically formulated to support growth, promote immunity and help to build a healthy appetite. Its new triple-protein complex helps support growth and development . Now with added DHA to support brain and central nervous health.",
+      "price": 3419,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Pediasure_chocolate_400g.jpg"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "abbott",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "PEDIASURE-CHOCOLATE-",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Pediasure Vanilla Milk Powder, 400g",
+      "slug": "pediasure-vanilla-milk-powder-400g",
+      "description": "PEDIASURE Powder with New Triple Sure Formula. PediaSure Triple Sure is a complete, balanced nutritional supplement that’s scientifically formulated to support growth, promote immunity and help to build a healthy appetite. Its new triple-protein complex helps support growth and development . Now with added DHA to support brain and central nervous health.",
+      "price": 3419,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/pediasure.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "abbott",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "PEDIASURE-VANILLA-MI",
+      "weight": null,
+      "tags": [
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Ensure Milk Powder Chocolate, 400g",
+      "slug": "ensure-milk-powder-chocolate-850-g-copy",
+      "description": "Ensure is a source of complete, balanced nutrition for supplemental use with or between meals. It may benefit patients who have malnutrition, are at nutritional risk, are experiencing involuntary weight loss, or are on modified diets. For oral use. For interim sole-source nutrition. Chocolate flavored High in Omega 3",
+      "price": 3199,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Ensure_Milk_Powder_Chocolate_400g.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "abbott",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ENSURE-MILK-POWDER-C",
+      "weight": null,
+      "tags": [
+        "Nutritional Supplement",
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Abbott PediaSure Vanilla, 850 g",
+      "slug": "abbott-pediasure-vanilla-850g",
+      "description": "PediaSure® Powder with TripleSure Formula. PediaSure contains the clinically proven TripleSure System to support growth, promote immunity and help build a healthy appetite. Unique triple protein complex to help support growth... Vanilla flavored",
+      "price": 7039,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/8886451006820_grande_4017dc8c-eb37-4bcf-b4df-44fddb41ac53.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "abbott",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ABBOTT-PEDIASURE-VAN",
+      "weight": null,
+      "tags": [
+        "Nutritional Supplement",
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "AcneRid Anti Acne Cream, 25 g",
+      "slug": "acnerid-anti-acne-cream-20g",
+      "description": "Acnerid’s Anti-Acne Cream is your trusted ally in the fight against acne. With expert formulation, it targets breakouts, unclogs pores, and prevents future acne, leaving your skin clear and healthy. Experience the confidence of blemish-free skin with Acnerid, the ultimate choice for acne management. Benefits: Fights against acne. Fights against pimple Controls bacterial growth. Facewash and cleanse the skin thoroughly. For all skin types Disclaimer: Before using a new cosmetic product, test a sm",
+      "price": 869,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/AcneRid_Anti_Acne_Cream_25_g.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "acnerid",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ACNERID-ANTI-ACNE-CR",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "AcneRid Anti Acne Face Wash, 60g – Clearer Skin Starts Here",
+      "slug": "acnerid-anti-acne-facewash-60g",
+      "description": "We brought AcneRid Anti Acne Face Wash 60g to help you combat pimples, control excess oil, and maintain clear skin—now available online and in-store at Shaheen Chemist across Pakistan. Specially formulated for acne-prone and oily skin, this dermatologist-tested cleanser deeply purifies pores and removes impurities without over-drying. With rising demand for targeted skincare, AcneRid has emerged as a go-to solution among those searching for the best face wash in Pakistan. Its effective blend of ",
+      "price": 665,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/acnerid_anti_acne_face_wash.jpg"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "acnerid",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ACNERID-ANTI-ACNE-FA",
+      "weight": null,
+      "tags": [
+        "Face Wash",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Aichun Beauty Vitamin E Whitening & Brightening Face Serum, 30 ml",
+      "slug": "aichun-beauty-vitamin-e-whitening",
+      "description": "Aichun Beauty Vitamin E Whitening & Brightening Face Serum is formulated with whitening and moisturizing ingredients including Arbutin & Vitamins to fade melanin and restore skin radiance Anti-ageing Brightens your skin tone and smoothens it Provides the skin with effective nutrients Improves skin roughness and dullness. Rejuvenates your skin with a natural glow Has a moisturizing and whitening effect How to Use After facial cleansing, apply the proper amount to the face and gently massage until",
+      "price": 815,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-09-07T161055.215.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aichun-beauty",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "AICHUN-BEAUTY-VITAMI",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Aichun Beauty Avocado Face Serum, 30 ml",
+      "slug": "aichun-beauty-avocado-face-serum-100-ml",
+      "description": "Rich in avocado extract, the Aichun Beauty Avocado Face Serum is enriched with whitening and moisturizing ingredients such as arbutin to effectively fade melanin and deeply moisturize your skin, leaving it shiny. How to Use: After facial cleansing, apply proper amount to the face and gently massage until absorption. Disclaimer: Before using a new cosmetic product, test a small area of your skin. Check the ingredients to avoid a reaction if you have a specific allergy or sensitivity. Always read ",
+      "price": 810,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-09-07T161037.562.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aichun-beauty",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "AICHUN-BEAUTY-AVOCAD",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Aichun Beauty Natural Rice Facial Wash, 100 ml",
+      "slug": "aichun-beauty-natural-rice-facial-wash-100-ml",
+      "description": "Main Ingredients: Hydrate, Rice Essence Feature: Acne Treatment, Blemish Clearing, Deep Cleansing, Moisturizer, Pore Cleaner, Whitening Skin Type: All skin types: normal, oily Product name: Natural Rice Face Wash Use: Face Type: Cleanser Effect: Anti Ance / Deep Cleaning / Oil-control Volume:100 Ml Disclaimer: Before using a new cosmetic product, test a small area of your skin. Check the ingredients to avoid a reaction if you have a specific allergy or sensitivity. Always read the warning labels",
+      "price": 810,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-09-07T161310.259.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aichun-beauty",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "AICHUN-BEAUTY-NATURA",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Aichun Beauty Honey & Green Tea Yellow Clay Mask, 150 ml",
+      "slug": "aichun-beauty-honey-green-tea-yellow-clay-mask-50-ml",
+      "description": "The clay mask can nourish fine pores, regulate the balance of water and oil, suck out blackheads, and deeply cleanse grease and dirt. The internal absorption force penetrates deep into the pores to absorb dirt, and the external absorption force restores the skin's smoothness. Adjust water and oil balance, moisturize and lock moisture, brighten skin, and repair keratin. Concentrate on replenishing skin moisture, keeping skin bright, silky and elastic, making it more supple. The mud mask does not ",
+      "price": 1170,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-09-07T161519.068.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aichun-beauty",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "AICHUN-BEAUTY-HONEY-",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Aichun Beauty Argan Oil & Bamboo Charcoal Black Clay Mask, 150 ml",
+      "slug": "aichun-beauty-argan-oil-bamboo-charcoal-black-clay-mask-150-ml",
+      "description": "The clay mask can nourish fine pores, regulate the balance of water and oil, suck out blackheads, and deeply cleanse grease and dirt. The internal absorption force penetrates deep into the pores to absorb dirt, and the external absorption force restores the skin's smoothness. Adjust water and oil balance, moisturize and lock moisture, brighten skin, and repair keratin. Concentrate on replenishing skin moisture, keeping skin bright, silky and elastic, making it more supple. The mud mask does not ",
+      "price": 1170,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-09-07T160729.920.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aichun-beauty",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "AICHUN-BEAUTY-ARGAN-",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Anexa Anti Dandruff & Hair Fall Shampoo, 100 ml",
+      "slug": "anexa-anti-dandruff-hair-fall-shampoo-100-ml",
+      "description": "Makes hair healthier and stronger. Makes hair soft and manageable. Indicated For: Dandruff & flaky scalp Suitable for dry hairs Added conditioner Provides a shiny & silky feel Disclaimer: Before using a new cosmetic product, test a small area of your skin. Check the ingredients to avoid a reaction if you have a specific allergy or sensitivity. Always read the warning labels and directions on the package before using any cosmetic products.",
+      "price": 867,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/dkas.webp"
+      ],
+      "categorySlug": "hair-care",
+      "brandSlug": "anexa",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ANEXA-ANTI-DANDRUFF-",
+      "weight": null,
+      "tags": [
+        "Hair Care"
+      ]
+    },
+    {
+      "name": "ANUA Peach 70% Niacinamide Serum",
+      "slug": "anua-niacinamide-10-txa-4-serum-30ml-copy",
+      "description": "Shaheen Chemist introduces the ANUA Peach 70% Niacinamide Serum , a luxurious brightening and hydrating solution that combines the natural goodness of 70% peach fruit extract with the skin-loving benefits of niacinamide . Designed for men and women who struggle with dullness, uneven tone, enlarged pores, and dehydration , this lightweight serum absorbs quickly into the skin, leaving it refreshed, radiant, and plump . Niacinamide, also known as Vitamin B3 , is a multi-tasking skincare hero that h",
+      "price": 7695,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/ANUA_Peach_70_Niacinamide_Serum_30ml.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "anua",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "ANUA-NIACINAMIDE-10-",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "ANUA Niacinamide 10 TXA 4 Serum, 30ml",
+      "slug": "anua-niacinamide-10-txa-4-serum-30ml",
+      "description": "Shaheen Chemist presents the ANUA Niacinamide 10 TXA 4 Serum, 30ml , a high-performance brightening serum designed to target dark spots, uneven skin tone, enlarged pores, and dullness . This dermatologist-tested serum blends 10% niacinamide with 4% tranexamic acid (TXA) , two clinically proven ingredients for tackling pigmentation, post-acne scars, and discoloration, while promoting smoother and clearer-looking skin. Niacinamide (Vitamin B3) is widely praised in skincare for its multifunctional ",
+      "price": 7695,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/ANUA_Peach_70_Niacinamide_Serum.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "anua",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ANUA-NIACINAMIDE-10-",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "ANUA Peach 77 Niacin Essence Toner",
+      "slug": "anua-peach-77-niacin-essence-toner",
+      "description": "Shaheen Chemist brings you the ANUA Peach 77 Niacin Essence Toner , a refreshing and multi-tasking toner enriched with 77% peach extract and niacinamide . This Korean skincare essential is designed to hydrate, brighten, refine pores, and improve overall skin texture while preparing the skin for the next steps of your skincare routine. Unlike ordinary toners that only remove residue, this essence toner acts as both a hydrating toner and a brightening essence , delivering deep nourishment while ba",
+      "price": 8245,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/ANUA_Niacinamide_10_TXA_4_Serum_30ml.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "anua",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ANUA-PEACH-77-NIACIN",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "ANUA Heartleaf 77% Soothing Toner",
+      "slug": "anua-heartleaf-77-soothing-toner",
+      "description": "Shaheen Chemist brings you the ANUA Heartleaf 77% Soothing Toner , a gentle yet powerful Korean skincare essential designed to calm irritation, hydrate deeply, and rebalance the skin’s natural barrier. Infused with 77% heartleaf extract (Houttuynia Cordata) , this toner is perfect for sensitive, acne-prone, and combination skin types that need daily soothing and oil-control care. Unlike harsh toners that strip the skin, the ANUA Heartleaf Toner offers a lightweight, refreshing formula that insta",
+      "price": 7695,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/ANUA_Niacinamide_10_TXA_4_Serum.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "anua",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ANUA-HEARTLEAF-77-SO",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "ANUA Heartleaf Quercetinol Pore Deep Cleansing Foam",
+      "slug": "anua-heartleaf-pore-control-cleansing-oil-copy",
+      "description": "Shaheen Chemist introduces the ANUA Heartleaf Quercetinol Pore Deep Cleansing Foam , a Korean skincare essential crafted for deep yet gentle cleansing. Infused with heartleaf extract (Houttuynia Cordata) and enriched with Quercetinol , this foaming cleanser removes impurities, excess oil, and makeup residue while keeping skin calm and hydrated. Unlike harsh cleansers that strip away natural moisture, ANUA’s pore foam delivers a refreshing clean without tightness. Its rich, fine lather penetrates",
+      "price": 7695,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/ANUA_Peach_77_Niacin_Essence_Toner.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "anua",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ANUA-HEARTLEAF-PORE-",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "ANUA Heartleaf Pore Control Cleansing Oil",
+      "slug": "anua-heartleaf-pore-control-cleansing-oil",
+      "description": "Shaheen Chemist presents the ANUA Heartleaf Pore Control Cleansing Oil, 200ml , a lightweight yet powerful cleansing oil designed to deeply clean pores, remove makeup, and balance oily or combination skin. Enriched with 77% Heartleaf extract , this gentle formula not only dissolves impurities but also calms sensitive skin, reduces redness, and supports a healthier skin barrier. Unlike harsh cleansers that strip away natural oils, the ANUA Heartleaf Cleansing Oil maintains hydration while control",
+      "price": 7695,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/ANUA_77_Niacin_Essence_Toner.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "anua",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ANUA-HEARTLEAF-PORE-",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Aptamil First Infant Milk Stage 1 – 800g | Baby Formula",
+      "slug": "aptamil®-first-infant-milk-800g",
+      "description": "Aptamil® First Infant Milk Stage 1 is a premium baby formula trusted by parents across Pakistan for complete newborn nutrition. Specially developed for babies from birth to 12 months, this formula is ideal for infants who are not breastfed or are combination fed. With over 50 years of research behind it, Aptamil® provides a scientifically balanced blend of nutrients, including prebiotics and DHA, to support your baby's immune system, brain development, and digestive health. Whether you're search",
+      "price": 9099,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-08-26T164919.038.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "aptamil",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "APTAMIL®-FIRST-INFAN",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Baby Food",
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Aptamil® Follow On Milk Stage 2, 800 g",
+      "slug": "aptamil®-follow-on-milk-800g-stage-2",
+      "description": "As your baby enters the exciting stage of weaning (6-12 months), their nutritional needs change. Aptamil® Follow On Milk Stage 2 is scientifically designed by Nutricia's experts, leveraging over 50 years of research inspired by breast milk, to support your baby's development alongside their first solid foods. Available in Pakistan, Aptamil® Stage 2 is tailored to complement a mixed diet, providing key nutrients for this important growth phase. Why Choose Aptamil® Follow On Milk Stage 2? Scientif",
+      "price": 9100,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-08-26T165027.923.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "aptamil",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "APTAMIL®-FOLLOW-ON-M",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Baby Food",
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Aptamil® Toddler Milk Stage 3, 800 g",
+      "slug": "aptamil®-toddler-milk-800g-stage-3",
+      "description": "As your child transitions into the active toddler years (typically aged 1 to 3), their nutritional needs continue to grow. Aptamil® Toddler Milk Stage 3, in this commonly available 800g tin across Pakistan, is a specialized growing-up milk designed to supplement their varied diet and provide key nutrients essential for their development during this busy phase of exploration and learning. Developed by Nutricia, with over 40 years of pioneering research in early life science, Aptamil is a trusted ",
+      "price": 9100,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-08-26T165132.507.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "aptamil",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "APTAMIL®-TODDLER-MIL",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Baby Food",
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Aptamil Advance Junior 3 Growing Up Formula, 900g",
+      "slug": "aptamil-advance-3-infant-formula-900g-copy-1",
+      "description": "As your child transitions into the active toddler years (typically aged 1 to 3), their nutritional needs continue to grow. Aptamil Advance Junior 3 Growing Up Formula, in this commonly available 900g tin across Pakistan, is a specialized growing-up milk designed to supplement their varied diet and provide key nutrients essential for their development during this busy phase of exploration and learning. Developed by Nutricia, with over 40 years of pioneering research in early life science, Aptamil",
+      "price": 7399,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-08-26T165107.072.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "APTAMIL-ADVANCE-3-IN",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Aptamil Advance 2 Follow On Formula, 900g",
+      "slug": "aptamil-advance-1-infant-formula-900g-copy",
+      "description": "As your baby enters the exciting stage of weaning (6-12 months), their nutritional needs change. Aptamil® Advance Follow On Milk Stage 2 is scientifically designed by Nutricia's experts, leveraging over 50 years of research inspired by breast milk, to support your baby's development alongside their first solid foods. Available in Pakistan, Aptamil® Advance Stage 2 is tailored to complement a mixed diet, providing key nutrients for this important growth phase. Why Choose Aptamil® Advance Follow O",
+      "price": 7399,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-08-26T165529.127.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "aptamil",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "APTAMIL-ADVANCE-1-IN",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Aptamil Advance 1 Infant Formula, 900g",
+      "slug": "aptamil-advance-1-infant-formula-900g",
+      "description": "From 0 - 6 months Aptamil Advance 1 is a scientifically advanced patented next generation formulation based on 40 years of research inspired by babys needs. Whether you're searching for baby milk powder for newborns in Pakistan or looking for 9 00g infant formula at the best price , Aptamil is a trusted choice for early-stage infant feeding. Key Features Complete Nutrition from Birth – Aptamil® Stage 1 is suitable as a sole food source from birth to 6 months, and part of a weaning diet up to 12 ",
+      "price": 7399,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-08-26T165609.305.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "APTAMIL-ADVANCE-1-IN",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Armani Eau Pour Homme Men's Perfume, 100 ml",
+      "slug": "armani-eau-pour-homme-mens-perfume-100-ml",
+      "description": "In revealing Eau pour Homme in 1984, Giorgio Armani offered a men's fragrance perfectly in tune with his creative philosophy. The bottle, with its rounded shoulders and masculine architecture, is the visual embodiment of what it contains. At the heart of the cologne lies a timeless fragrance in a purely Italian, classic style, in which Giorgio Armani has infused a hint of nonchalance, a spontaneous freshness, and warm, calm, virility. The formula was perfectly conceived, winning over three gener",
+      "price": 19890,
+      "comparePrice": 21000,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-09-16T205136.930.png"
+      ],
+      "categorySlug": "fragrance",
+      "brandSlug": "armani",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ARMANI-EAU-POUR-HOMM",
+      "weight": null,
+      "tags": [
+        "Perfume"
+      ]
+    },
+    {
+      "name": "ACQUA DI GIÒ Giorgio Armani Eau de Toilette, 100 ml",
+      "slug": "acqua-di-gio-eau-de-toilette-100-ml",
+      "description": "ACQUA DI GIÒ by Giorgio Armani is a timeless aquatic perfume that defines elegance, freshness, and masculinity. Known globally as one of the best fragrances for men , this Eau de Toilette is a top pick in Pakistan for those who appreciate a clean, invigorating scent that lasts all day. This iconic fragrance opens with crisp citrus notes of bergamot, lime, and mandarin orange, balanced with marine accords and rosemary. As it settles, you’ll notice a warm heart of jasmine, neroli, and nutmeg, anch",
+      "price": 31620,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-09-16T205103.986.png"
+      ],
+      "categorySlug": "fragrance",
+      "brandSlug": "armani",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ACQUA-DI-GIO-EAU-DE-",
+      "weight": null,
+      "tags": [
+        "Perfume"
+      ]
+    },
+    {
+      "name": "AVEENO Positively Radiant Skin Brightening Daily Scrub",
+      "slug": "aveeno-positively-radiant-skin-brightening-daily-scrub",
+      "description": "Unleash your inner radiance with this exfoliating face scrub Reveal a brighter, healthier-looking complexion with this skin-brightening daily scrub. Exfoliate and cleanse with radiance-boosting soy extract and naturally derived granules. Gentle and effective, get ready for smooth, luminous skin! Targets the look of the 5 Factors of Radiance: tone, texture, dullness, blotchiness, and brown spots. Paraben-free, phthalate-free, sulfate-free, dye-free Soap-free, oil-free, hypoallergenic A fragrance ",
+      "price": 3773,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/ave_381370036760_00000f-fr-ca.png?v=1727769563"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aveeno",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "AVEENO-POSITIVELY-RA",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Aveeno Daily Moisturizing Body Lotion Nourishes Normal to Dry Skin, 300 ml",
+      "slug": "aveeno-daily-moisturizing-body-lotion-nourishes-normal-to-dry-skin-300-ml",
+      "description": "Aveeno Daily Moisturizing Body Lotion for normal to dry skin is a dermatologist-recommended formula designed to nourish and protect your skin. Enriched with natural oatmeal, this lotion helps to replenish the skin's moisture barrier, providing 24-hour hydration. Its non-greasy, fast-absorbing formula leaves the skin feeling soft, smooth, and healthy-looking. Suitable for everyday use, this fragrance-free lotion is gentle enough for sensitive skin and is clinically proven to improve skin health i",
+      "price": 2601,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/381371181919.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aveeno",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "AVEENO-DAILY-MOISTUR",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Aveeno Daily Moisturizing Yogurt Body Cream, 300 ml",
+      "slug": "aveeno-daily-moisturizing-yogurt-body-cream-300-ml",
+      "description": "Aveeno Daily Moisturizing Yogurt Body Cream Apricot & Honey is a body moisturizer that replenishes the skin of the body with comfort and hydration. The texture is both rich and creamy, ideal to revitalize normal to dry skin types. Deeply moisturizing and pleasant to apply, this body cream is ideal to promote healthy and resilient skin. The formula contains prebiotic colloidal oatmeal together with probiotic Greek yogurt in order to replenish the natural balance of the skin. Each application leav",
+      "price": 2601,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/ave_381370036760_00000f-fr-ca.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aveeno",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "AVEENO-DAILY-MOISTUR",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "AVEENO Daily Moisturising Yogurt Body Cream Vanilla & Oat, 300 ml",
+      "slug": "aveeno-daily-moisturising-yogurt-body-cream-vanilla-oat-300-ml",
+      "description": "24-Hour Moisturisation: Aveeno Daily Moisturising Yogurt Body Cream is clinically proven to moisturize. Vanilla & Oat Fragrance: Delicious-smelling vanilla and oat fragrance. Dermatologist Tested: Reinforces the skin's natural barrier and improves its natural balance for healthy-looking and more resilient skin from the first use. Aveeno Daily Moisturising Yogurt Body Cream revitalizes normal to dry skin. Rich Formula: A rich and creamy formula that saturates your body with nourishing moisture.",
+      "price": 2601,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/381371181919.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aveeno",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "AVEENO-DAILY-MOISTUR",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Aveeno Skin Relief Overnight Cream, 207 g",
+      "slug": "aveeno-skin-relief-overnight-cream-207-g",
+      "description": "Treat your skin to a new nightly ritual. Made with Triple Oat Complex and Natural Shea butter, this overnight body cream soothes itchy, dry skin, while the dimethicone skin protectant helps protect against the drying effects of wind and cold weather, restoring moisture to help relieve chafed, chapped, or cracked skin. Simply apply before bed for nighttime soothing relief. Intensely nourishing overnight body cream for itchy, very dry skin Made with Triple Oat Complex & Shea Butter Fragrance-free,",
+      "price": 5355,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/231ab82d3599ece78aebb31fb683da7a.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aveeno",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "AVEENO-SKIN-RELIEF-O",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Aveeno Skin Relief Moisturizing Lotion, 227 g",
+      "slug": "aveeno-skin-relief-moisturizing-227-g",
+      "description": "Moisturizing lotion provides relief for sensitive or itchy, extra-dry skin Moisturizes for a full 24 hours to provide long-lasting moisturization Contains Active Naturals Triple Oat Complex and natural shea butter The dermatologist-recommended lotion is clinically shown to relieve and soothe skin Formula is fragrance-free, steroid-free, and gentle enough for use on sensitive skin Disclaimer: Before using a new cosmetic product, test a small area of your skin. Check the ingredients to avoid a rea",
+      "price": 3725,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/newnewn.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aveeno",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "AVEENO-SKIN-RELIEF-M",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Aveeno Skin Relief Moisturizing Lotion, 532 ml",
+      "slug": "aveeno-skin-relief-moisturizing-lotion-532-ml",
+      "description": "Moisturize very dry skin with this fragrance-free lotion with a triple oat & shea butter formula. The lotion provides clinically proven soothing relief for itchy, dry skin with 48-hour moisture. Moisturizing Dimethicone skin protectant Unscented lotion for extra-dry, itchy skin Soothing Triple Oat & Shea Butter formula Disclaimer: Before using a new cosmetic product, test a small area of your skin. Check the ingredients to avoid a reaction if you have a specific allergy or sensitivity. Always re",
+      "price": 5710,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/9adbbfd106c5476c55652df8330ae5ea.jpg"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aveeno",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "AVEENO-SKIN-RELIEF-M",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Aveeno Brightening Face Scrub, 140 g",
+      "slug": "aveeno-brightening-scrub-140-g",
+      "description": "Reveal radiant skin & improve skin tone & texture with this brightening & exfoliating daily face scrub. With rich soy extract, the oil- & soap-free facial cleanser is hypoallergenic & non-comedogenic. Skin brightening & exfoliating facial scrub Reveal radiant skin & improve tone & texture Hypoallergenic, soap-free with soy extract Good For All Skin Types Disclaimer: Before using a new cosmetic product, test a small area of your skin. Check the ingredients to avoid a reaction if you have a specif",
+      "price": 3775,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/amen.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aveeno",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "AVEENO-BRIGHTENING-S",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Positively Radiant Clear Complexion Foaming Facial Cleanser Oil-Free, 177 ml",
+      "slug": "positively-radiant-clear-complexion-foaming-facial-cleanser-oil-free-177-ml",
+      "description": "This gentle foaming facial cleanser for acne-prone skin with 0.5% salicylic acid & soy extracts visibly improves skin tone & texture revealing brighter skin. Oil-free daily foaming acne facial cleanser Salicylic acid treatment for acne-prone skin Formula helps improve skin’s tone & texture Good for: Acne-prone skin Texture: Gentle foaming cleanser",
+      "price": 3876,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/ksior.jpg"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aveeno",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "POSITIVELY-RADIANT-C",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "AVEENO Daily Moisturising Creamy Oil, 300 ml",
+      "slug": "aveeno-daily-moisturising-creamy-oil-300-ml",
+      "description": "24-Hour Moisturisation: Aveeno Daily Moisturising Creamy Oil provides 24-Hour moisturisation to help prevent, protect, and nourish dry skin. Clinically proven to nourish & smooth skin: gives you more resilient skin from day 1. Dermatologist tested. Formulated with nourishing oat and sweet almond oil and clinically proven to soften, and smooth skin. Suitable for Sensitive Skin: It can be used on normal to dry skin. Can be used on body & face: Aveeno Daily Moisturising Creamy Oil can be used on th",
+      "price": 2601,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/shagirf.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aveeno",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "AVEENO-DAILY-MOISTUR",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Aveeno Stress Relief Moisturizing Lotion, 354 ml",
+      "slug": "aveeno-stress-relief-moisturizing-lotion-354-ml",
+      "description": "Relaxing scent in a moisturizing lotion Keep your skin in check with a lavendar scented body lotion designed to help relax the senses. Specially formulated with a moisturizing oat formula, this soothing lotion harnesses the relaxing scents of lavender, chamomile and ylang-ylang essential oils to help calm and relax as you massage it into your skin. Non-GMO oats, non-comedogenic, non-greasy formula Paraben free, dye free Formulated for sensitive skin Bottle made with 30% Post-Consumer Recycled Pl",
+      "price": 4690,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/resp.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aveeno",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "AVEENO-STRESS-RELIEF",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Aveeno Daily Moisturizing Lotion, 532 ml",
+      "slug": "aveeno-daily-moisturizing-lotion-532-ml",
+      "description": "Nourish normal to dry sensitive skin with AVEENO ® Daily Moisturizing Lotion which is formulated with Prebiotic Colloidal Oatmeal and rich emollients. It is clinically proven to provide long-lasting hydration for 48 hours*, and absorbs quickly, leaving your skin soft, beautiful, and healthy-looking. • Hydrates and protects skin barrier • Daily lotion nourishes normal + dry sensitive skin with moisture • Fragrance-free, non-greasy & non-comedogenic Disclaimer: Before using a new cosmetic product,",
+      "price": 2749,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/resgd.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aveeno",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "AVEENO-DAILY-MOISTUR",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Aveeno Creamy Oil Moisturizer, 354 ml",
+      "slug": "aveeno-creamy-oil-moisturizer-354-ml",
+      "description": "Nourish dry skin with 24 hours of moisture. This lightly scented, non-greasy creamy oil body moisturizer is formulated with oat and almond oil, and nourishes dry skin, leaving it feeling silky smooth and soft. Creamy oil body moisturizer for dry skin Nourishes dry skin with 24 hours of moisture Non-greasy formula with oat & almond oil Disclaimer: Before using a new cosmetic product, test a small area of your skin. Check the ingredients to avoid a reaction if you have a specific allergy or sensit",
+      "price": 4690,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/paid.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aveeno",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "AVEENO-CREAMY-OIL-MO",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Aveeno Baby Eczema Therapy Moisturizing Cream, 141 g",
+      "slug": "aveeno-baby-eczema-therapy-moisturizing-cream-141-g",
+      "description": "Clinically proven to provide baby's sensitive skin with long-lasting relief from irritated, itchy skin due to eczema, this hypoallergenic cream is made with Aveeno ® Baby’s triple oat complex with oat extract, colloidal oatmeal and oat oil. It intensely moisturizes for 24 hours and helps prevent dry skin. Enriched with oat and vitamin B5 to help protect and strengthen skin's moisture barrier. Formulated without steroids, parabens, phthalates or fragrances. Brand recommended by Pediatricians and ",
+      "price": 4699,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/ave_381370036913_us_clear_complexion_foaming_cleanser_6oz_00000-en-us.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "aveeno",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "AVEENO-BABY-ECZEMA-T",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Axe Phoenix Antiperspirant Deodorant Stick, 76 g",
+      "slug": "axe-phoenix-antiperspirant-deodorant-stick",
+      "description": "When every new day brings a fresh opportunity, you need an antiperspirant that rises above the competition. With 48-hour anti-sweat protection, AXE Phoenix Antiperspirant Deodorant Stick keeps you dry and confident. Turn up the heat and let the revitalizing scent of crushed mint & energizing rosemary keep you fresh way into the night. Same invigorating AXE Phoenix scent fragrance, fresh new look. But what’s on the inside matters too. Bust odor and smell fresh for 48 hours with our first dual-act",
+      "price": 1070,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-07-18T145942.926.png"
+      ],
+      "categorySlug": "fragrance",
+      "brandSlug": "axe",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "AXE-PHOENIX-ANTIPERS",
+      "weight": null,
+      "tags": [
+        "deodorants",
+        "Perfume",
+        "Roll On"
+      ]
+    },
+    {
+      "name": "Axe Black Body Wash, 473 ml",
+      "slug": "axe-black-body-wash",
+      "description": "??unilever:product-attributes/retailerproductdata/retailer1VOTEcommerceTitle,unilever:product-attributes/productdata/productName@@ ' data-mce-style='-webkit-font-smoothing: antialiased; box-sizing: border-box;'> ??unilever:product-attributes/retailerproductdata/retailerProductDescription,unilever:product-attributes/productdata/productDescription@@&nbsp; ' class='product-info-item__item' style='-webkit-font-smoothing: antialiased; box-sizing: border-box;'> Feel refreshed and on your game for 12 h",
+      "price": 1529,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/AxeBlackBodyWashback.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "axe",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "AXE-BLACK-BODY-WASH",
+      "weight": null,
+      "tags": [
+        "AXE",
+        "Body Wash"
+      ]
+    },
+    {
+      "name": "Axe Excite Body Wash, 473 ml",
+      "slug": "axe-excite-body-wash",
+      "description": "??unilever:product-attributes/retailerproductdata/retailer1VOTEcommerceTitle,unilever:product-attributes/productdata/productName@@ ' class='product-info-item__item' style='-webkit-font-smoothing: antialiased; box-sizing: border-box;' data-mce-style='-webkit-font-smoothing: antialiased; box-sizing: border-box;'> A crisp coconut & black pepper butterflies-in-your-belly fragrance, AXE Excite Body Wash washes away odor and keeps you refreshed for 12 hours. With plant-based moisturizers. ??unilever:p",
+      "price": 1529,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/AxeBlackBodyWashfront.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "axe",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "AXE-EXCITE-BODY-WASH",
+      "weight": null,
+      "tags": [
+        "AXE",
+        "Body Wash"
+      ]
+    },
+    {
+      "name": "Axe Kilo Body Wash, 473 ml",
+      "slug": "axe-kilo-body-wash",
+      "description": "??unilever:product-attributes/retailerproductdata/retailer1VOTEcommerceTitle,unilever:product-attributes/productdata/productName@@ ' class='product-info-item__item' style='-webkit-font-smoothing: antialiased; box-sizing: border-box;'> ??unilever:product-attributes/retailerproductdata/retailerProductDescription,unilever:product-attributes/productdata/productDescription@@&nbsp; ' class='product-info-item__item' style='-webkit-font-smoothing: antialiased; box-sizing: border-box;'> AXE Kilo Body Was",
+      "price": 1529,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/AxeExciteBodyWashfront.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "axe",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "AXE-KILO-BODY-WASH",
+      "weight": null,
+      "tags": [
+        "AXE",
+        "Body Wash"
+      ]
+    },
+    {
+      "name": "Axe Dark Temptation Dark Chocolate Body Wash, 473 ml",
+      "slug": "axe-dark-temptation-dark-chocolate-12h-refreshing-scent-body-wash-473-ml",
+      "description": "All new and upgraded Axe Dark Temptation Body Wash for men Add to your skincare regimen to wash away odour and smell refreshed with our first dual-action body wash Recharge your skincare routine with the enticing, refreshing scent of dark chocolate. Smell refreshed for 12 hours. Dermatologically tested formula with no parabens Squeeze out Axe men's body wash. Lather on. Rinse off. Feel clean. Smell great Bottle made from 100 % recycled plastic for sustainable skin care, formula made with 100 % p",
+      "price": 1530,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/AxeExciteBodyWashback.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "axe",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "AXE-DARK-TEMPTATION-",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Axe Apollo Sage & Cedarwood Body Wash, 473 ml",
+      "slug": "axe-apollo-sage-cedarwood-12h-refreshing-scent-body-wash-473-ml",
+      "description": "All NEW and upgraded AXE Apollo body wash for men Add to your skincare regimen to wash away odor and smell refreshed with our first Dual Action men's shower gel Recharge your skincare routine with an iconic combo of fresh sage and cedarwood scent men's Body Wash. Smell refreshed for 12 hours. Dermatologically tested shower gel Squeeze out AXE Body Wash Gel. Lather on. Rinse off. Feel clean. Smell great Bottle made from 100% recycled plastic for sustainable skincare, formula made with 100% plant-",
+      "price": 1050,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/AxeKiloBodyWashfront.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "axe",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "AXE-APOLLO-SAGE-CEDA",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Double Milk Baby Cream, 50 g",
+      "slug": "babi-mild-double-milk-baby-cream-50-g",
+      "description": "Babi Mild Double Milk Cream soothes and smooths your baby's face and body. It softens and retains moisture in the best way. Not only does it contain Shea Butter, Vitamin E, but it also contains various flower extracts and fragrances. Upon applying, the clear and refreshing fragrance lasts for a clean baby. It also effectively prevents milk fever and diaper burns. When children go out, it is the most effective way to protect them from the harmful effects of the sun. How to Use: Daily apply lotion",
+      "price": 760,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_15_558ae57c-56f6-4dd6-ad9b-372244b15d2e.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-DOUBLE-MIL",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Double Milk Baby Bar Soap, 75 g",
+      "slug": "babi-mild-double-milk-baby-bar-soap-75-g",
+      "description": "Babi Mild Double Milk Protein Plus soap enriched with Milk Protein and Soy milk protein which gently cleanses your baby's face and body without drying or irritation. The gentle formula is mild enough for use on the most delicate skin. Its rich moisturizing leave your baby's skin feeling smooth and soft. How to Use: Gently apply to baby's skin bath time and rinse off completely. Disclaimer: Before using a new cosmetic product, test a small area of your skin. Check the ingredients to avoid a react",
+      "price": 255,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_20_c43d6659-3c9e-44b0-a72f-829f704b4c4f.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-DOUBLE-MIL",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Ultra Mild Baby Bar Soap, 75 g",
+      "slug": "babi-mild-ultra-mild-bioganik-babybar-soap-75-g",
+      "description": "The Babi Mild Ultra Mild Bioganik Baby Bar Soap offers a gentle yet effective solution for your baby's cleansing needs. The product is made of natural and organic ingredients, including olive oil and vitamins, that are gentle and hypoallergenic. Additionally, the soap contains no artificial fragrances, colors, or chemicals, and is easy on sensitive skin. Enjoy the peace of mind that comes with knowing your baby is getting the best care with our mild soap. How to Use: Gently apply to baby's skin ",
+      "price": 255,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_19_2326acd1-ea1d-48b1-b349-d4f77b409d78.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-ULTRA-MILD",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Ultra Mild Bioganik Baby Cream, 50 g",
+      "slug": "babi-mild-ultra-mild-bioganik-baby-cream-50-g",
+      "description": "Gentle for new born baby and sensitive skin, as well as being x2 milder from nature baby cream. It is formulated with natural plants and world-class certificated (COSMOS) Organic Argan Oil Essence, containing Vitamin E and Fatty Acids. The cream can easily absorb into skin, enhancing the strengths of the skin's barrier, locking in moisturizer and deeply nourishing skin to be soft & smooth. The product is gentle and mild to skin with delicate scent. The bioganik formula ensures that your baby's s",
+      "price": 760,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_17_39b0b4fd-5bca-4e4d-9e99-7ab13617dc5a.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-ULTRA-MILD",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild White Sakura Baby Lotion, 180 ml",
+      "slug": "babi-mild-ultra-mild-white-sakura-baby-lotion-180-ml",
+      "description": "Babi Mild White Sakura Body Lotion is a gentle, moisturizing lotion enriched with the essence of delicate sakura flowers. Specifically formulated for sensitive skin, it provides nourishment and hydration without any harsh chemicals, leaving the skin soft, smooth, and delicately scented. Perfect for both babies and adults with sensitive skin, it offers gentle care and a subtle floral fragrance for everyday use. How to Use: Daily apply lotion to keep skin soft with moisturized. Apply on body. Suit",
+      "price": 930,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_18_cc1cbdb5-e083-476d-9e22-31988a1d51c0.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-ULTRA-MILD",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Ultra Mild Sweet Almond Baby Lotion, 180 ml",
+      "slug": "babi-mild-ultra-mild-sweet-almond-baby-lotion-180-ml",
+      "description": "Light texture, quickly absorbed, not sticky Combining Essence value from Sweet Almond Concentrate Rich in high vitamin E Helps increase and retain moisture in the skin Baby skin is smooth, soft, bouncy, looks healthy, with a subtle fragrance. The best nature for baby. Free from harsh chemicals and alcohols, as well as mineral oil free. How to Use: Daily apply lotion to keep skin soft with moisturized. Apply on body. Suitable for new born baby and sensitive skin. Disclaimer: Before using a new co",
+      "price": 930,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_14_e4701679-de2e-47f1-a7da-38bbd3ea36ab.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-ULTRA-MILD",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Babi Mild Kids Head-to-Toe Wash, 180 ml",
+      "slug": "babi-mild-mild-kids-mr-fruity-head-to-toe-wash-180-ml",
+      "description": "Bathing should be with smiles and laughter, not with tears and whims! So choosing a product that brings both parents and babies joy, is important. Specifically synthesized, the incredibly gentle head to toe bathing product from Babi Mild with a pleasant aroma, is suitable for children and adults with sensitive skin. The pH-neutral formula does not contain aggressive components harmful to children's skin: allergens, parabens, sulfates - therefore it does not irritate the skin, or cause any itchin",
+      "price": 795,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_24_058df7b5-d62d-4004-9deb-52857dd56660.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-MILD-KIDS-",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Double Milk Plus Baby Lotion",
+      "slug": "babi-mild-double-milk-plus-body-lotion-180-ml",
+      "description": "Baby Lotion Double Milk Protein Plus is composed of Milk and Soy milk protein extracts that help to reduce the irritation caused on the skin by unfavorable climatic conditions or by harsh cleansers. Added mixed berries extract gives more moisture. Nourish your skin, cleanse gently, yet effectively lather quickly and rinse easily, leaving your skin soft. How to Use : Smooth over entire body to help soften and moisturize skin. Gently massage the lotion onto your baby’s skin until fully absorbed. A",
+      "price": 928,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_45.png?v=1720538269"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-DOUBLE-MIL",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Babi Mild Sweety Pink Plus Baby Lotion",
+      "slug": "babi-mild-sweety-pink-plus-body-lotion-180-ml",
+      "description": "Babi Mild Sweety Pink Plus Body Lotion is a specially formulated moisturizer designed to provide gentle and effective hydration for your baby’s delicate skin. This body lotion features a unique blend of nourishing ingredients, ensuring your baby's skin stays soft, smooth, and healthy. Cleanse and moisturizes your baby`s skin It contains ingredients from milk and soya milk Smoothens the skin and sooths irritation on your baby`s skin Makes a baby`s skin soft, silky, and healthy. How to Use : Smoot",
+      "price": 928,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_26_bb6fcf9e-b51b-42cc-ac07-2f65f301fc12.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-SWEETY-PIN",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Babi Mild Sweety Pink Plus Baby Bath, 500 ml",
+      "slug": "babi-mild-sweety-pink-plus-baby-bath-500-ml",
+      "description": "Gentle cream bath with long lasting delicately scented and contains natural shea butter oil moisturizer to nourish and soften your baby's skin. Proactive vitamin E provides the skin with necessary moisture as well as antioxidant for intense and nourishing your skin. How to Use: Pour on sponge or your hand, apply to baby’s skin. Rinsing after use. Use under adult supervision. Avoid contact with eyes. For external use only. Do not use on broken skin. Keep out of reach of children. Disclaimer: Befo",
+      "price": 2340,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_25_225e1c85-76ca-43c0-ad1e-c576c1ea6961.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-SWEETY-PIN",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Organic Baby Utensil Cleanser, 600 ml",
+      "slug": "babi-mild-organic-baby-utensil-cleanser-600-ml",
+      "description": "Babi Mild Organic Baby Utensil Cleanser is a gentle, non-toxic solution perfect for cleaning baby bottles and utensils. Certified organic and free from artificial fragrances, it ensures safety for your baby's sensitive skin. Its natural ingredients offer effective protection against germs and bacteria. Keep your baby's utensils clean and protected with Babi Mild. - Contains Organic Chamomile & Honeysuckle Essence - Plant based derived from naturally extracted corn and coconut solids - Effectivel",
+      "price": 1325,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_40_93abbe39-5f92-4646-994e-2b5b22dd8d81.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-ORGANIC-BA",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Feeding Bottle"
+      ]
+    },
+    {
+      "name": "Babi Mild Kids Mild Head-to-Toe Wash, 180 ml",
+      "slug": "babi-mild-kids-mild-head-to-toe-wash-peppa-pig-180-ml",
+      "description": "Bathing should be with smiles and laughter, not with tears and whims! So choosing a product that brings both parents and babies joy, is important. Specifically synthesized, the incredibly gentle head to toe bathing product from Babi Mild with a pleasant aroma, is suitable for children and adults with sensitive skin. The pH-neutral formula does not contain aggressive components harmful to children's skin: allergens, parabens, sulfates - therefore it does not irritate the skin, or cause any itchin",
+      "price": 795,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_39_69235daf-38fa-4d1b-8663-67b9b19732cb.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "BABI-MILD-KIDS-MILD-",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Head & Body Baby Bath, 400 ml",
+      "slug": "babi-mild-bioganik-head-body-baby-bath-380-ml",
+      "description": "Gentle from nature, combining cleaning agents from natural plants, our formula features high-quality organic essences that meet COSMOS and USDA world-class standards, including Argan Oil and Honeysuckle flowers. Rich in Vitamin E and essential fatty acids, it provides moisturization to nourish the skin, keeping it soft, hydrated, and healthy. It rinses off easily, leaving a mild natural fragrance. The pH-balanced formula maintains the skin's natural equilibrium, making it gentle enough for all s",
+      "price": 1175,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_45.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "BABI-MILD-BIOGANIK-H",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Baby Shampoo Gentle & Mild, 180 ml",
+      "slug": "babi-mild-baby-shampoo-gentle-mild-180-ml",
+      "description": "Babi Mild baby shampoo is made from a special combination of ingredients that during normal use will not irritate your baby's delicate skin or eyes. Its tear-free formula makes it suitable for your precious baby. It`s a perfect shampoo for your baby`s delicate hair. Babi Mild baby shampoo is made from a special combination of ingredients that during normal use will not irritate your baby\\'s delicate skin or eyes. Its tear-free formula makes it suitable for your precious baby. It`s a perfect sham",
+      "price": 795,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_44.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-BABY-SHAMP",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care"
+      ]
+    },
+    {
+      "name": "Babi Mild 2-in-1 Organic Baby Shampoo, 400 ml",
+      "slug": "babi-mild-2-in-1-organic-baby-shampoo-380-ml",
+      "description": "Introducing Babi Mild 2-in-1 Organic Baby Shampoo, a gentle and nourishing solution for your little one's hair care needs. This 380ml shampoo is specially formulated for babies, ensuring a mild and organic cleansing experience. The gentle formula is perfect for your baby's delicate scalp, providing a convenient 2-in-1 solution for both shampooing and conditioning. Keep your baby's hair clean, soft, and healthy with this organic baby shampoo. How to Use: Wet child's hair with warm water, gently l",
+      "price": 1529,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_45.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-2-IN-1-ORG",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care"
+      ]
+    },
+    {
+      "name": "Babi Mild White Sakura Organic Baby Bath, 400 ml",
+      "slug": "babi-mild-white-sakura-organic-baby-bath-380-ml",
+      "description": "Head to Toe Baby Bath is formulated with White Sakura Essence and Vitamin E to help protect the skin's natural moisture and maintain a pH balance of 5.5. It is gentle and mild on the skin, leaving a delicate White Sakura scent. This formulation ensures the skin remains moisturized and balanced, making it perfect for daily use. How to Use: Pour on sponge or your hand, apply to baby’s skin. Rinsing after use. Use under adult supervision. Avoid contact with eyes. For external use only. Do not use o",
+      "price": 1175,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_44.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-WHITE-SAKU",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Ultra Mild Bioganik Baby Oil, 100 ml",
+      "slug": "babi-mild-ultra-bioganik-baby-oil-100-ml",
+      "description": "Babi Mild Bioganik Baby Oil is a gentle and organic baby oil specially formulated for delicate infant skin. It's designed to moisturize and protect the skin without any harsh chemicals or additives, making it safe for daily use. The oil is often enriched with natural ingredients like chamomile or calendula to soothe and nourish the skin, providing a gentle and calming experience for your baby. How to Use: Apply daily after baby's bath or during infant massage. A nice, gentle massage with Babi Mi",
+      "price": 665,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_41.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-ULTRA-BIOG",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Kids Anti Bacterial Head-to-Toe Wash, 180 ml",
+      "slug": "babi-mild-kids-anti-bacterial-hand-to-toe-wash-180-ml",
+      "description": "Bathing should be with smiles and laughter, not with tears and whims! So choosing a product that brings both parents and babies joy, is important. Specifically synthesized, the incredibly gentle head to toe bathing product from Babi Mild with a pleasant aroma, is suitable for children and adults with sensitive skin. The pH-neutral formula does not contain aggressive components harmful to children's skin: allergens, parabens, sulfates - therefore it does not irritate the skin, or cause any itchin",
+      "price": 795,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_42.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "BABI-MILD-KIDS-ANTI-",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Ultra Mild White Sakura Head & Body Baby Bath, 180 ml",
+      "slug": "babi-mild-ultra-mild-white-sakura-head-body-baby-bath-180-ml",
+      "description": "Liquid soap for babies to gently cleanse the skin and hair. Combining Essence value from Sakura is white, concentrated and vitamin E, keeps skin moist and maintains the water balance of the skin. A delicate fragrance With essence from concentrated white sakura Vitamin E nourishes the skin and helps restore damaged skin. Protect and reduce the accumulation of bacteria. Passed the Hypoallergenic test Under the control of a dermatologist Free of alcohol, parabens, silicone cleaning agents and color",
+      "price": 795,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitled_design_43.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-ULTRA-MILD",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Ultra Mild White Sakura Baby Powder, 350 g",
+      "slug": "babi-mild-ultra-mild-white-sakura-baby-powder-350-g",
+      "description": "The Baby Powder (Suitable for both adults and children who have sensitive skin) It is soft and soft, mixing the concentration of almonds rich in vitamin E. It nourishes your skin and softens it, bounces, looks, and feels healthy to prevent rash caused by dampness, and does not cause irritation and soft on the skin. How to Use: Pour onto palm and gently pat on the skin. Do not apply to genital area. Avoid contact with opened wound. Discontinued if irritation develops and consults doctor. Disclaim",
+      "price": 970,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_65.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "BABI-MILD-ULTRA-MILD",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Babi Mild Ultra Mild White Sakura Baby Oil, 100 ml",
+      "slug": "babi-mild-ultra-mild-white-sakura-baby-oil-100-ml",
+      "description": "Babi Mild Ultra Mild White Sakura Baby Oil is a gentle and mild baby oil designed to provide nourishment and hydration to your baby’s delicate skin. Enriched with the essence of White Sakura, it may offer a pleasant and mild fragrance. This baby oil is formulated to be ultra-mild, making it suitable for the sensitive skin of babies. It may be used for massages, moisturizing, and promoting a soothing experience for your little one. How to Use: Apply daily after baby's bath or during infant massag",
+      "price": 665,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_66.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-ULTRA-MILD",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Sweet Almond Organic Baby Oil, 100 ml",
+      "slug": "babi-mild-ultra-mild-sweet-almond-organic-baby-oil-100-ml",
+      "description": "Formulated with sweet almond essence & vitamin E. This organic baby oil nourishes & locks in moisture for soft, smooth and bouncy skin. It features a light-stick formulation. Babi Mild's ULTRA MILD formulation is suited for sensitive newborn skin. It plumps, smoothens, and locks in moisture, making baby skin super soft and hydrated. How to Use: Apply daily after baby's bath or during infant massage. A nice, gentle massage with Babi Mild BABY OIL is the perfect post-bath-time ritual because it so",
+      "price": 665,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_63.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-ULTRA-MILD",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Ultra Mild Sweet Almond Baby Whipped Cream, 50 g",
+      "slug": "babi-mild-cream-ultra-mild-sweet-almond-50-g",
+      "description": "Babi Mild Ultra Mild Sweet Almond Baby Whipped Cream Baby Whipped Cream formulated with Sweet Almond Essence that contain Vitamins E to nourish and lock moisture for soft, smooth, and bouncy skin. How to Use: Daily apply lotion to keep skin soft with moisturized. Apply on body. Suitable for new born baby and sensitive skin. Disclaimer: Before using a new cosmetic product, test a small area of your skin. Check the ingredients to avoid a reaction if you have a specific allergy or sensitivity. Alwa",
+      "price": 760,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitled_design_64.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "BABI-MILD-CREAM-ULTR",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Relaxing Lavender Head & Body Baby Bath, 180 ml",
+      "slug": "babi-mildm-ultra-ild-relaxing-lavender-head-body-baby-bath-200-ml",
+      "description": "Babi Mild Ultra Mild Relaxing Lavender Head & Body Baby Bath is specially formulated to provide a gentle and calming bathing experience for your baby. With its soothing lavender fragrance, this product helps to relax and comfort your baby, making bath time a peaceful and enjoyable experience. Gentle Cleansing : This head and body baby bath is designed to gently cleanse your baby's delicate skin and hair without causing dryness or irritation. Relaxing Lavender Scent : Infused with a relaxing lave",
+      "price": 795,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_51.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILDM-ULTRA-ILD",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Ultra Mild Lavender Baby Powder, 350 g",
+      "slug": "babi-mild-ultra-mild-lavender-baby-powder-350-g",
+      "description": "Ultra mild has made from fine natural sterilized talcum, to be safe & gentle on your baby's skin. Wheat Bran Extract formula ”Allantoin” to offer ultra protection from wetness, a cause of rashes. Suitable for babies and adults with sensitive skin. The powder is smooth and gentle on the skin. Richness in Vitamin E results in smooth and soft skin that is healthy. The delicate and natural fragrance is best for babies. How to Use: Pour onto palm and gently pat on the skin. Do not apply to genital ar",
+      "price": 1130,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_52.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-ULTRA-MILD",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Babi Mild Ultra Mild Bioganik Baby Powder, 350 g",
+      "slug": "babi-mild-ultra-mild-bioganik-baby-powder-350-g",
+      "description": "BABI MILD Ultra Mild Bioganik Baby Powder is formulated with organic essences from Argan oil and Olive oil which are rich in essential fatty acids and anti-oxidant to nourish and protect your baby's skin from irritation. - BABI MILD Ultra Mild Bioganik Baby Powder 180 g. - Formulated with organic essences from Argan oil and Olive oil - Rich in essential fatty acids and anti-oxidant - Nourish and protect your baby's skin from irritation - Harsh Chemical-Free, Paraben-Free, Mineral Oil-Free - Hypo",
+      "price": 970,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_67.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "BABI-MILD-ULTRA-MILD",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Babi Mild Ultra Mild Bioganik Baby Lotion",
+      "slug": "babi-mild-ultra-mild-bioganik-baby-lotion-180-ml",
+      "description": "Skincare products bio organic formula (Suitable for newborns and adults with sensitive skin) Light lotion texture, quickly absorbed, not sticky. *With the gentlest formula from Babi Mild that combines the value of natural tenderness x2 from organic essences from 2 natural plants, argan oil, and olive oil. How to Use: Smooth over entire body to help soften and moisturize skin. Gently massage the lotion onto your baby’s skin until fully absorbed. Avoid contact with eyes. If the product gets into t",
+      "price": 928,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitled_design_46.png?v=1720538507"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-ULTRA-MILD",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Babi Mild Sweety Pink  Baby Powder, 350 g",
+      "slug": "babi-mild-sweety-pink-baby-powder-380-g",
+      "description": "Sweety Pink Plus formula Long lasting fragrance with valuable scents from pink flowers Blended with benefits of 100% natural shea butter, which helps to smoothing skin with long lasting sweet scent Increase protective values ​​with Allantoin Dermatological test: passed the irritation test approved by dermatologists How to Use: Pour onto palm and gently pat on the skin. Disclaimer: Before using a new cosmetic product, test a small area of your skin. Check the ingredients to avoid a reaction if yo",
+      "price": 969,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_38_177592c6-8c35-40c8-a3d9-fe3d650c40e6.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "BABI-MILD-SWEETY-PIN",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Babi Mild Organic Head & Body Baby Bath, 400 ml",
+      "slug": "babi-mild-happy-sunshine-organic-head-body-baby-bath-380-ml",
+      "description": "Guaranteed mildness from the No.1 bestselling brand in baby liquid soap, Babi Mild. Babi Mild Happy Sunshine Organic Head & Body Baby Bath offers gentle and clean bathing with a fresh scent. Utilizing Happy Scent Fragrance Technology, it fills each day with happiness. This product features 100% organic argan oil and plant-based cleaning agents and is free from harmful chemicals. Ranked as the No.1 bestselling brand in baby liquid soap within 36 months ending September 2021 by NielsenIQ. For exte",
+      "price": 1275,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/143.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-HAPPY-SUNS",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Organic Head & Body Baby Bath, 180 ml",
+      "slug": "babi-mild-happy-sunshine-organic-head-body-baby-bath-180-ml",
+      "description": "Guaranteed mildness from the No.1 bestselling brand in baby liquid soap, Babi Mild. Babi Mild Happy Sunshine Organic Head & Body Baby Bath offers gentle and clean bathing with a fresh scent. Utilizing Happy Scent Fragrance Technology, itlls each day with happiness. This product features 100% organic argan oil and plant-based cleaning agents and is free from harmful chemicals. Ranked as the No.1 bestselling brand in baby liquid soap within 36 months ending September 2021 by NielsenIQ. For externa",
+      "price": 795,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/WhatsAppImage2024-05-23at12.57.18PM.jpg"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-HAPPY-SUNS",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Nestle LACTOGROW 3 Activ Gro, 400g",
+      "slug": "nestle-lactogrow-3-activ-gro-infant-formula-400g",
+      "description": "Suitable for toddlers aged 2 to 5 years DHA and ARA support brain and eye development High in calcium for strong bones and teeth Iron-rich to support cognitive and blood health Includes probiotics to aid digestion and maintain gut health Complete nutritional solution for active and growing toddlers",
+      "price": 1550,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Nestle_LACTOGROW_3_Activ_Gro_400g.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "NESTLE-LACTOGROW-3-A",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Nestle LACTOGEN 2 Activ Gro, 400g",
+      "slug": "nestle-lactogen-2-active-gro-infant-formula-400g",
+      "description": "Formulated for babies aged 6 months to 1 year DHA and ARA support brain and eye development Enriched with iron, calcium, and vitamin D for healthy bones and immune health Specially designed to meet the nutritional needs of growing infants Helps support the digestive system with Probiotic Bifidobacterium",
+      "price": 1550,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Nestle_LACTOGEN_2_Activ_Gro_Infant_Formula_400g.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "NESTLE-LACTOGEN-2-AC",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Nestle LACTOGEN 1 Activ Gro, 400g",
+      "slug": "nestle-lactogen-1-activ-gro-infant-formula-400g",
+      "description": "Suitable for infants from birth to 6 months Enriched with DHA for cognitive development Contains probiotics to support digestion and gut health Provides essential vitamins and minerals for growth Gentle formula designed for easy digestion Made under strict quality standards for infant nutrition",
+      "price": 1650,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Nestle_LACTOGEN_1_Activ_Gro_Infant_Formula_400g.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "NESTLE-LACTOGEN-1-AC",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Kendamil Organic Toddler Milk 12+ Months, 800g",
+      "slug": "kendamil-organic-toddler-milk-12-months-800g",
+      "description": "Give your toddler the very best start with Kendamil Organic Toddler Milk (Stage 3) , specially designed for children 12 months and above . Proudly 100% British-made , this organic formula is crafted with whole milk nutrients, plant-based DHA, and 3’-GL , providing natural goodness without palm oil, fish oil, or cheap additives. Kendamil believes in keeping things simple and pure—supporting your little one’s growth, development, and healthy transition from infant formula or breastfeeding. For mor",
+      "price": 14999,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Kendamil_Organic_Organic_Toddler_Milk_12_Months.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "kendamil",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "KENDAMIL-ORGANIC-TOD",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Kendamil Goat Goat Toddler Milk 12+ Months, 800g",
+      "slug": "kendamil-goat-toddler-milk-12-months-800g",
+      "description": "Give your toddler the gentle care of Kendamil Goat Toddler Milk (Stage 3), made with the finest whole A2 goat milk, goat whey, plant-based DHA, and GOS prebiotics. With over 60 years of expertise in infant nutrition, Kendamil has developed a unique formula that is both nourishing and gentle on your child’s tummy. Free from palm oil, fish oil, maltodextrin, and artificial additives, this toddler milk is a vegetarian-friendly choice designed for children 12 months and above. Discover more premium ",
+      "price": 14999,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Kendamil_Organic_Organic_Toddler_Milk_12_Months_800g.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "kendamil",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "KENDAMIL-GOAT-TODDLE",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Kendamil Goat Follow-On Milk 6 - 12 Months, 800g",
+      "slug": "kendamil-goat-follow-on-milk-6-12-months-800g",
+      "description": "The Kendamil Goat Follow-On Milk (Stage 2) is crafted to be one of the most advanced goat milk formulas available. With over 60 years of expertise in infant nutrition , Kendamil combines the finest natural ingredients to create a follow-on formula that is as gentle as your baby. Made with creamy Whole A2 Goat Milk, Goat Whey, Plant-Based DHA, and GOS prebiotics , it is designed to support healthy growth and development between 6 to 12 months . Kendamil proudly avoids palm oil, fish oil, maltodex",
+      "price": 14999,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Kendamil_Goat_Goat_Toddler_Milk_12_Months_800g.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "kendamil",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "KENDAMIL-GOAT-FOLLOW",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Kendamil Goat First Infant Milk 0 - 6 Months, 800g",
+      "slug": "kendamil-goat-first-infant-milk-0-6-months-800g",
+      "description": "The Kendamil Goat First Infant Milk (Stage 1) is carefully crafted to be one of the most advanced goat milk infant formulas available. With over 60 years of expertise in infant nutrition , Kendamil combines the highest quality natural ingredients to develop a formula that is as gentle as your baby. Made with creamy Whole A2 Goat Milk and Goat Whey , this Stage 1 infant formula is designed to provide complete nutrition for babies from birth to 6 months. Kendamil proudly avoids palm oil, fish oil,",
+      "price": 14999,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Kendamil_Goat_Goat_Toddler_Milk_12_Months.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "kendamil",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "KENDAMIL-GOAT-FIRST-",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Kendamil Organic First Infant Milk 0 - 6 Months, 800g",
+      "slug": "kendamil-organic-first-infant-milk-0-6-months-800g",
+      "description": "The Kendamil Organic First Infant Milk (Stage 1) is made with the very best of nature, offering your baby a pure and gentle start in life. As the UK’s only infant formula brand to use 100% organic whole milk nutrients , Kendamil ensures every feed is closer to nature. Free from palm oil, fish oil, and artificial additives, this Stage 1 formula is suitable from birth to 6 months , providing complete nutrition for newborns. Proudly 100% British-made , Kendamil Organic First Infant Milk combines sc",
+      "price": 12199,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Kendamil_Goat_Follow-On_Milk_6_-_12_Months_800g.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "kendamil",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "KENDAMIL-ORGANIC-FIR",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Kendamil Classic Toddler Milk 12+ months, 800g",
+      "slug": "kendamil-classic-toddler-milk-12-months-800g",
+      "description": "The Kendamil Classic Toddler Milk (Stage 3) is carefully crafted with over 60 years of infant nutrition expertise. Made using creamy whole milk fats from UK farms , this toddler formula provides essential nutrients for your child’s healthy growth and development. Unlike many other brands, Kendamil is free from palm oil, fish oil, maltodextrin, and cheap additives . Instead, it uses plant-based DHA and natural whole milk goodness, making it both nutritious and vegetarian-friendly . Discover more ",
+      "price": 9350,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Kendamil_Goat_Follow-On_Milk_6_-_12_Months-backside.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "kendamil",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "KENDAMIL-CLASSIC-TOD",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Kendamil Classic Follow-On Milk 6 - 12 months, 800g",
+      "slug": "kendamil-classic-follow-on-milk-6-12-months-800g",
+      "description": "The Kendamil Classic Follow-On Milk (Stage 2) is specially designed for babies aged 6 to 12 months. With over 60 years of expertise in infant nutrition , Kendamil partners with trusted UK farms to craft a gentle, nutritious formula that supports your baby’s growth and development. What makes Kendamil different is its commitment to quality ingredients . This Stage 2 formula is made with creamy whole milk fats, plant-based DHA, and essential vitamins and minerals . It contains no palm oil, fish oi",
+      "price": 9350,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Kendamil_Goat_First_Infant_Milk_0_-_6_Months.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "kendamil",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "KENDAMIL-CLASSIC-FOL",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Kendamil First Infant Milk 0 - 6 months, 800g",
+      "slug": "kendamil-first-infant-milk-0-6-months-800g",
+      "description": "The Kendamil First Infant Milk (Stage 1) is specially designed for newborns from birth up to 6 months. Crafted with care and backed by over 60 years of infant nutrition expertise , Kendamil uses the best of nature to support your baby’s early growth and development. This award-winning formula is made with creamy whole milk fats sourced from UK farms, providing a natural source of energy and essential nutrients. Kendamil contains no palm oil, fish oil, maltodextrin, or cheap additives , making it",
+      "price": 9350,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Kendamil_Goat_First_Infant_Milk_0_-_6_Months_800g.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "kendamil",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "KENDAMIL-FIRST-INFAN",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Nutricia Infatrini Infant Milk Powder, 400g",
+      "slug": "nutricia-infatrini-infant-milk-powder-400g",
+      "description": "Infatrini powder is a supplement with infant formula with high energy content. Indicated to meeting the nutritional needs of infants and children with difficulties, absorption of growth, increased nutritional needs and/or water restriction. Nutritionally complete for children from birth up to 18 months old or 9 kg in weight. Gluten free and sucrose.",
+      "price": 2753,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Kendamil_Classic_Follow-On_Milk_6_-_12_months_800g.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "NUTRICIA-INFATRINI-I",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Nutricia Neocate LCP Infant Formula Powder, 400g",
+      "slug": "nutricia-neocate-lcp-infant-formula-powder-400g",
+      "description": "For the dietary management of infants from birth (0+ months) with cows’ milk allergy, multiple food protein allergy, eosinophilic oesophagitis and other indications where an amino acid-based formula is recommended. Hypoallergenic. Nutritionally complete, suitable as a sole source of nutrition for infants under 1 year. Contains long chain polyunsaturated fatty acids (LCPs) (docosahexaenoic acid (DHA) & arachidonic acid (ARA)). Milk and soy protein free",
+      "price": 5507,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Kendamil_Classic_Follow-On_Milk_6_-_12_months.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "NUTRICIA-NEOCATE-LCP",
+      "weight": null,
+      "tags": [
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Ni-Grow Stage 3 Baby Milk Powder, 400g",
+      "slug": "ni-grow-stage-3-baby-milk-powder-400g",
+      "description": "A milk supplement, formulated with high quality for toddlers. Supports Brain development , for stong bones & teeth and physical growth. Contraindication : It is contraindicated with known hypersensitivity to any component of this product. From 1 years onwards",
+      "price": 2705,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Kendamil_First_Infant_Milk_0_-_6_months_800g.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "NI-GROW-STAGE-3-BABY",
+      "weight": null,
+      "tags": [
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "NI-FU Stage 2 Formula Baby Milk, 400g",
+      "slug": "ni-fu-stage-2-formula-baby-milk-400g",
+      "description": "This formula is designed to provide all the essential macro- and micronutrients that babies need, such as calcium and vitamin D, with added prebiotics for extra digestive health benefits. The formula contains an optimal blend of proteins, carbohydrates, fats, vitamins, and minerals that are specifically tailored to meet the needs of growing infants. It also includes important fatty acids like omega 3s which are essential for brain development in young children. From 6 months to 1 year",
+      "price": 2705,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Kendamil_First_Infant_Milk_0_-_6_months.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "NI-FU-STAGE-2-FORMUL",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Ni-1 Stage 1 Infant Formula Baby Milk Powder, 400g",
+      "slug": "ni-1-stage-1-infant-formula-baby-milk-powder-400g",
+      "description": "NI-1 is a baby milk (dietary supplement) enriched with iron, DHA, ARA, and other healthy ingredients that help in normal growth and brain development. It is a growing up formula with high protein, GOS, and Nucleotides. Moreover, NI-1 contains fiber and probiotics which promote digestion.",
+      "price": 2705,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/abbott-pediasure-chocolate-400g-770925.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "NI-1-STAGE-1-INFANT-",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Ni-Ac Low Lactose Formula Milk Powder, 400g",
+      "slug": "ni-ac-low-lactose-formula-milk-powder-400g",
+      "description": "It is a dietary supplement not organic milk and doesn't alter the importance of breastfeeding. However, it is a good choice for babies as it contains essential vitamins, minerals, amino acids, DHA (docosahexaenoic acid), which help babies in their physical and mental growth.NI-AC infant formula especially created for infants with colic and mild diarrhea. It is a low lactose formula that is enriched with essential nutrients needed for an infant's normal growth and development.",
+      "price": 3010,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/pediasure.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "NI-AC-LOW-LACTOSE-FO",
+      "weight": null,
+      "tags": [
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Skin Aqua Clear White Spf-50 Sunscreen, 25g",
+      "slug": "skin-aqua-clear-white-spf-50-sunscreen-25g",
+      "description": "Shaheen Chemist brings you Skin Aqua Clear White SPF-50 Sunscreen, 25g , a lightweight and non-greasy sunscreen specially formulated to provide high-level sun protection while brightening and moisturizing your skin. With SPF-50 PA+++ , it shields your skin from harmful UVA and UVB rays, preventing sunburn, dark spots, and premature aging. Its clear, fast-absorbing formula is suitable for daily use, leaving your skin soft, hydrated, and visibly radiant. Ideal for men and women looking for effecti",
+      "price": 2055,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Ensure_Milk_Powder_Chocolate_400g.png"
+      ],
+      "categorySlug": "sunscreen",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "SKIN-AQUA-CLEAR-WHIT",
+      "weight": null,
+      "tags": [
+        "Sunscreen"
+      ]
+    },
+    {
+      "name": "Nutrafil Stage 3 Growing Up Formula Powder Milk, 400g",
+      "slug": "nutrafil-stage-3-growing-up-formula-powder-milk-400g",
+      "description": "Nutrafil 3 contains high quality 100% milk protein with positive nitrogen balance which is incredibly important for body muscles. Nutrafil 3 is our most advanced formula with Bifidus + for immunity and brain development in early stages providing nutritional protection . Nutrafil 3 is formulated with bifidus which contains nitrogen and stimulates the growth of Bifidobacterium animalis in the intestine . Bifidus protects your child from intestinal infection and helps prevent the development of unf",
+      "price": 2805,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_19_2c3f6ccc-1c45-4237-976f-2d0e0b0321ed.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "NUTRAFIL-STAGE-3-GRO",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Nutrafil 2 Follow On Formula Powder, 400g",
+      "slug": "nutrafil-2-follow-on-formula-powder-400g",
+      "description": "Nutrafil 2 is formulated with bifidus, which contains nitrogen and stimulates the growth of Bifidobacteria in the intestine. Bifidus protects your child from intestinal infection and helps prevent the development of unfriendly or disease-causing bacteria. Nutrafil 2 contains 100% vegetable fat for maximum fat absorption.",
+      "price": 2805,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Nutricia_Infatrini_Infant_Milk_Powder_400g.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "NUTRAFIL-2-FOLLOW-ON",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Nutrafil Stage 1 Infant Formula Powder, 400g",
+      "slug": "nutrafil-stage-1-infant-formula-powder-400g",
+      "description": "Nutrafil 1 contains a balanced ration of linoleic acid (omega-3) and linoleic acid (omega-6) which are the precursors of DHA and ARA , respectively and vital for cerebral and retinal development . Nutrafil 1 is our most advanced formula with Bifidus + for immunity & brain development in early stages providing nutritional protection . Nutrafil 1 is formulated with formulated with bifidus which contains nitrogen and stimulates the growth of Bifidobacterium",
+      "price": 2805,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Nutricia_Neocate_LCP_Infant_Formula_Powder_400g.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "NUTRAFIL-STAGE-1-INF",
+      "weight": null,
+      "tags": [
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Similac Neosure (for Premature and low birth weight infants), 360g",
+      "slug": "similac-neosure-for-premature-and-low-birth-weight-infants-360g",
+      "description": "Similac Neosure is for premature baby that didn’t get full 9 months in the womb. During her first full year, feed her similac neosure, a nutrient-enriched formula for babies who were born prematurely, and help support her development. Similac Neosure baby milk poweder has to be stored at room temperature in a dry and clean place. After opening the tin , preserve the product in an air - tight container to preserve its freshness and prevent contamination . Do Not refrigerate and avoid exposure to ",
+      "price": 3265,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Ni-Grow_Stage_3_Baby_Milk_Powder_400g.jpg"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "SIMILAC-NEOSURE-FOR-",
+      "weight": null,
+      "tags": [
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Similac Total Comfort 3 (1-3 Years), 360g",
+      "slug": "similac-total-comfort-3-1-3-years-360g",
+      "description": "Similac Total Comfort-3 360 g is a scientifically formulated milk powder, ideal for young children aged 1 year or above. It is specifically designed to keep the changing nutritional needs of a child in mind. Packed with prebiotics, vitamin D, vitamin C & E, and higher levels of calcium, this nutritious powder adequately fulfills your child's physical and mental growth needs. It's an excellent source of protein which helps your child increase muscle mass, a significant developmental milestone of ",
+      "price": 3265,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/NI-FU_Stage_2_Formula_Baby_Milk.jpg"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "SIMILAC-TOTAL-COMFOR",
+      "weight": null,
+      "tags": [
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Similac Total Comfort 2 (6-12 Months), 360 g",
+      "slug": "similac-total-comfort-2-6-12-months-360-g",
+      "description": "Similac Total Comfort 2 is a Low Lactose, Partially Hydrolysed Whey Protein Formula For Infants Aged 6-12 Months. Similac Stage 2 baby milk poweder has to be stored at room temperature in a dry and clean place. After opening the tin , preserve the product in an air - tight container to preserve its freshness and prevent contamination . Do Not refrigerate and avoid exposure to excessive heat.",
+      "price": 3265,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/54_d32d60dc-13d8-4343-ad60-afa5129df587.jpg"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "SIMILAC-TOTAL-COMFOR",
+      "weight": null,
+      "tags": [
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Similac Total Comfort 1 (0-6 Months), 360g",
+      "slug": "similac-total-comfort-1-0-6-months-360g",
+      "description": "Similac Stage 1 Low Lactose, Partially Hydrolysed Whey Protein Formula For Infants Aged 0-6 Months. Similac Stage 1 baby milk poweder has to be stored at room temperature in a dry and clean place. After opening the tin , preserve the product in an air - tight container to preserve its freshness and prevent contamination . Do Not refrigerate and avoid exposure to excessive heat.",
+      "price": 3265,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/55.jpg"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "SIMILAC-TOTAL-COMFOR",
+      "weight": null,
+      "tags": [
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Neolac Rise 3  Growing Up Formula, 400g",
+      "slug": "neolac-rise-3-growing-up-formula-400g",
+      "description": "Neolac Rise 3 Growing-up Formula contains DHA, ARA, probiotics & optimized protein that ensure healthy digestion, and brain development. It helps in the growth of infants providing them with essential nutrition. Neolac 3 baby milk powder has to be stored at room temperature in a dry and clean place. After opening the tin , preserve the product in an air - tight container to preserve its freshness and prevent contamination . Do Not refrigerate and avoid exposure to excessive hea",
+      "price": 2447,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Skin_Aqua_Sunscreen_Clear_White_Spf-50.webp"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "NEOLAC-RISE-3-GROWIN",
+      "weight": null,
+      "tags": [
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Neolac Stage 2 Infant Formula, 400g",
+      "slug": "neolac-2-infant-formula-400g-copy",
+      "description": "Neolac stage 2 baby milk powder is a dietary supplement, suitable for babies of 6-12 months old. It contains DHA, ARA, probiotics, Bifidus with vitamins & minerals that ensure healthy digestion, and brain development. Neolac 2 baby milk powder has to be stored at room temperature in a dry and clean place. After opening the tin , preserve the product in an air - tight container to preserve its freshness and prevent contamination . Do Not refrigerate and avoid exposure to excessive hea",
+      "price": 2447,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_11_60f9ed71-1b88-42bd-b9e6-0a4b53c10765.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "NEOLAC-2-INFANT-FORM",
+      "weight": null,
+      "tags": [
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Neolac 1 Infant Formula, 400g",
+      "slug": "neolac-1-infant-formula-400g",
+      "description": "Neolac stage 1 baby milk powder is a dietary supplement, suitable for babies of 0-6 months old. It contains DHA, ARA, probiotics, Bifidus with vitamins & minerals that ensure healthy digestion, and brain development. Neolac 1 baby milk powder has to be stored at room temperature in a dry and clean place. After opening the tin , preserve the product in an air - tight container to preserve its freshness and prevent contamination . Do Not refrigerate and avoid exposure to excessive hea",
+      "price": 2447,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/lg_000RxjgA6P6nmFeGevzlCaDi1WidV1sdteYN65u5.jpg"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "NEOLAC-1-INFANT-FORM",
+      "weight": null,
+      "tags": [
+        "Powder Milk"
+      ]
+    },
+    {
+      "name": "Sudocrem Antiseptic Nappy Rash Healing Cream",
+      "slug": "sudocrem-antiseptic-nappy-rash-healing-cream",
+      "description": "Shaheen Chemist brings you Sudocrem Antiseptic Nappy Rash Healing Cream , the trusted skincare solution for babies and families across generations. This clinically proven cream is designed to soothe, heal, and protect delicate skin affected by nappy rash, minor burns, eczema, or surface wounds. Formulated with zinc oxide , benzyl alcohol , and lanolin , Sudocrem creates a protective barrier that prevents further irritation while allowing the skin to heal naturally. Its thick, soothing texture en",
+      "price": 1499,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/sudocrem-antiseptic-nappy-rash-healing.png?v=1762259308"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "sudocrem",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "SUDOCREM-ANTISEPTIC-",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Double Milk Protein Plus Baby Powder, 350 g",
+      "slug": "babi-mild-double-milk-protein-plus-baby-powder-180-g",
+      "description": "Babi Mild Double Milk Protein Plus Baby Powder is the perfect choice for parents looking for a gentle, nourishing powder for their babies. Formulated with double milk proteins, it soothes and nourishes delicate skin. Its four-layer protection technology provides maximum comfort and absorption. Suitable for all skin types, this powder is clinically tested to be mild and gentle on your baby's skin. How to Use: Pour onto palm and gently pat on the skin. Do not apply to genital area. Avoid contact w",
+      "price": 970,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_20_c43d6659-3c9e-44b0-a72f-829f704b4c4f.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-DOUBLE-MIL",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Babi Mild Bioganik Head & Body Baby Bath, 180 ml",
+      "slug": "babi-mild-bioganik-head-body-baby-bath-200-ml",
+      "description": "Gentle from nature, combining cleaning agents from natural plants, our formula features high-quality organic essences that meet COSMOS and USDA world-class standards, including Argan Oil and Honeysuckle flowers. Rich in Vitamin E and essential fatty acids, it provides moisturization to nourish the skin, keeping it soft, hydrated, and healthy. It rinses off easily, leaving a mild natural fragrance. The pH-balanced formula maintains the skin's natural equilibrium, making it gentle enough for all s",
+      "price": 795,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_23_0b56c941-949f-4cda-8a79-2b87d2a4cf10.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-BIOGANIK-H",
+      "weight": null,
+      "tags": [
+        "Baby"
+      ]
+    },
+    {
+      "name": "Babi Mild 2-In-1 Baby Shampoo & Conditioner",
+      "slug": "babi-mild-2-in-1-baby-shampoo-conditioner-400-ml",
+      "description": "Babi Mild 2-In-1 Baby Shampoo & Conditioner, 400ml, offers a gentle and nourishing hair care solution for your little one. Specially formulated for babies, this mild and organic product cleanses and conditions your baby's delicate scalp and hair in one easy step. Keep your baby's hair clean, soft, and healthy with Babi Mild's soothing 2-in-1 formula. How to Use: Gently wet your baby's hair with warm water using your hand or a cup. Pour a small amount of Babi Mild 2-In-1 Baby Shampoo & Conditione",
+      "price": 795,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitled_design_62.png?v=1720540704"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-2-IN-1-BAB",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care"
+      ]
+    },
+    {
+      "name": "Babi Mild Baby Shampoo Gentle & Mild, 400 ml",
+      "slug": "babi-mild-baby-shampoo-gentle-mild-200-ml",
+      "description": "Babi Mild baby shampoo is made from a special combination of ingredients that during normal use will not irritate your baby's delicate skin or eyes. Its tear-free formula makes it suitable for your precious baby. It`s a perfect shampoo for your baby`s delicate hair. Babi Mild baby shampoo is made from a special combination of ingredients that during normal use will not irritate your baby\\'s delicate skin or eyes. Its tear-free formula makes it suitable for your precious baby. It`s a perfect sham",
+      "price": 1580,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_30_77878cc7-27d3-4be5-8ee1-95f070acf91d.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "babi-mild",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABI-MILD-BABY-SHAMP",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care"
+      ]
+    },
+    {
+      "name": "Johnson's Happy Berries Baby Cologne, 100 ml",
+      "slug": "johnsons-happy-berries-baby-cologne-100-ml",
+      "description": "Johnson's® Happy Berries Baby Cologne is gentle and delicately scented. For more than 125 years, we have nurtured babies with our mild and gentle products, suitable for both babies and adults. Dermatologist and allergy tested Provides a refreshing sensation after bath Clinically Proven Mild formula How to Use: Step 1: Apply on small areas like neck, behind the ears and forearms of your baby. Step 2: It can also be applied on clothes and on hair by pouring a small amount on a comb first, especial",
+      "price": 665,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_33_bff5553f-7f26-4e00-b914-d8d33e143e0c.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "johnson-s",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "JOHNSONS-HAPPY-BERRI",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Johnson's Slide Baby Cologne, 100 ml",
+      "slug": "johnsons-slide-baby-cologne-100-ml",
+      "description": "Johnson’s® Slide Baby Cologne is gentle and mildly scented. For over 125 years, we've been dedicated to caring for babies. Our mild, gentle products are perfect for both babies and adults. Dermatologist and allergy tested Provides a fresh, after-bath feeling Clinically Proven Mild formula How to Use: Step 1: Apply on small areas like neck, behind the ears and forearms of your baby. Step 2: It can also be applied on clothes and on hair by pouring a small amount on a comb first, especially for you",
+      "price": 665,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_31_19bbc558-c342-4e8f-b051-f1ea7b02cb43.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "johnson-s",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "JOHNSONS-SLIDE-BABY-",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Johnson's Brisa Baby Cologne, 100 ml",
+      "slug": "johnsons-brisa-baby-cologne-100-ml",
+      "description": "Johnson's Brisa Baby Cologne has a soft & light fragrance. •Tested by dermatologists and allergists •provides a fresh feeling after showering •Light formula is clinically proven How to Use: Step 1: Apply on small areas like neck, behind the ears and forearms of your baby. Step 2: It can also be applied on clothes and on hair by pouring a small amount on a comb first, especially for your young baby. Use under adult supervision. Avoid contact with eyes. For external use only. Do not use on broken ",
+      "price": 665,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_32_d4680643-5387-40d6-b0de-4017a1664991.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "johnson-s",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "JOHNSONS-BRISA-BABY-",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Johnson's Morning Dew Baby Cologne, 100 ml",
+      "slug": "johnsons-morning-dew-baby-cologne-100-ml",
+      "description": "Johnson's Morning Dew baby cologne is gentle & mildly scented. We've taken care of babies for over 125 years. Our mild, gentle products, are great for babies and adults too. Dermatologist and allergy tested For a fresh, after-bath feeling Clinically Proven Mild formula How to Use: Step 1: Apply on small areas like neck, behind the ears and forearms of your baby. Step 2: It can also be applied on clothes and on hair by pouring a small amount on a comb first, especially for your young baby. Use un",
+      "price": 665,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitled_design_46.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "johnson-s",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "JOHNSONS-MORNING-DEW",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Johnson's Chamomile 3-In-1 Baby Body Wash, 500 ml",
+      "slug": "johnsons-chamomile-3-in-1-baby-body-wash-500-ml",
+      "description": "Hypoallergenic* and pH balanced. Pediatrician and dermatologist-tested. Free from dyes, alcohol, and sulfates. The No More Tears® formula ensures a tear-free experience, as gentle on the eyes as pure water. With a touch of chamomile extract, Leaves skin feeling healthy. When a baby is born, their skin is at its most delicate. That’s why, over 125 years, we’ve perfected our formulas to be even gentler for everyone. Johnson’s Chamomile Baby 3-in-1 Wash provides gentle cleansing for delicate hands,",
+      "price": 1222,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_47.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "johnson-s",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "JOHNSONS-CHAMOMILE-3",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Johnson's Strength Drops Kids Shampoo, 500 ml",
+      "slug": "johnsons-strength-drops-kids-shampoo-500-ml",
+      "description": "· Hypoallergenic* pH balanced and gentle on the scalp. · Pediatrician and dermatologist-tested. · Free from dyes, parabens, phthalates, sulfates, alcohol, and soap. · NO MORE TEARS® formula is as gentle on the eyes as pure water. · Enriched with Vitamin E to boost hair’s natural strength As your child grows, their hair needs change. Since children's hair and scalp continue developing until around age 12, our haircare range is designed to be gentler than regular adult products while still providi",
+      "price": 1379,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_46.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "johnson-s",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "JOHNSONS-STRENGTH-DR",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care"
+      ]
+    },
+    {
+      "name": "Johnson's Baby Bath, 500 ml",
+      "slug": "johnsons-baby-bath-500-ml",
+      "description": "Our mildest baby bath formula, gently cleanses without drying delicate skin NO MORE TEARS ® formula is as gentle to the eyes as pure water Lathers quickly and rinses easily, leaving baby’s skin clean and feeling healthy Hypoallergenic* and pH balanced Pediatrician and dermatologist-tested Free from dyes, parabens, phthalates, sulphides, alcohol, and soap. Great for kids and adults too! How to Use: For extra fluffy bubbles, pour baby bath under running water while stirring with hands. Disclaimer:",
+      "price": 1245,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_47.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "johnson-s",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "JOHNSONS-BABY-BATH-5",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Essential’s By Johnson’s Baby Wash, 500 ml",
+      "slug": "essential-s-by-johnson-s-baby-wash-500-ml",
+      "description": "The Essentials range by Johnson's is crafted to gently care for delicate baby skin and hair, ensuring they feel their best. Gently cleanses for healthy-looking, soft skin NO MORE TEARS® formula is as gentle on the eyes as pure water Mild cleansing wash Free from parabens, sulfates, and phthalates How to Use: Wet hair and body with warm water, apply wash with hand then gently lather and rinse thoroughly WARNING: Keep out of reach of children. For external use only. Disclaimer: Before using a new ",
+      "price": 1325,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitled_design_46.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "johnson-s",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ESSENTIAL-S-BY-JOHNS",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Johnson's Baby Shampoo, 500 ml",
+      "slug": "johnsons-baby-shampoo-500-ml-1",
+      "description": "JOHNSON'S® Baby Shampoo is as gentle on the eyes as pure water and is specially designed to cleanse your baby’s delicate hair and scalp. It quickly lathers and rinses easily, leaving your baby’s hair soft, shiny, and clean. 3x tested by pediatricians, dermatologists, and ophthalmologists Free from parabens, phthalates, sulfates, dyes, and soap NO MORE TEARS® formula is as gentle on the eyes as pure water Gentle, hypoallergenic, and pH balanced How to Use: Wet your baby's hair with warm water. La",
+      "price": 1650,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_45.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "johnson-s",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "JOHNSONS-BABY-SHAMPO",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care"
+      ]
+    },
+    {
+      "name": "Johnson's Kids Bubble Bath & Wash, 750 ml",
+      "slug": "johnsons-kids-bubble-bath-wash-750-ml",
+      "description": "Hypoallergenic* and pH balanced, our bubble bath and wash is pediatrician and dermatologist-tested. Free from dyes, parabens, phthalates, sulfates, alcohol, and soap, it features our NO MORE TEARS® formula, which is as gentle on the eyes as pure water. This product cleanses without drying delicate skin and is specially formulated to meet the changing skincare needs of your growing child. It combines mild, gentle cleansing with big, fluffy bubbles for bath time fun. Thanks to the NO MORE TEARS® f",
+      "price": 1685,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_44.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "johnson-s",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "JOHNSONS-KIDS-BUBBLE",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Baby Dove Derma Care Moisturizing Wash, 400 ml",
+      "slug": "baby-dove-derma-care-moisturizing-wash-400-ml",
+      "description": "Baby Dove Derma Care Moisturizing Wash gently cleanses your baby's delicate skin, leaving it soft, smooth, and moisturized. Carefully formulated for a calming bathing experience, it's perfect for winding down at bedtime. The hypoallergenic and tear-free formula ensures a gentle cleanse without irritation, making it suitable for newborns. Its delicate scent enhances the bath time routine, promoting relaxation and tranquility for your little one. Gentle cleansing for delicate baby skin Leaves skin",
+      "price": 1785,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_45.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "dove",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABY-DOVE-DERMA-CARE",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Baby Dove Sensitive Skin Care Night Time Baby Wash, 400 ml",
+      "slug": "baby-dove-sensitive-skin-care-night-time-baby-wash-384-ml",
+      "description": "Tip-to-toe bedtime baby wash helps maintain skin moisture overnight Made with 100% skin-natural nutrients*, perfect for delicate baby skin Caring, tear-free, hypoallergenic soap for babies with sensitive skin Infused with a calming chamomile scent Dermatologist-tested and pediatrician-recommended soap for babies Certified cruelty-free by PETA Baby Dove Calming Moisture Night Time Wash is a hypoallergenic soap that combines sensitive skin care with a soothing chamomile scent for a relaxing bedtim",
+      "price": 1479,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_44.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "dove",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BABY-DOVE-SENSITIVE-",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Johnson's Baby Bedtime Bath, 300 ml",
+      "slug": "johnsons-baby-bedtime-bath-300-ml",
+      "description": "With soothing NaturalCalm™ essences—a blend of aromas designed to help prepare your baby for sleep. Part of an expert-developed routine clinically proven to help your baby sleep better*. Gently cleanses, leaving delicate skin feeling healthy. NO MORE TEARS® formula is clinically proven to be as gentle on the eyes as pure water. Hypoallergenic**, and pediatrician and dermatologist-tested. Free from dyes, parabens, and sulfates. How to Use: Use our 3-step bedtime routine to help your baby sleep*. ",
+      "price": 969,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_41.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "johnson-s",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "JOHNSONS-BABY-BEDTIM",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Johnson's Baby Bath, 300 ml",
+      "slug": "johnsons-baby-bath-300-ml",
+      "description": "Our mildest baby bath formula, gently cleanses without drying delicate skin NO MORE TEARS ® formula is as gentle to the eyes as pure water Lathers quickly and rinses easily, leaving baby’s skin clean and feeling healthy Hypoallergenic* and pH balanced Pediatrician and dermatologist-tested Free from dyes, parabens, phthalates, sulphides, alcohol, and soap. Great for kids and adults too! How to Use: For extra fluffy bubbles, pour baby bath under running water while stirring with hands. Disclaimer:",
+      "price": 869,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_42.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "johnson-s",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "JOHNSONS-BABY-BATH-3",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Johnson's Baby Shampoo",
+      "slug": "johnsons-baby-shampoo-300-ml",
+      "description": "For over 125 years, Johnson's has crafted formulas specifically designed for babies' unique and delicate skin and hair. Our baby shampoo is hypoallergenic, pediatrician-tested, and free from parabens, phthalates, sulfates, and dyes. Mild and gentle cleansing for fine baby hair and delicate scalp, formulated to be as gentle on your baby's eyes as water with Johnson's No More Tears formula. Developed with and tested by parents, this tear-free baby shampoo is mild enough for your baby's fine hair a",
+      "price": 795,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_97.png?v=1720607296"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "johnson-s",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "JOHNSONS-BABY-SHAMPO",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care"
+      ]
+    },
+    {
+      "name": "Johnson's Baby Shampoo, 200 ml",
+      "slug": "johnsons-®-baby-shampoo-features-200-ml",
+      "description": "It is hypoallergenic* and has a skin-compatible pH level. Tested by pediatricians and dermatologists, it is free from dyes, soap, and SLS/SLES. Our Real No-Sting® formula, as gentle as pure water on babies' eyes, ensures a happy bathing experience. It gently cleanses to protect the health of delicate hair and scalp. How to Use: Wet your baby's hair with warm water. Lather the baby shampoo and rinse. For best results, use with our other Johnson's products. Disclaimer: Before using a new cosmetic ",
+      "price": 560,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_38_177592c6-8c35-40c8-a3d9-fe3d650c40e6.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "johnson-s",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "JOHNSONS-®-BABY-SHAM",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care"
+      ]
+    },
+    {
+      "name": "Johnson's Top-To-Toe Hair & Body Baby Bath, 200 ml",
+      "slug": "johnson-top-to-toe-hair-body-baby-bath-200-ml",
+      "description": "Johnson's Baby Top to Toe Hair & Body Bath is as gentle on the eyes as pure water, specially formulated to gently cleanse your baby's delicate skin. It lathers quickly and rinses easily, leaving your baby's skin clean and healthy. 3x tested formulation: pediatrician, dermatologist, and ophthalmologist approved. Free from parabens, phthalates, sulfates, and dyes. No More Tears formula is as mild to the eyes as pure water. Gentle, hypoallergenic, and pH balanced. How to Use: Wet baby's hair and bo",
+      "price": 665,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_40_93abbe39-5f92-4646-994e-2b5b22dd8d81.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "johnson-s",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "JOHNSON-TOP-TO-TOE-H",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care"
+      ]
+    },
+    {
+      "name": "Baby Dove Sensitive Skin Care Rich Moisture Shampoo, 200 ml",
+      "slug": "baby-dove-sensitive-skin-care-rich-moisture-shampoo-200-ml",
+      "description": "Suitable for newborns and compatible with eczema prone skin It’s not just the skin on your baby’s body that needs looking after – did you know that the scalp is one of the most sensitive areas? That’s why we think the best baby shampoos should moisturise as well as cleanse. Containing our unique ¼ moisturising cream, Baby Dove Rich Moisture Shampoo goes beyond mildness to help replenish the essential moisture and nutrients that your baby’s delicate scalp can lose during bath time. Tear-free and ",
+      "price": 775,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_39_69235daf-38fa-4d1b-8663-67b9b19732cb.png"
+      ],
+      "categorySlug": "baby",
+      "brandSlug": "dove",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "BABY-DOVE-SENSITIVE-",
+      "weight": null,
+      "tags": [
+        "Baby",
+        "Hair Care"
+      ]
+    },
+    {
+      "name": "Jenpharm MandelAC Acid Facewash, 100 ml",
+      "slug": "jenpharm-mandelac-acid-cleanser-facewash-100-ml",
+      "description": "Jenpharm MandelAC Acid Facewash is a dermatologist-recommended cleanser formulated with 3% Mandelic Acid to gently exfoliate and purify the skin. Designed for oily and acne-prone skin types, this facewash helps reduce dark spots, post-acne marks, and uneven skin tone. Its gentle formula ensures effective cleansing without causing irritation, making it suitable for daily use. Key Features 3% Mandelic Acid: Provides mild exfoliation to remove dead skin cells and unclog pores. Vitamin E: An antioxi",
+      "price": 1098,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Jenpharm_MandelAC_Acid_Facewash_100_ml.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "jenpharm",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "JENPHARM-MANDELAC-AC",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Bayer Pharmaceuticals Skinoren Cream, 10g",
+      "slug": "bayer-skinoren-cream-10g",
+      "description": "Shaheen Chemist brings you Bayer Skinoren Cream , a dermatologist-recommended acne treatment cream trusted worldwide for fighting pimples, breakouts, and acne scars. If you’re tired of stubborn acne marks and looking for the best acne cream in Pakistan , Skinoren is a smart addition to your daily skincare routine. Formulated with the powerful active ingredient Azelaic Acid , this medicated cream works deep into your pores to kill acne-causing bacteria, reduce inflammation, and gently fade dark s",
+      "price": 775,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Jenpharm_MandelAC_Acid_Facewash.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "BAYER-SKINOREN-CREAM",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Triac Anti Acne Face Wash, 140ml",
+      "slug": "triac-anti-acne-face-wash-140-ml",
+      "description": "Triac Anti Acne Face Wash is a dermatologist-recommended cleanser specially formulated for acne-prone, oily, and combination skin . Designed to unclog pores, reduce breakouts, and control excess oil, it helps maintain a clear, smooth, and balanced complexion . With a refreshing gel texture, it cleanses deeply without stripping natural moisture. Active ingredients like Salicylic Acid, Zinc PCA, and Aloe Vera Extract work together to reduce acne, soothe irritation, and promote healthier-looking sk",
+      "price": 1500,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Jenpharm_MandelAC_Facewash.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "TRIAC-ANTI-ACNE-FACE",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Mistine Acne Clear Facial Foam – 85ml",
+      "slug": "mistine-acne-clear-facial-foam-85ml",
+      "description": "Shaheen Chemist brings you Mistine Acne Clear Facial Foam , a targeted cleansing solution for those dealing with acne, oily skin, and clogged pores. This Thailand-formulated facial foam is known for its ability to gently cleanse skin, remove excess oil, and help prevent future breakouts—all without over-drying. Perfect for men and women, this foam face wash deeply purifies your skin, making it a smart and affordable choice in Pakistan for those looking to clear up blemishes and maintain a health",
+      "price": 519,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Bayer_Pharmaceuticals_Skinoren_Cream_10g.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "mistine",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "MISTINE-ACNE-CLEAR-F",
+      "weight": null,
+      "tags": []
+    },
+    {
+      "name": "Triac Anti Acne Face Wash, 70ml",
+      "slug": "triac-anti-acne-face-wash-70ml-copy",
+      "description": "Triac Anti Acne Face Wash is a dermatologist-recommended cleanser specially formulated for acne-prone, oily, and combination skin . Designed to unclog pores, reduce breakouts, and control excess oil, it helps maintain a clear, smooth, and balanced complexion . With a refreshing gel texture, it cleanses deeply without stripping natural moisture. Active ingredients like Salicylic Acid, Zinc PCA, and Aloe Vera Extract work together to reduce acne, soothe irritation, and promote healthier-looking sk",
+      "price": 849,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/triac-anti-acne-face-wash-70ml-pakistan_11zon.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "TRIAC-ANTI-ACNE-FACE",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Acure Acne Facewash, 100 ml",
+      "slug": "acure-acne-facewash-100-ml",
+      "description": "Shaheen Chemist introduces the Acure Acne Facewash , a targeted formula designed to help cleanse and clarify acne-prone and oily skin. Formulated with skin-supporting ingredients, it works to reduce breakouts, unclog pores, and restore your skin’s natural clarity—without causing dryness or irritation. This face wash is ideal for men and women seeking a powerful yet balanced cleanser that supports everyday skincare. Whether you're battling persistent acne or occasional pimples, Acure offers a ref",
+      "price": 1010,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/MistineAcneClearBack.jpg"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "acure",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "ACURE-ACNE-FACEWASH-",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "CeraVe Acne Control Cleanser, 237 ml",
+      "slug": "cerave-acne-control-cleanser-237-ml",
+      "description": "Now available at Shaheen Chemist, CeraVe Acne Control Cleanser is a dermatologist-developed solution that combines 2% salicylic acid , niacinamide , and three essential ceramides to deeply cleanse acne-prone skin without disrupting its natural barrier. Ideal for men and women struggling with frequent breakouts, clogged pores, and excess oil, this cleanser is your go-to daily formula for clear, calm, and healthy-looking skin. This product stands out among the best face washes for acne and oily sk",
+      "price": 7139,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/AcneRid_Anti_Acne_Cream_25_g.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "cerave",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "CERAVE-ACNE-CONTROL-",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Clean & Clear Essential Oil Control Toner, 100ml",
+      "slug": "clean-clear-essential-oil-control-toner-100ml",
+      "description": "Now available at Shaheen Chemist, the Clean & Clear Essential Oil Control Toner is designed to target oily and acne-prone skin. With a refreshing, alcohol-free formula, this toner works to remove excess oil, tighten pores, and leave skin feeling clean without over-drying. It’s the perfect addition to your skincare routine, especially for those dealing with breakouts or shiny skin throughout the day. A must-have for anyone looking for oil control skincare in Pakistan , this toner is both effectiv",
+      "price": 490,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/acure_acne_facewash.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "clean-clear",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "CLEAN-CLEAR-ESSENTIA",
+      "weight": null,
+      "tags": [
+        "cleanser",
+        "Cleansing Toner"
+      ]
+    },
+    {
+      "name": "Clariderm Anti-Acne Serum, 20ml",
+      "slug": "clariderm-anti-acne-serum-20ml",
+      "description": "Clariderm Anti-Acne Serum is a concentrated treatment specially designed for oily, acne-prone, and blemish-sensitive skin. Formulated with a powerful yet gentle blend of active ingredients, it works to reduce inflammation, clear breakouts, and restore skin balance without causing excessive dryness or irritation. This lightweight serum penetrates deeply to unclog pores, regulate excess oil production, and prevent future breakouts—helping you achieve a clearer, smoother complexion over time. Unlik",
+      "price": 1776,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/acnerid_anti_acne_face_wash.jpg"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "CLARIDERM-ANTI-ACNE-",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Alite Acne Facewash, 125ml",
+      "slug": "alite-acne-facewash-125ml",
+      "description": "Shaheen Chemist offers Alite Acne Facewash , a powerful yet gentle cleanser specifically formulated for oily and acne-prone skin. With its effective blend of active ingredients, it helps reduce blemishes, unclog pores, and maintain a cleaner, fresher complexion. Ideal for teens and adults experiencing frequent breakouts, Alite Acne Facewash is designed to deliver visible results without over-drying the skin. The formula removes excess sebum, environmental impurities, and dead skin cells—making i",
+      "price": 1174,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/cerave_acne_control_cleanser_237ml.jpg"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "ALITE-ACNE-FACEWASH-",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Nike Man Ultra Green Eau De Toilette Deodorant Body Spray, 200 ml",
+      "slug": "nike-man-ultra-green-eau-de-toilette-deodorant-body-spray-200-ml",
+      "description": "Introducing the Nike Men Ultra Green Body Spray 200ml, a refreshing and invigorating fragrance designed for the modern man. This long-lasting body spray offers a burst of freshness with its green, energetic scent, perfect for everyday wear. The deodorizing spray keeps you feeling confident and smelling great throughout the day. The 200ml size makes it convenient for home use or on-the-go freshness. Elevate your grooming routine with the Nike Men Ultra Green Body Spray, a must-have addition to yo",
+      "price": 915,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/cerave-acne-control-cleanser-backside.jpg"
+      ],
+      "categorySlug": "fragrance",
+      "brandSlug": "nike",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "NIKE-MAN-ULTRA-GREEN",
+      "weight": null,
+      "tags": [
+        "Perfume"
+      ]
+    },
+    {
+      "name": "Pond's Men Acne Solution Acne Offense + Oil Fighter Facial Foam, 100 ml",
+      "slug": "ponds-men-acne-solution-facial-foam-100-ml",
+      "description": "Shaheen Chemist brings you Pond's Men Acne Solution Acne Offense + Oil Fighter Facial Foam , a high-performance cleanser tailored for men's skin. Specially designed to fight pimples and excess oil, this face wash uses Lock + Clear Technology to deliver instant oil control and visible acne reduction with regular use. If you're searching for the best face wash for men with oily or acne-prone skin in Pakistan , this product offers effective cleansing and breakout defense at an affordable price. Why",
+      "price": 765,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/clean-and-clear-essential-oil-control-toner-100ml-pakistan.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "pond-s",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "PONDS-MEN-ACNE-SOLUT",
+      "weight": null,
+      "tags": [
+        "Face Wash",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Garnier Men AcnoFight Anti-Acne Scrub In Foam, 100ml",
+      "slug": "garnier-men-acnofight-anti-acne-scrub-in-foam-100ml",
+      "description": "Shaheen Chemist brings you the Garnier Men AcnoFight Anti-Acne Scrub In Foam , a powerful 2-in-1 formula that targets pimples, blackheads, and oily skin in one wash. Specially formulated for men’s skin, this cleanser combines the deep-cleaning action of a face wash with the exfoliating power of a scrub. Looking for the best face wash for men in Pakistan dealing with acne and oil? This oil control face wash is your perfect ally for clear, refreshed, and matte skin. Product Details Brand: Garnier ",
+      "price": 1020,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/clean-and-clear-essential-oil-control-toner-100ml-pakistan-backside.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "garnier",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "GARNIER-MEN-ACNOFIGH",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Cosrx Salicylic Acid Daily Gentle Cleanser",
+      "slug": "cosrx-salicylic-acid-daily-gentle-cleanser",
+      "description": "COSRX Salicylic Acid Daily Gentle Cleanser is a refreshing, foaming facial cleanser formulated to keep your skin clear, balanced, and healthy. Enriched with salicylic acid , this cleanser gently removes excess oil, unclogs pores, and helps prevent acne breakouts without over-drying or irritating the skin. It’s the perfect daily solution for oily, combination, and acne-prone skin types. Salicylic acid is a beta hydroxy acid (BHA) known for its deep-cleansing ability. It penetrates pores to dissol",
+      "price": 4700,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/clariderm-anti-acne-serum-20ml-pakistan_641514d3-c6dc-469d-8f5e-58258c6bde83.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "COSRX-SALICYLIC-ACID",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Neutrogena Acne Proofing Gel Facial Cleanser with Salicylic Acid, 170 ml",
+      "slug": "neutrogena-acne-proofing-gel-facial-cleanser-with-salicylic-acid-170-ml",
+      "description": "Experience clearer, healthier-looking skin with Neutrogena Acne Proofing Gel Cleanser. This 170gm tube is a powerhouse in clearing breakouts and fortifying your skin against future acne challenges. Infused with ClearDefend Technology™, this clinically proven formula not only tackles existing breakouts but also shields your skin against new ones, while preserving its essential defences. With maximum strength salicylic acid acne treatment, this gel cleanser effectively clears and prevents breakout",
+      "price": 6197,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/alite-acne-facewash-125ml-pakistan.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "neutrogena",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "NEUTROGENA-ACNE-PROO",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Nivea Men Acne 8H Oil Clear Acne Defense + Purify Scrub, 100 ml",
+      "slug": "nivea-men-acne-8h-oil-clear-acne-defense-purify-scrub-100-ml",
+      "description": "NIVEA MEN Acne Oil Clear Scrub with the power of Salicylic Acid and Carnitine together with beads, it gently polishes skin to keep pores clean, reduce oil on skin surface and helps fight acne signs caring for men s skin problems effectively. How to Use: Gently massage on wet face, lather instantly. Rinse off with water. Avoid the eye area. Disclaimer: Before using a new cosmetic product, test a small area of your skin. Check the ingredients to avoid a reaction if you have a specific allergy or s",
+      "price": 1125,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-07-15T160641.608.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "nivea",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "NIVEA-MEN-ACNE-8H-OI",
+      "weight": null,
+      "tags": [
+        "Face Wash",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Clean & Clear Acne Clearing Cleanser, 100 g",
+      "slug": "clean-clear-acne-clearing-cleanser-100g",
+      "description": "It effectively clears up pimples. The potent salicylic acid mixture deeply cleans pores to get rid of extra oil and bacteria that cause acne. A special plant mixture relieves pimples and lessens surface redness for skin that is noticeably clearer. Skin is considerably clearer after using this effective remedy for acne-prone skin. Disclaimer Before using a new cosmetic product, test a small area of your skin. Check the ingredients to avoid a reaction if you have a specific allergy or sensitivity.",
+      "price": 765,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/ponds-men-acne-solution-oil-fighter-facial-foam-100ml-pakistan.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "clean-clear",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "CLEAN-CLEAR-ACNE-CLE",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Garnier Men Acno Fight Wasabi Brightening Foam, 100 ml",
+      "slug": "garnier-men-acno-fight-brightening-foam-100-ml",
+      "description": "The innovative cleanser from Garnier that gives instant brightening, fights, and helps prevent against acne day after day. Enriched with gentle yet effective Wasabi Extract and Salicylic Acid, known respectively for their detoxifying and anti-bacterial properties, it helps reduces excess oil, fights pimples, blackheads, pores and prevent imperfections from recurring in the future. How to Use: Gently massage on wet face, lather instantly. Rinse off with water. Avoid the eye area. Disclaimer: Befo",
+      "price": 1020,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/garnier-men-acnofight-anti-acne-scrub-in-foam-100ml-pakistan.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "garnier",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "GARNIER-MEN-ACNO-FIG",
+      "weight": null,
+      "tags": [
+        "Face Wash",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Clariderm Anti Acne Face Wash, 60ml",
+      "slug": "clariderm-anti-acne-face-wash-60ml",
+      "description": "Clariderm Anti Acne Face Wash is specially formulated to target acne, excess oil, and clogged pores while maintaining the skin’s natural moisture balance. Its gentle yet effective cleansing action removes dirt, impurities, and excess sebum that can cause breakouts, leaving your skin refreshed and clean without over-drying. Perfect for oily and acne-prone skin, this face wash helps reduce the appearance of pimples, blackheads, and redness over time. The non-irritating formula makes it suitable fo",
+      "price": 1050,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/cosrx-salicylic-acid-daily-gentle-cleanser-pakistan.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "shaheen-chemist-commercial-market",
+      "stock": 50,
+      "isFeatured": true,
+      "isActive": true,
+      "sku": "CLARIDERM-ANTI-ACNE-",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Clean & Clear Oil Free Micellar Water, 100ml",
+      "slug": "clean-clear-oil-free-micellar-water-100ml",
+      "description": "The make-up cleansing product in the form of Micellar Water has a special formula called Triple Micellar Technology™ and contains Aloe Vera extract and 0% alcohol. Clean &amp; Clear Micellar Water removes 99% of make-up. The formula is also soft for the eyes.",
+      "price": 349,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign-2024-07-30T152343.229.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "clean-clear",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "CLEAN-CLEAR-OIL-FREE",
+      "weight": null,
+      "tags": [
+        "cleanser",
+        "Cleansing Toner"
+      ]
+    },
+    {
+      "name": "Garnier Pure Active Anti-Acne Cleansing Gel, 100 ml",
+      "slug": "garnier-pure-active-anti-acne-cleansing-gel-100-ml",
+      "description": "Experience the gentle yet effective power of Garnier Skin Naturals Pure Active Sensitive Anti-Acne Cleansing Gel. Crafted for sensitive and acne-prone skin, this cleansing gel offers a balanced approach to acne control, leaving your skin refreshed, soothed, and beautifully cleansed. How to Use: Gently massage on wet face, lather instantly. Rinse off with water. Avoid the eye area. Disclaimer: Before using a new cosmetic product, test a small area of your skin. Check the ingredients to avoid a re",
+      "price": 869,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/30.webp"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "garnier",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "GARNIER-PURE-ACTIVE-",
+      "weight": null,
+      "tags": [
+        "Face Wash",
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Biofad Niacin Gel - Anti Acne",
+      "slug": "biofad-niacin-gel-anti-acne",
+      "description": "Biofad Niacin Gel - Anti Acne therapy , Oil free , Removes Acne marks , Non Irritating . Active Ingredients: Ac. Net (Oleanolic Acid & Nordihydroguaiaretic Acid/ NGDA) 3.00% w/w/ Niacinamide 1.00% w/w. Other Ingredients: Deionized Water, Propylene Glycol, DMDM Hydantoin, Disodium EDTA, Methylparaben Sodium . Direction for use: Apply a small amount of GEL on the affected area twice daily. Avoid sun exposure while using NIACIN GEL. Use sunscreen (Suntex) during day time to protect the harm effect ",
+      "price": 850,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/acb.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "syntax",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "BIOFAD-NIACIN-GEL-AN",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "Centella Toning Toner, 400ml",
+      "slug": "centella-toning-toner-400ml",
+      "description": "Shaheen Chemist brings you the Centella Toning Toner, 400ml , a soothing and hydrating toner enriched with the calming power of Centella Asiatica . Designed to refresh, rebalance, and prep the skin after cleansing, this toner is especially beneficial for people with sensitive, acne-prone, or irritated skin . With its lightweight, watery texture, it absorbs quickly, delivering hydration and nourishment without heaviness or stickiness. In skincare, toners play a vital role in restoring the skin’s ",
+      "price": 6695,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/aca.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "centella",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "CENTELLA-TONING-TONE",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    },
+    {
+      "name": "COSRX The 6 Peptide Skin Booster Serum, 150ml",
+      "slug": "cosrx-the-6-peptide-skin-booster-serum-150ml",
+      "description": "Shaheen Chemist brings you the COSRX The 6 Peptide Skin Booster Serum, 150ml , a multi-tasking Korean skincare solution designed to target pores, fine lines, and uneven skin tone. Formulated with six powerful peptides , this lightweight serum works to smooth texture, refine skin appearance, and restore firmness over time. Unlike heavy serums, this booster is water-light, fast-absorbing, and layers seamlessly with the rest of your skincare routine. This larger 150ml bottle provides long-lasting u",
+      "price": 7249,
+      "comparePrice": null,
+      "images": [
+        "https://cdn.shopify.com/s/files/1/0614/4301/4703/files/Untitleddesign_3_04030cff-8250-4ef7-a3f6-62a8bf3da6ad.png"
+      ],
+      "categorySlug": "skin-care",
+      "brandSlug": "cosrx",
+      "stock": 50,
+      "isFeatured": false,
+      "isActive": true,
+      "sku": "COSRX-THE-6-PEPTIDE-",
+      "weight": null,
+      "tags": [
+        "Skin Care"
+      ]
+    }
+  ]
+}
